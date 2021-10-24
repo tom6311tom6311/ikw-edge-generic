@@ -1,0 +1,28 @@
+version: "3.3"
+
+services:
+  mqtt:
+    build:
+      context: mqtt/
+    volumes:
+      - type: bind
+        source: mqtt/mosquitto.conf
+        target: /mosquitto/config/mosquitto.conf
+        read_only: true
+      - type: volume
+        source: mqtt_data
+        target: /mosquitto/data
+      - type: bind
+        source: log/mqtt
+        target: /mosquitto/log
+    ports:
+      - 18831:1883
+    networks:
+      - main
+
+networks:
+  main:
+    driver: bridge
+
+volumes:
+  mqtt_data:
