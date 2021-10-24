@@ -6,15 +6,15 @@ services:
       context: mqtt/
     volumes:
       - type: bind
-        source: mqtt/mosquitto.conf
+        source: ./mqtt/mosquitto.conf
         target: /mosquitto/config/mosquitto.conf
         read_only: true
+      - type: bind
+        source: ./log/mqtt
+        target: /mosquitto/log
       - type: volume
         source: mqtt_data
         target: /mosquitto/data
-      - type: bind
-        source: log/mqtt
-        target: /mosquitto/log
     ports:
       - 18831:1883
     networks:
