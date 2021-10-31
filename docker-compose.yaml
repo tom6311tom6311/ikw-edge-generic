@@ -1,6 +1,23 @@
 version: "3.3"
 
 services:
+  influxdb:
+    build:
+      context: influxdb/
+    ports:
+      - 10861:8086
+    restart: always
+    volumes:
+      - type: bind
+        source: influxdb/data
+        target: /var/lib/influxdb2
+    networks:
+      - main
+    healthcheck:
+        test: ["CMD", "curl", "-f", "http://influxdb:8086"]
+        interval: 5s
+        timeout: 3s
+        retries: 5
   mqtt:
     build:
       context: mqtt/
@@ -17,20 +34,17 @@ services:
         target: /mosquitto/data
     ports:
       - 18831:1883
+    environment:
+      INFLUX_ORG: $INFLUX_ORG
+      INFLUX_TOKEN: $INFLUX_TOKEN
+      INFLUX_BUCKET: $INFLUX_BUCKET
     networks:
       - main
-  influxdb:
-    build:
-      context: influxdb/
-    ports:
-      - 10861:8086
-    restart: always
-    volumes:
-      - type: bind
-        source: influxdb/data
-        target: /var/lib/influxdb2
-    networks:
-      - main
+    depends_on:
+      influxdb:
+        condition: service_healthy
+    links:
+        - influxdb
 networks:
   main:
     driver: bridge
