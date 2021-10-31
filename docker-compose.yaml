@@ -6,20 +6,31 @@ services:
       context: mqtt/
     volumes:
       - type: bind
-        source: ./mqtt/mosquitto.conf
+        source: mqtt/conf/mosquitto.conf
         target: /mosquitto/config/mosquitto.conf
         read_only: true
       - type: bind
-        source: ./log/mqtt
+        source: mqtt/log
         target: /mosquitto/log
-      - type: volume
-        source: mqtt_data
+      - type: bind
+        source: mqtt/data
         target: /mosquitto/data
     ports:
       - 18831:1883
     networks:
       - main
-
+  influxdb:
+    build:
+      context: influxdb/
+    ports:
+      - 10861:8086
+    restart: always
+    volumes:
+      - type: bind
+        source: influxdb/data
+        target: /var/lib/influxdb2
+    networks:
+      - main
 networks:
   main:
     driver: bridge
