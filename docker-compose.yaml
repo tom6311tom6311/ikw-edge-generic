@@ -13,11 +13,6 @@ services:
         target: /var/lib/influxdb2
     networks:
       - main
-    healthcheck:
-        test: ["CMD", "curl", "-f", "http://influxdb:8086"]
-        interval: 5s
-        timeout: 3s
-        retries: 5
   mqtt:
     build:
       context: mqtt/
@@ -40,11 +35,6 @@ services:
       INFLUX_BUCKET: $INFLUX_BUCKET
     networks:
       - main
-    depends_on:
-      influxdb:
-        condition: service_healthy
-    links:
-        - influxdb
 networks:
   main:
     driver: bridge

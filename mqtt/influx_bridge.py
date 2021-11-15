@@ -28,4 +28,11 @@ def parseMsgAndWriteToDb(topic='', msg=''):
       }
     )
 
-mqttClient.subscribeForever(parseMsgAndWriteToDb)
+connSuccess = False
+while (not connSuccess):
+  try:
+    mqttClient.subscribeForever(parseMsgAndWriteToDb)
+    connSuccess = True
+  except:
+    print("MQTT broker not ready yet. Retry subscription later...")
+    time.sleep(3)
