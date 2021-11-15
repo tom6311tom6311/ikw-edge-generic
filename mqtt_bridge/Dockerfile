@@ -1,6 +1,6 @@
-FROM python
+FROM python:3.8
 
-RUN pip3 install --no-cache --upgrade pip setuptools influxdb-client paho-mqtt
+RUN pip install setuptools influxdb-client paho-mqtt
 
 WORKDIR /
 COPY utils ./utils
