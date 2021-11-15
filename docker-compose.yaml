@@ -29,6 +29,11 @@ services:
         target: /mosquitto/data
     ports:
       - 18831:1883
+    networks:
+      - main
+  mqtt_bridge:
+    build:
+      context: mqtt_bridge/
     environment:
       INFLUX_ORG: $INFLUX_ORG
       INFLUX_TOKEN: $INFLUX_TOKEN
