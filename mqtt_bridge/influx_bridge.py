@@ -5,7 +5,6 @@ from utils.MqttClient import mqttClient
 
 def parseMsgAndWriteToDb(topic='', msg=''):
   print(f"[influx_bridge] Received a message from topic `{topic}`: {msg}")
-  print(topic, msg)
   device_id = topic.split('/')[-1]
   record = None
   try:
@@ -34,6 +33,7 @@ while (not connSuccess):
   try:
     mqttClient.subscribeForever(parseMsgAndWriteToDb)
     connSuccess = True
-  except:
-    print("[influx_bridge] MQTT broker not ready yet. Retry subscription later...")
+  except Exception as e:
+    print("[influx_bridge] Error occurred:", e)
+    print("[influx_bridge] Retry subscription in 3 sec...")
     time.sleep(3)
