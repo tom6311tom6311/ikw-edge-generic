@@ -34,6 +34,14 @@ services:
   mqtt_bridge:
     build:
       context: mqtt_bridge/
+    volumes:
+      - type: bind
+        source: ./mqtt_bridge/conf/opSpec.json
+        target: /conf/opSpec.json
+        read_only: true
+      - type: bind
+        source: ./mqtt_bridge/log
+        target: /log
     environment:
       INFLUX_ORG: $INFLUX_ORG
       INFLUX_TOKEN: $INFLUX_TOKEN

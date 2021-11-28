@@ -1,0 +1,266 @@
+{
+  "default": {
+    "name": "",
+    "unit": "",
+    "processor": "",
+    "sensor_name": "",
+    "calibration_offset": -1,
+    "calibration_value": -1
+  },
+  "op1": {
+    "name": "水溫",
+    "unit": "℃",
+    "processor": "",
+    "sensor_name": "DS18B20",
+    "calibration_offset": -1,
+    "calibration_value": -1
+  },
+  "op2": {
+    "name": "TDS",
+    "unit": "mg/l",
+    "processor": "",
+    "sensor_name": "",
+    "calibration_offset": -1,
+    "calibration_value": -1
+  },
+  "op3": {
+    "name": "pH",
+    "unit": "",
+    "processor": "ph",
+    "sensor_name": "Nerset PH",
+    "calibration_offset": 7,
+    "calibration_value": 0
+  },
+  "op4": {
+    "name": "ORP",
+    "unit": "mV",
+    "processor": "",
+    "sensor_name": "ORP",
+    "calibration_offset": 0,
+    "calibration_value": 0
+  },
+  "op5": {
+    "name": "原電池型溶氧",
+    "unit": "ppm",
+    "processor": "galvanicDo",
+    "sensor_name": "Galvanic Dissolved Oxygen",
+    "calibration_offset": -1,
+    "calibration_value": 0.44
+  },
+  "op10": {
+    "name": "電流偵測1",
+    "unit": "A",
+    "processor": "mvToCt15aPerV",
+    "sensor_name": "15A/1V CT",
+    "calibration_offset": -1,
+    "calibration_value": -1
+  },
+  "op11": {
+    "name": "電流偵測2",
+    "unit": "A",
+    "processor": "mvToCt15aPerV",
+    "sensor_name": "15A/1V CT",
+    "calibration_offset": -1,
+    "calibration_value": -1
+  },
+  "op12": {
+    "name": "電流偵測3",
+    "unit": "A",
+    "processor": "mvToCt15aPerV",
+    "sensor_name": "15A/1V CT",
+    "calibration_offset": -1,
+    "calibration_value": -1
+  },
+  "op13": {
+    "name": "電流偵測4",
+    "unit": "A",
+    "processor": "mvToCt15aPerV",
+    "sensor_name": "15A/1V CT",
+    "calibration_offset": -1,
+    "calibration_value": -1
+  },
+  "op14": {
+    "name": "電流偵測5",
+    "unit": "A",
+    "processor": "mvToCt15aPerV",
+    "sensor_name": "15A/1V CT",
+    "calibration_offset": -1,
+    "calibration_value": -1
+  },
+  "op15": {
+    "name": "電流偵測6",
+    "unit": "A",
+    "processor": "mvToCt15aPerV",
+    "sensor_name": "15A/1V CT",
+    "calibration_offset": -1,
+    "calibration_value": -1
+  },
+  "op16": {
+    "name": "電流偵測7",
+    "unit": "A",
+    "processor": "mvToCt15aPerV",
+    "sensor_name": "15A/1V CT",
+    "calibration_offset": -1,
+    "calibration_value": -1
+  },
+  "op17": {
+    "name": "電流偵測8",
+    "unit": "A",
+    "processor": "mvToCt15aPerV",
+    "sensor_name": "15A/1V CT",
+    "calibration_offset": -1,
+    "calibration_value": -1
+  },
+  "op18": {
+    "name": "氣壓",
+    "unit": "hPa",
+    "processor": "",
+    "sensor_name": "BME280",
+    "calibration_offset": -1,
+    "calibration_value": -1
+  },
+  "op19": {
+    "name": "風速",
+    "unit": "",
+    "processor": "winSpeed",
+    "sensor_name": "氣象站配套風速計",
+    "calibration_offset": -1,
+    "calibration_value": -1
+  },
+  "op20": {
+    "name": "風向",
+    "unit": "",
+    "processor": "winDirection",
+    "sensor_name": "氣象站配套風向計",
+    "calibration_offset": -1,
+    "calibration_value": -1
+  },
+  "op21": {
+    "name": "雨量",
+    "unit": "mm",
+    "processor": "rainfall",
+    "sensor_name": "氣象站配套雨量計",
+    "calibration_offset": -1,
+    "calibration_value": -1
+  },
+  "op41": {
+    "name": "空氣濕度",
+    "unit": "%",
+    "processor": "",
+    "sensor_name": "DHT11",
+    "calibration_offset": -1,
+    "calibration_value": -1
+  },
+  "op64": {
+    "name": "氣溫",
+    "unit": "℃",
+    "processor": "",
+    "sensor_name": "DHT11",
+    "calibration_offset": -1,
+    "calibration_value": -1
+  },
+  "op67": {
+    "name": "土壤濕度",
+    "unit": "%",
+    "processor": "",
+    "sensor_name": "電容式土壤濕度帶線Epoxy防水",
+    "calibration_offset": -1,
+    "calibration_value": -1
+  },
+  "op68": {
+    "name": "土壤溫度",
+    "unit": "℃",
+    "processor": "",
+    "sensor_name": "DS18B20",
+    "calibration_offset": -1,
+    "calibration_value": -1
+  },
+  "op69": {
+    "name": "光亮度",
+    "unit": "Lux",
+    "processor": "",
+    "sensor_name": "MAX44009",
+    "calibration_offset": -1,
+    "calibration_value": -1
+  },
+  "op79": {
+    "name": "超音波魚浮頭",
+    "unit": "cm",
+    "processor": "",
+    "sensor_name": "SR04",
+    "calibration_offset": -1,
+    "calibration_value": -1
+  },
+  "op84": {
+    "name": "CO2",
+    "unit": "",
+    "processor": "",
+    "sensor_name": "",
+    "calibration_offset": 0,
+    "calibration_value": 0
+  },
+  "op85": {
+    "name": "NOx",
+    "unit": "",
+    "processor": "",
+    "sensor_name": "",
+    "calibration_offset": 0,
+    "calibration_value": 0
+  },
+  "op86": {
+    "name": "NH3",
+    "unit": "",
+    "processor": "",
+    "sensor_name": "",
+    "calibration_offset": 0,
+    "calibration_value": 0
+  },
+  "op87": {
+    "name": "TVOC",
+    "unit": "",
+    "processor": "",
+    "sensor_name": "",
+    "calibration_offset": 0,
+    "calibration_value": 0
+  },
+  "op88": {
+    "name": "水流量",
+    "unit": "l/min",
+    "processor": "flowRateYfdn50",
+    "sensor_name": "YF-DN50",
+    "calibration_offset": -1,
+    "calibration_value": -1
+  },
+  "op89": {
+    "name": "太陽能電壓",
+    "unit": "mV",
+    "processor": "",
+    "sensor_name": "",
+    "calibration_offset": -1,
+    "calibration_value": -1
+  },
+  "op90": {
+    "name": "飼料量",
+    "unit": "%",
+    "processor": "feedAmountCmToPercentage",
+    "sensor_name": "SR04",
+    "calibration_offset": -1,
+    "calibration_value": -1
+  },
+  "op91": {
+    "name": "噴料桶震動馬達偵測",
+    "unit": "A",
+    "processor": "mvToCt10aPerV",
+    "sensor_name": "10A/1V CT",
+    "calibration_offset": -1,
+    "calibration_value": -1
+  },
+  "op92": {
+    "name": "噴料桶鼓風機偵測",
+    "unit": "A",
+    "processor": "mvToCt10aPerV",
+    "sensor_name": "10A/1V CT",
+    "calibration_offset": -1,
+    "calibration_value": -1
+  }
+}

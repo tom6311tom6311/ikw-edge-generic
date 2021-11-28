@@ -1,4 +1,5 @@
 import paho.mqtt.client as mqtt
+from utils.logger import logger
 
 class MqttClient:
   def __init__(self):
@@ -6,7 +7,7 @@ class MqttClient:
 
   def subscribeForever(self, msgCallback):
     def on_connect(client, userdata, flags, rc):
-      print(f"[MqttClient] Connected with result code {rc}")
+      logger.log('INFO', f"[MqttClient] Connected with result code {rc}")
       client.subscribe("/#")
     def on_message(client, userdata, msg):
       if (not callable(msgCallback)):
