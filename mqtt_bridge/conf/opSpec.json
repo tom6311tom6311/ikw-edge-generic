@@ -17,7 +17,7 @@
   },
   "op2": {
     "name": "TDS",
-    "unit": "mg/l",
+    "unit": "ppm",
     "processor": "",
     "sensor_name": "",
     "calibration_offset": -1,
@@ -121,7 +121,7 @@
   },
   "op19": {
     "name": "風速",
-    "unit": "",
+    "unit": "m/s",
     "processor": "winSpeed",
     "sensor_name": "氣象站配套風速計",
     "calibration_offset": -1,
@@ -185,7 +185,7 @@
   },
   "op79": {
     "name": "超音波魚浮頭",
-    "unit": "cm",
+    "unit": "",
     "processor": "",
     "sensor_name": "SR04",
     "calibration_offset": -1,
@@ -193,7 +193,7 @@
   },
   "op84": {
     "name": "CO2",
-    "unit": "",
+    "unit": "ppm",
     "processor": "",
     "sensor_name": "",
     "calibration_offset": 0,
@@ -201,7 +201,7 @@
   },
   "op85": {
     "name": "NOx",
-    "unit": "",
+    "unit": "ppm",
     "processor": "",
     "sensor_name": "",
     "calibration_offset": 0,
@@ -209,7 +209,7 @@
   },
   "op86": {
     "name": "NH3",
-    "unit": "",
+    "unit": "ppm",
     "processor": "",
     "sensor_name": "",
     "calibration_offset": 0,
@@ -217,7 +217,7 @@
   },
   "op87": {
     "name": "TVOC",
-    "unit": "",
+    "unit": "ppm",
     "processor": "",
     "sensor_name": "",
     "calibration_offset": 0,
