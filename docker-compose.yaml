@@ -48,6 +48,13 @@ services:
       INFLUX_BUCKET: $INFLUX_BUCKET
     networks:
       - main
+  siras-manager-fe:
+    build:
+      context: ./siras-manager-fe
+    ports:
+      - 3080:80
+    networks:
+        - main
 networks:
   main:
     driver: bridge
