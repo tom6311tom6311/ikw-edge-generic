@@ -1,14 +1,15 @@
 # build process
 FROM node AS build-deps
-WORKDIR /usr/src/app
+WORKDIR /app
 COPY package.json yarn.lock ./
 RUN yarn
-COPY . ./
-EXPOSE 80
-RUN yarn start
+COPY . .
+RUN yarn build
 
-# # production process
-# FROM nginx
-# COPY --from=build-deps /usr/src/app/build /usr/share/nginx/html
-# EXPOSE 80
-# CMD ["nginx", "-g", "daemon off;"]
+# production process
+FROM nginx:alpine
+WORKDIR /usr/share/nginx/html/
+RUN rm -rf ./*
+COPY --from=build-deps /app/build .
+EXPOSE 80
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
