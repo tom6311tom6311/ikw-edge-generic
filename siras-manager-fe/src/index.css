@@ -11,3 +11,218 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+div {
+  max-width: 360px;
+  height: auto;
+  background-color: #CCCCCC;
+}
+
+.header {
+  background-color: #002633;
+  box-shadow: 0px 2px 6px rgba(46, 50, 51, 0.4);
+  height: 60px;
+  width: 100%;
+  margin:0;
+}
+
+.sitelist_container {
+  overflow-y: scroll;
+  overflow: hidden;
+
+}
+
+.menu_icon {
+  height: 14px;
+  margin: 23px 24px;
+  float: left;
+}
+
+.user_icon {
+  position:absolute;
+  width:20px;
+  margin: 20px auto 20px 0;
+  background-color: linear-gradient(0deg, #FFFFFF, #FFFFFF), #293033;
+  float: left;
+}
+
+.overview_header_text {
+  width: 74px;
+  height: 21px;
+  margin: calc(38px/2) 171px calc(38px/2) 0;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  /* identical to box height */
+
+  align-items: center;
+  letter-spacing: 0.02em;
+
+  color: #FFFFFF;
+  float: left;
+}
+
+.caseitem_container {
+  margin: 20px;
+  margin-top: 40px;
+  margin-bottom: 0;
+  width: calc(100% - 40px);
+  height: 653px;
+  border-radius: 3px;
+}
+
+.caseitem_head_container {
+  align-self: stretch;
+  padding: 20px;
+  width:100%;
+  height: 104px;
+  background: radial-gradient(152.08% 85.55% at 0% 14.45%, #3DCCCC 0%, #00B3B3 100%);
+}
+
+.caseitem_subhead {
+  width: 29px;
+  height: 21px;
+  margin: 1.5px auto 5.5px 10px;
+
+  font-family: Noto Sans TC;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.02em;
+
+  color: #FFFFFF;
+}
+
+.caseitem_caseId {
+  float: left;
+  width: 157px;
+  height: 32px;
+  left: 0px;
+  margin: 0 28px 4px 10px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 27px;
+  line-height: 32px;
+  /* identical to box height */
+  color: #FFFFFF;
+}
+
+.caseitem_button {
+  float: left;
+  /* position: static; */
+  width: 85px;
+  height: 32px;
+  padding:4px 10px;
+
+  font-family: Noto Sans TC;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 23px;
+
+  background: linear-gradient(0deg, #FFFFFF, #FFFFFF);
+  border-radius: 3px;
+  color: #0F9999;
+}
+
+.caseitem_body_container {
+  width: 100%;
+  height: 549px;
+  padding: 10px 0;
+  border-width: 0 1px 1px 1px;
+  border-color: rgba(23, 25, 26, 0.1);
+  border-style: solid;
+  background-color: #FFFFFF;
+}
+
+.caseitem_info_container {
+  width: 280px;
+  height: 61px;
+  padding-bottom: 10px;
+  margin: 10px 20px 0 20px;
+  border-width: 0 0 1px 0;
+  border-color: rgba(23, 25, 26, 0.1);
+  border-style: solid;
+  display: flex;
+  align-items: center;
+  background-color: #FFFFFF;
+}
+
+.caseitem_info_key {
+  float: left;
+  width: 50px;
+  height: 20px;
+  left: 0px;
+  margin:15px 0;
+
+  font-family: Noto Sans TC;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 23px;
+  text-align: right;
+  letter-spacing: 0.05em;
+  color: rgba(41, 48, 51, 0.6);
+}
+
+.caseitem_info_value {
+  float: left;
+  height: 30px;
+  margin:10px auto 10px 30px;
+
+  font-family: Noto Sans TC;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 27px;
+  /* or 169% */
+
+  align-items: center;
+  letter-spacing: 0.01em;
+  color: rgba(23, 25, 26, 0.9);
+}
+
+.caseitem_info_unit {
+  float: right;
+  width: 40px;
+  height: 30px;
+  margin: 10px 0 10px auto;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  color: rgba(23, 25, 26, 0.6);
+}
+
+.basicdata_button {
+  color:#12B2B2;
+  border-color: #12B2B2;
+  border-width: 1.5px;
+  border-style: solid;
+  border-radius: 3px;
+  font-family: Noto Sans TC;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 23px;
+
+  background-color: #FFFFFF;
+  width: 240px;
+  height: 40px;
+  text-align: center;
+  align-items: center;
+  letter-spacing: 0.05em;
+  margin: 10px 40px 40px 40px;
+  padding-top: 5px;
+}

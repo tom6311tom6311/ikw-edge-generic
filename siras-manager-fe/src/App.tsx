@@ -21,7 +21,7 @@ const client = new ApolloClient({
 const App = () => (
   <ApolloProvider client={client}>
     <BrowserRouter>
-      <Header title="魚電養殖管理" />
+      <Header title="案場總覽" />
       <Routes>
         <Route path="*" element={<SiteListPage />} />
       </Routes>
