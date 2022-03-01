@@ -55,6 +55,14 @@ services:
       - 3080:80
     networks:
         - main
+  siras-manager-be:
+    build:
+      context: ./siras-manager-be
+    ports:
+      # should be disabled in production
+      - 14001:4000
+    networks:
+        - main
 networks:
   main:
     driver: bridge
