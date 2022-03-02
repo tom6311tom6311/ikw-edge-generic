@@ -1,0 +1,42 @@
+type Site {
+  siteId: ID!
+  status: SiteStatus!
+  nameEng: String!
+  nameChin: String!
+  licenseNum: String
+  numSiras: Int!
+  area: Float
+  capacity: Float!
+  speciesList: [String!]!
+  validationStatus: SiteValidationStatus!
+  ponds: [Pond!]!
+  ownerNameEng: String!
+  ownerNameChin: String!
+  addressEng: String!
+  addressChin: String!
+  telCompany: String
+  telMobile: String
+  telHouse: String
+  companyNameEng: String
+  companyNameChin: String
+  email: String
+  county: String!
+  district: String!
+  organization: String!
+  numEmployees: Int
+  awardRecordList: [String!]!
+  trademark: String
+  note: String
+}
+
+enum SiteStatus {
+  ACTIVE
+  INACTIVE
+}
+
+enum SiteValidationStatus {
+  PASSED
+  REJECTED
+  UNDER_REVIEW
+  NEW
+}

@@ -1,8 +1,8 @@
-import echo from './echo.resolver';
+import site from './site.resolver';
 
 const resolvers = {
   Query: {
-    echo,
+    site,
   }
 };
 

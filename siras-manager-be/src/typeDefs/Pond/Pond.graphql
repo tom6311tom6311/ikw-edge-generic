@@ -1,0 +1,7 @@
+type Pond {
+  administrativeNumber: String
+  serialNumber: String!
+  landSerialNumber: String
+  area: Float!
+  typeCode: String
+}

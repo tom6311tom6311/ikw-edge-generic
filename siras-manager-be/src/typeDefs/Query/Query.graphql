@@ -1,3 +1,3 @@
 type Query {
-  echo(str: String!): String!
+  site(siteId: ID!): Site
 }
