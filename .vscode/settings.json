@@ -3,6 +3,8 @@
     "browserslist",
     "mqtt",
     "paho",
+    "persistor",
+    "reduxjs",
     "siras"
   ]
 }
