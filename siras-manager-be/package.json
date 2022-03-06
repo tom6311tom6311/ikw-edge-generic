@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development ts-node-dev --exit-child --respawn src/main.ts",
     "start": "ts-node src/main.ts",
-    "lint": "eslint . --ext .ts"
+    "lint": "eslint . --ext .ts",
+    "gen": "graphql-codegen --config codegen.yml"
   },
   "license": "MIT",
   "devDependencies": {
@@ -16,9 +17,14 @@
     "eslint": "^8.10.0",
     "ts-node": "10.5.0",
     "ts-node-dev": "1.1.8",
-    "typescript": "4.6.2"
+    "typescript": "4.6.2",
+    "@graphql-codegen/typescript": "2.4.5",
+    "@graphql-codegen/typescript-resolvers": "2.5.2",
+    "@graphql-codegen/introspection": "2.1.1",
+    "@graphql-codegen/cli": "2.6.2"
   },
   "dependencies": {
+    "@graphql-codegen/cli": "^2.6.2",
     "@graphql-tools/load-files": "^6.5.3",
     "@graphql-tools/merge": "^8.2.3",
     "@graphql-yoga/node": "0.1.0-beta.4",

@@ -1,9 +1,8 @@
 import mockData from '../../data/mockData';
+import { QueryResolvers } from '../generated/graphql';
 
-type SiteArgs = {
-  siteId: string;
-}
+type SiteResolver = QueryResolvers['site'];
 
-const site = (parent: unknown, args: SiteArgs) => (mockData.sites[args.siteId] || null);
+const site: SiteResolver = (parent, args) => (mockData.sites[args.siteId] || null);
 
 export default site;

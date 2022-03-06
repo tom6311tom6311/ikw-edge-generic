@@ -1,6 +1,7 @@
 import site from './site.resolver';
+import { Resolvers } from '../generated/graphql';
 
-const resolvers = {
+const resolvers: Resolvers = {
   Query: {
     site,
   }
