@@ -1,6 +1,8 @@
+import { Site, SiteStatus, SiteValidationStatus } from "../src/generated/graphql";
+
 type MockData = {
   sites: {
-    [key: string]: any;
+    [key: string]: Site;
   }
 }
 
@@ -8,7 +10,7 @@ const mockData: MockData = {
   sites: {
     A123456789: {
       siteId: 'A123456789',
-      status: 'ACTIVE',
+      status: SiteStatus.Active,
       nameEng: 'I Know Water Tech. Ltd,Co.',
       nameChin: '愛諾華特科技股份有限公司',
       licenseNum: 'ABCDE1234567890',
@@ -16,7 +18,7 @@ const mockData: MockData = {
       area: 99.9,
       capacity: 99999,
       speciesList: ['赤鰭笛鯛', '黑毛', '斑點石鯛', '吳郭魚'],
-      validationStatus: 'PASSED',
+      validationStatus: SiteValidationStatus.Passed,
       ponds: [
         {
           administrativeNumber: 'ABCDE1234567890',
@@ -46,7 +48,7 @@ const mockData: MockData = {
     },
     A223456789: {
       siteId: 'A223456789',
-      status: 'ACTIVE',
+      status: SiteStatus.Active,
       nameEng: 'I Know Water Tech. Ltd,Co.',
       nameChin: '愛諾華特科技股份有限公司',
       licenseNum: 'ABCDE1234567890',
@@ -54,7 +56,7 @@ const mockData: MockData = {
       area: 99.9,
       capacity: 99999,
       speciesList: ['赤鰭笛鯛', '黑毛', '斑點石鯛', '吳郭魚'],
-      validationStatus: 'PASSED',
+      validationStatus: SiteValidationStatus.Passed,
       ponds: [
         {
           administrativeNumber: 'ABCDE1234567890',
