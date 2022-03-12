@@ -40,8 +40,8 @@ class OpMiddleware:
         'sensor_name': meta['sensor_name'] or ''
       },
       'fields': {
-        'value_raw': value_raw,
-        'value_processed': value_processed
+        'value_raw': float(value_raw),
+        'value_processed': float(value_processed)
       }
     }
   
