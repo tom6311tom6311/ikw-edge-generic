@@ -26,11 +26,17 @@ export type Pond = {
 export type Query = {
   __typename?: 'Query';
   site?: Maybe<Site>;
+  sites: Array<Site>;
 };
 
 
 export type QuerySiteArgs = {
   siteId: Scalars['ID'];
+};
+
+
+export type QuerySitesArgs = {
+  siteIds: Array<Scalars['ID']>;
 };
 
 export type Site = {
@@ -181,6 +187,7 @@ export type PondResolvers<ContextType = any, ParentType extends ResolversParentT
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   site?: Resolver<Maybe<ResolversTypes['Site']>, ParentType, ContextType, RequireFields<QuerySiteArgs, 'siteId'>>;
+  sites?: Resolver<Array<ResolversTypes['Site']>, ParentType, ContextType, RequireFields<QuerySitesArgs, 'siteIds'>>;
 };
 
 export type SiteResolvers<ContextType = any, ParentType extends ResolversParentTypes['Site'] = ResolversParentTypes['Site']> = {
