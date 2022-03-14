@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Site } from '../../features/sitesSlice';
 
 
-export default function CaseItem (props: Site) {
+export default function CaseItem (props: Site & {changePageName:Function, changeDisplaySite:Function}) {
   const {
     siteId,
     companyName,
@@ -11,7 +11,9 @@ export default function CaseItem (props: Site) {
     speciesList,
     capacity,
     area,
-    status
+    status,
+    changePageName,
+    changeDisplaySite
   } = props
   return (
     <div className='caseitem_container' > 
@@ -19,7 +21,7 @@ export default function CaseItem (props: Site) {
         <p className='caseitem_subhead'>案場</p>
         <div>
           <p className='caseitem_caseId'>{siteId}</p>
-          <div className='bnt caseitem_button'>案場管理</div>
+          <div className='bnt caseitem_button' onClick={() =>{ changePageName('SiteManagementPage'); changeDisplaySite(siteId)}}> 案場管理</div>
         </div>
       </div>
       <div className='caseitem_body_container'>

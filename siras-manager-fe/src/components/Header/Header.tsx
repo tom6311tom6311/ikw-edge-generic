@@ -1,12 +1,26 @@
 type HeaderProps = {
   title: string;
+  switchSidebar: Function;
+  isPad: boolean;
 };
-
-const Header = ({ title }:HeaderProps) => (
+// const {
+//   switchSidebar
+// } = props
+const Header = ({ title, switchSidebar, isPad }:HeaderProps) => (
   <div className='header'>
-    <img src={require('../../img/menu.png')} alt='menu' className='menu_icon'/>
+    <img src={isPad?require('../../img/menu_pad.png'):require('../../img/menu.png')} onClick={()=>switchSidebar(true)} alt='menu' className='menu_icon'/>
     <h1 className='overview_header_text'>{title}</h1>
-    <img src={require('../../img/user.png')} alt='user' className='user_icon'/>
+    {isPad?
+    <div>
+      <img src={require('../../img/ring.png')} alt='alert' className='ring_icon'/>
+      <img src={require('../../img/search.png')} alt='search' className='search_icon'/>
+    </div>:
+    <div>
+    <img src={require('../../img/ring.png')} alt='alert' className='ring_icon'/>
+    <img src={require('../../img/search.png')} alt='search' className='search_icon'/>
+  </div>
+    }
+    
   </div>
 );
 

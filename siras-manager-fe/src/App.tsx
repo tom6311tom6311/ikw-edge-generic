@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   ApolloClient,
   InMemoryCache,
@@ -10,6 +10,9 @@ import {
 import AppConfig from './const/AppConfig';
 import Header from './components/Header/Header';
 import SiteListPage from './containers/SiteListPage/SiteListPage';
+import SideBar from './components/MenuBar/SideBar';
+import SiteManagementPage from './containers/SiteManagementPage/SiteManagementPage';
+import MediaQuery from './components/MediaQuery/MediaQuery';
 
 console.log(AppConfig.BACKEND.URL);
 
@@ -18,15 +21,27 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
-const App = () => (
-  <ApolloProvider client={client}>
-    <BrowserRouter>
-      <Header title="案場總覽" />
-      <Routes>
-        <Route path="*" element={<SiteListPage />} />
-      </Routes>
-    </BrowserRouter>
-  </ApolloProvider>
-)
+const App = () => {
+  const isPad = MediaQuery('(min-width: 600px)');
+  const [sidebarState, switchSidebar] = React.useState(isPad)
+  const [pageName, changePageName] = React.useState('SiteListPage')
+  const [displaySite, changeDisplaySite] = React.useState('None')
+  
+  return(
+    <ApolloProvider client={client}>
+      <BrowserRouter>
+        <SideBar isPad={isPad} sidebarState={sidebarState} switchSidebar={switchSidebar} changePageName={changePageName} />
+        <Header title="案場總覽" isPad={isPad} switchSidebar={switchSidebar}/>
+        <Routes>
+          {
+            pageName === 'SiteListPage'?<Route path="*" element={<SiteListPage changePageName={changePageName} changeDisplaySite={changeDisplaySite} />} />:
+            pageName === 'SiteManagementPage'?<Route path="*" element={<SiteManagementPage displaySite={displaySite} />} />:
+            <div></div>
+          }
+        </Routes>
+      </BrowserRouter>
+    </ApolloProvider>
+  );
+}
 
 export default App;
