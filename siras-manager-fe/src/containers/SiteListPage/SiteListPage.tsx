@@ -1,23 +1,23 @@
-import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../hooks";
-import { fetchSite, selectSites } from "../../features/sitesSlice";
+import { useGetSitesQuery } from "./SiteListPage.graphql.generated";
 
 
-const SITE_IDS = ['a123456789'];
+const SITE_IDS = ['A123456789', 'A223456789'];
 
 const SiteListPage = () => {
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-    SITE_IDS.forEach((siteId) => {
-      dispatch(fetchSite(siteId));
-    })
-  }, [dispatch]);
-  const sites = useAppSelector(selectSites(SITE_IDS));
+  const { loading, error, data } = useGetSitesQuery({ variables: { siteIds: SITE_IDS }});
+  if (loading || error || !data?.sites) {
+    return <></>;
+  }
+
+  const sites = data.sites;
   return (
     <div>
-      {sites.map(({ siteId, status,
-        companyName,
-        location,
+      {sites.map(({
+        siteId,
+        status,
+        companyNameChin,
+        county,
+        district,
         numSiras,
         speciesList,
         capacity,
@@ -27,11 +27,11 @@ const SiteListPage = () => {
             <tbody>
               <tr>
                 <th scope="row">公司</th>
-                <td>{companyName}</td>
+                <td>{companyNameChin}</td>
               </tr>
               <tr>
                 <th scope="row">地點</th>
-                <td>{location}</td>
+                <td>{`${county} ${district}`}</td>
               </tr>
               <tr>
                 <th scope="row">SiRAS</th>

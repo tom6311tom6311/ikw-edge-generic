@@ -1,27 +1,32 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import { persistStore } from 'redux-persist';
-import { PersistGate } from 'redux-persist/integration/react';
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+} from "@apollo/client";
 import {
   BrowserRouter, Routes, Route,
 } from 'react-router-dom';
-import store from './store';
+import AppConfig from './const/AppConfig';
 import Header from './components/Header/Header';
 import SiteListPage from './containers/SiteListPage/SiteListPage';
 
-const persistor = persistStore(store);
+console.log(AppConfig.BACKEND.URL);
+
+const client = new ApolloClient({
+  uri: AppConfig.BACKEND.URL,
+  cache: new InMemoryCache()
+});
 
 const App = () => (
-  <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
-      <BrowserRouter>
-        <Header title="魚電養殖管理" />
-        <Routes>
-          <Route path="*" element={<SiteListPage />} />
-        </Routes>
-      </BrowserRouter>
-    </PersistGate>
-  </Provider>
+  <ApolloProvider client={client}>
+    <BrowserRouter>
+      <Header title="魚電養殖管理" />
+      <Routes>
+        <Route path="*" element={<SiteListPage />} />
+      </Routes>
+    </BrowserRouter>
+  </ApolloProvider>
 )
 
 export default App;

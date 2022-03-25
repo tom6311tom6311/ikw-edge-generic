@@ -1,0 +1,4 @@
+type Query {
+  site(siteId: ID!): Site
+  sites(siteIds: [ID!]!): [Site!]!
+}
