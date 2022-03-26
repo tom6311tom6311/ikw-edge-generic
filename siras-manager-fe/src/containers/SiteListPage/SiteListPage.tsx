@@ -16,46 +16,10 @@ const SiteListPage = (props:{changePageName:Function, changeDisplaySite:Function
   } = props
   return (
     <div className="sitelist_container">
-      {sites.map(({
-        siteId,
-        status,
-        companyNameChin,
-        county,
-        district,
-        numSiras,
-        speciesList,
-        capacity,
-        area}) => (
+      {sites.map((site) => (
           <SiteOverview 
-            key={siteId} 
-            status={status} 
-            siteId={siteId} 
-            companyName={companyNameChin} 
-            location={location} 
-            numSiras={numSiras} 
-            speciesList={speciesList} 
-            capacity={capacity} 
-            area={area}
-            changePageName={changePageName}
-            changeDisplaySite={changeDisplaySite} />
-      ))}
-      {sites.map(({ siteId, status,
-        companyName,
-        location,
-        numSiras,
-        speciesList,
-        capacity,
-        area}) => (
-          <SiteOverview 
-            key={siteId} 
-            status={status} 
-            siteId={siteId} 
-            companyName={companyName} 
-            location={location} 
-            numSiras={numSiras} 
-            speciesList={speciesList} 
-            capacity={capacity} 
-            area={area}
+            key={site.siteId}
+            siteData={site}
             changePageName={changePageName}
             changeDisplaySite={changeDisplaySite} />
       ))}

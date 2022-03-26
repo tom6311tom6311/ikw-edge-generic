@@ -1,17 +1,24 @@
 import * as React from 'react';
-import { Site } from '../../features/sitesSlice';
+import { GetSitesQuery } from '../../containers/SiteListPage/SiteListPage.graphql.generated';
 
+type CaseItemProps = {
+  siteData: GetSitesQuery['sites'][number];
+  changePageName:Function;
+  changeDisplaySite:Function;
+}
 
-export default function CaseItem (props: Site & {changePageName:Function, changeDisplaySite:Function}) {
+export default function CaseItem (props: CaseItemProps) {
   const {
-    siteId,
-    companyName,
-    location,
-    numSiras,
-    speciesList,
-    capacity,
-    area,
-    status,
+    siteData: {
+      siteId,
+      companyNameChin,
+      county,
+      district,
+      numSiras,
+      speciesList,
+      capacity,
+      area,
+    },
     changePageName,
     changeDisplaySite
   } = props
@@ -25,8 +32,8 @@ export default function CaseItem (props: Site & {changePageName:Function, change
         </div>
       </div>
       <div className='caseitem_body_container'>
-        <div className='caseitem_info_container'><p className='caseitem_info_key'>公司</p><p className='caseitem_info_value'>{companyName}</p></div>
-        <div className='caseitem_info_container'><p className='caseitem_info_key'>地點</p><p className='caseitem_info_value'>{location}</p></div>
+        <div className='caseitem_info_container'><p className='caseitem_info_key'>公司</p><p className='caseitem_info_value'>{companyNameChin}</p></div>
+        <div className='caseitem_info_container'><p className='caseitem_info_key'>地點</p><p className='caseitem_info_value'>{`${county} ${district}`}</p></div>
         <div className='caseitem_info_container'><p className='caseitem_info_key'>SiRAS</p><p className='caseitem_info_value'>{numSiras}</p><p className='caseitem_info_unit'>U</p></div>
         <div className='caseitem_info_container' style={{height:'85px'}}><p className='caseitem_info_key'>魚種</p><p className='caseitem_info_value'  style={{width:'200px', height:'54px'}} >{speciesList}</p></div>
         <div className='caseitem_info_container'><p className='caseitem_info_key'>產量</p><p className='caseitem_info_value'>{capacity}</p><p className='caseitem_info_unit'>台斤</p></div>
