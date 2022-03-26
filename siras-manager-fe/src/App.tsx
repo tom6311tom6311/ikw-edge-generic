@@ -3,7 +3,7 @@ import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
-} from "@apollo/client";
+} from '@apollo/client';
 import {
   BrowserRouter, Routes, Route,
 } from 'react-router-dom';
@@ -15,10 +15,10 @@ import SiteManagementPage from './containers/SiteManagementPage/SiteManagementPa
 
 const client = new ApolloClient({
   uri: AppConfig.BACKEND.URL,
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
 });
 
-const App = () => {
+function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
   return (
@@ -26,10 +26,11 @@ const App = () => {
       <BrowserRouter>
         <div className={isSidebarOpen ? 'sidebar_on' : ''}>
           <SideBar />
-          <Header title="案場總覽" isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar}/>
+          <Header title="案場總覽" isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
           <Routes>
             <Route path="/site/:siteId" element={<SiteManagementPage />} />
-            <Route path="*" element={<SiteListPage />} />:
+            <Route path="*" element={<SiteListPage />} />
+            :
           </Routes>
         </div>
       </BrowserRouter>
