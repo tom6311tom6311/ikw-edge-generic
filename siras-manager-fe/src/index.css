@@ -262,20 +262,19 @@ div {
 }
 
 .sideBar_background {
-  z-index: 2;
   left: 0;
   top: 0;
-  width: 100vw;
+  width: 25vw;
   height: 100vh;
   position: fixed;
-  background-color: rgb(255,255,255, 0.5)
+  background-color: transparent;
+  float: left;
 }
 
 .sideBar_container {
   left: 0;
   top: 0;
-  z-index: 3;
-  width: 192px;
+  width: 25vw;
   height: 100vh;
   position: fixed;
   background: linear-gradient(0deg, #00404D, #00404D), linear-gradient(0deg, #F0EFED, #F0EFED), #FFFFFF;
@@ -291,13 +290,6 @@ div {
 .sideBar_logo {
   float: left;
   margin: 10px auto 10px 20px;
-  width: 30px;
-  cursor: pointer;
-}
-
-.sideBar_close_button {
-  float: right;
-  margin: 10px 20px 10px auto;
   width: 30px;
   cursor: pointer;
 }
@@ -681,42 +673,7 @@ div {
 }
 
 
-.siteManang_container {
+.siteManage_container {
   width: 75vw;
   float: right;
-}
-
-@media screen and (min-width: 600px){
-
-  .sideBar_background {
-    left: 0;
-    top: 0;
-    width: 25vw;
-    height: 100vh;
-    position: fixed;
-    background-color: transparent;
-    float: left;
-  }
-
-  .sideBar_container {
-    left: 0;
-    top: 0;
-    width: 25vw;
-    height: 100vh;
-    position: fixed;
-    background: linear-gradient(0deg, #00404D, #00404D), linear-gradient(0deg, #F0EFED, #F0EFED), #FFFFFF;
-    border-radius: 3px;
-  }
-
-  .sideBar_close_button {
-    display: none;
-  }
-
-  .menu_icon {
-    height: 16px;
-    margin: 17px 23px;
-    float: left;
-    cursor: pointer;
-  }
-
 }

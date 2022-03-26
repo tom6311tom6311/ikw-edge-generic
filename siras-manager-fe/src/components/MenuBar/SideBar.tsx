@@ -16,8 +16,6 @@ export default function SideBar (props:{ sidebarState:boolean, switchSidebar:Fun
     <div className='sideBar_background'>
       <div className='sideBar_container'>
         <div className='sideBar_header'>
-          <img src={require('../../img/logo_white_words.png')} alt='sideBar logo' onClick={() => {changePageName('SiteListPage'); switchSidebar(false)}} className='sideBar_logo'/>
-          <img src={require('../../img/close_white.png')} alt='sideBar close' onClick={() => switchSidebar(false)} className='sideBar_close_button'/>
         </div>
         <div className='sideBar_item_container' style={{marginTop:'10px'}}><p className='sideBar_item_p' onClick={() => {changePageName('SiteListPage'); switchSidebar(false)}}>案場總覽</p></div>
         <div className='sideBar_item_container'><p className='sideBar_item_p'>GIS圖台</p></div>

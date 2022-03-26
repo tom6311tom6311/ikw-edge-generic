@@ -36,7 +36,7 @@ export default function SiteManagementPage (props: ISiteManagementPageProps) {
   ];
   
   return (
-    <div className={sideBarState?'siteManang_container':''}>
+    <div className={sideBarState?'siteManage_container':''}>
       <div className={sideBarState?'siteManage_Header_container sidebar_on':'siteManage_Header_container'}>
         <div>
           <p className='siteManage_Header_siteId'>{displaySite}</p>
