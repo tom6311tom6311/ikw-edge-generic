@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Settings, Axis, Chart, Position, ScaleType, LineSeries } from '@elastic/charts';
+import { Line, LineChart, Tooltip, XAxis } from 'recharts';
 
  type ISiteManagementPageProps = {
   displaySite: String;
@@ -32,8 +32,6 @@ export default function SiteManagementPage (props: ISiteManagementPageProps) {
     { x: 2, y: 4 },
     { x: 3, y: 10 },
   ];
-  const dataset2 = dataset1.map((data) => ({...data, y: data.y - 1}))
-  const dataset3 = dataset2.map((data) => ({...data, y: data.y - 1}))
   
   return (
     <div className='siteManang_container'>
@@ -97,22 +95,15 @@ export default function SiteManagementPage (props: ISiteManagementPageProps) {
           </div>
           <div>
             <div className='siteManage_body_basicItem' style={{width:'calc(100% - 10px)',height:'386px'}}>
-              <Chart renderer="canvas" >
-                <Settings
-                  showLegend
-                  showLegendExtra
-                  legendPosition={Position.Right}
-                />
-                <Axis id="bottom" position={Position.Bottom} />
-                <LineSeries
-                  id="lines"
-                  xScaleType={ScaleType.Linear}
-                  yScaleType={ScaleType.Linear}
-                  xAccessor="x"
-                  yAccessors={['y']}
-                  data={dataset1}
-                />
-              </Chart>
+              <LineChart
+                width={400}
+                height={400}
+                data={dataset1}
+              >
+                <XAxis dataKey="x" />
+                <Tooltip />
+                <Line dataKey='y' />
+              </LineChart>
             </div>
           </div>
         </div>
