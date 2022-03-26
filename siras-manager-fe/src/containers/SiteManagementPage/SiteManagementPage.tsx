@@ -28,8 +28,8 @@ export default function SiteManagementPage () {
   ];
   
   return (
-    <div className={'siteManang_container'}>
-      <div className={'siteManage_Header_container sidebar_on'}>
+    <div className={'siteManage_container'}>
+      <div className={'siteManage_Header_container'}>
         <div>
           <p className='siteManage_Header_siteId'>{siteId}</p>
           <img className='siteManage_Header_search_icon' src={require('../../img/search.png')} alt='searching' />
@@ -40,7 +40,7 @@ export default function SiteManagementPage () {
           <img className='siteManage_Header_moreInfo_icon' src={require('../../img/moreInfo_black.png')} alt='more info' />
         </div>
       </div>
-      <div className={'siteManage_divider sidebar_on'}></div>
+      <div className={'siteManage_divider'}></div>
       <div className='siteManage_body_container'>
         <div className='siteManage_body_subcontainer'>
           <div className='siteManage_body_item_header'>

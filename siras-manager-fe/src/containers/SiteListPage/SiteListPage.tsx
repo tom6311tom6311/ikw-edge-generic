@@ -11,7 +11,7 @@ const SiteListPage = () => {
   }
   const sites = data.sites;
   return (
-    <div className={"sitelist_container sidebar_on"}>
+    <div className={"sitelist_container"}>
       {sites.map((site) => (
           <SiteOverview 
             key={site.siteId}

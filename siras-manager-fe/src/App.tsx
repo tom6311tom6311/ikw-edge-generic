@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   ApolloClient,
   InMemoryCache,
@@ -19,17 +19,19 @@ const client = new ApolloClient({
 });
 
 const App = () => {
-  const [sidebarState, switchSidebar] = React.useState(false)
-  
-  return(
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+  return (
     <ApolloProvider client={client}>
       <BrowserRouter>
-        <SideBar sidebarState={sidebarState} switchSidebar={switchSidebar} />
-        <Header title="案場總覽" switchSidebar={switchSidebar}/>
-        <Routes>
-          <Route path="/site/:siteId" element={<SiteManagementPage />} />
-          <Route path="*" element={<SiteListPage />} />:
-        </Routes>
+        <div className={isSidebarOpen ? 'sidebar_on' : ''}>
+          <SideBar />
+          <Header title="案場總覽" isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar}/>
+          <Routes>
+            <Route path="/site/:siteId" element={<SiteManagementPage />} />
+            <Route path="*" element={<SiteListPage />} />:
+          </Routes>
+        </div>
       </BrowserRouter>
     </ApolloProvider>
   );

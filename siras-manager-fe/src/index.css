@@ -26,7 +26,7 @@ div {
   margin:0;
 }
 
-.header.sidebar_on {
+.sidebar_on .header {
   width: 75vw;
   right:0;
 }
@@ -39,7 +39,7 @@ div {
   scrollbar-width: none;  /* Firefox */
 }
 
-.sitelist_container.sidebar_on {
+.sidebar_on .sitelist_container {
   width: 75vw;
   float: right;
 }
@@ -261,7 +261,7 @@ div {
   cursor: pointer;
 }
 
-.sideBar_background {
+.sideBar_wrapper {
   left: 0;
   top: 0;
   width: 25vw;
@@ -269,6 +269,11 @@ div {
   position: fixed;
   background-color: transparent;
   float: left;
+  display: none;
+}
+
+.sidebar_on .sideBar_wrapper {
+  display: block;
 }
 
 .sideBar_container {
@@ -328,12 +333,8 @@ div {
   background-color: white;
 }
 
-.siteManage_Header_container.sidebar_on {
-  width: 75vw;
-}
-
 .siteManage_divider {
-  width: calc(100vw - 80px);
+  width: calc(100% - 80px);
   height: 1px;
   border-width: 1px 0 0 0;
   border-style: solid;
@@ -341,10 +342,6 @@ div {
   position: fixed;
   top: 199px;
   right: 40px;
-}
-
-.siteManage_divider.sidebar_on {
-  width: calc(75vw - 80px);
 }
 
 .siteManage_Header_siteId {
@@ -673,7 +670,7 @@ div {
 }
 
 
-.siteManage_container {
+.sidebar_on .siteManage_container {
   width: 75vw;
   float: right;
 }
