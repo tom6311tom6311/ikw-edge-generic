@@ -12,7 +12,6 @@ import Header from './components/Header/Header';
 import SiteListPage from './containers/SiteListPage/SiteListPage';
 import SideBar from './components/MenuBar/SideBar';
 import SiteManagementPage from './containers/SiteManagementPage/SiteManagementPage';
-import MediaQuery from './components/MediaQuery/MediaQuery';
 
 const client = new ApolloClient({
   uri: AppConfig.BACKEND.URL,
@@ -20,20 +19,19 @@ const client = new ApolloClient({
 });
 
 const App = () => {
-  const isPad = MediaQuery('(min-width: 600px)');
-  const [sidebarState, switchSidebar] = React.useState(isPad)
+  const [sidebarState, switchSidebar] = React.useState(false)
   const [pageName, changePageName] = React.useState('SiteListPage')
   const [displaySite, changeDisplaySite] = React.useState('None')
   
   return(
     <ApolloProvider client={client}>
       <BrowserRouter>
-        <SideBar isPad={isPad} sidebarState={sidebarState} switchSidebar={switchSidebar} changePageName={changePageName} />
-        <Header title="案場總覽" isPad={isPad} switchSidebar={switchSidebar}/>
+        <SideBar sidebarState={sidebarState} switchSidebar={switchSidebar} changePageName={changePageName} />
+        <Header sidebarState={sidebarState} title="案場總覽" switchSidebar={switchSidebar}/>
         <Routes>
           {
-            pageName === 'SiteListPage'?<Route path="*" element={<SiteListPage changePageName={changePageName} changeDisplaySite={changeDisplaySite} />} />:
-            pageName === 'SiteManagementPage'?<Route path="*" element={<SiteManagementPage displaySite={displaySite} />} />:
+            pageName === 'SiteListPage'?<Route path="*" element={<SiteListPage sideBarState={sidebarState} changePageName={changePageName} changeDisplaySite={changeDisplaySite} />} />:
+            pageName === 'SiteManagementPage'?<Route path="*" element={<SiteManagementPage sideBarState={sidebarState} displaySite={displaySite} />} />:
             <div></div>
           }
         </Routes>

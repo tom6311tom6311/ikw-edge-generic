@@ -26,12 +26,22 @@ div {
   margin:0;
 }
 
+.header.sidebar_on {
+  width: 75vw;
+  right:0;
+}
+
 .sitelist_container {
   height: 100vh;
   overflow-y: scroll;
   padding: 50px 0 160px 0;
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
+}
+
+.sitelist_container.sidebar_on {
+  width: 75vw;
+  float: right;
 }
 
 .sitelist_container::-webkit-scrollbar {
@@ -320,14 +330,18 @@ div {
 .siteManage_Header_container {
   padding: 37px 40px 20px 40px;
   height: 160px;
-  width: 75vw;
+  width: 100vw;
   margin: 50px 0 0 0;
   position: fixed;
   background-color: white;
 }
 
+.siteManage_Header_container.sidebar_on {
+  width: 75vw;
+}
+
 .siteManage_divider {
-  width: calc(75vw - 80px);
+  width: calc(100vw - 80px);
   height: 1px;
   border-width: 1px 0 0 0;
   border-style: solid;
@@ -335,6 +349,10 @@ div {
   position: fixed;
   top: 199px;
   right: 40px;
+}
+
+.siteManage_divider.sidebar_on {
+  width: calc(75vw - 80px);
 }
 
 .siteManage_Header_siteId {
@@ -662,6 +680,12 @@ div {
   color: transparent;
 }
 
+
+.siteManang_container {
+  width: 75vw;
+  float: right;
+}
+
 @media screen and (min-width: 600px){
 
   .sideBar_background {
@@ -684,16 +708,6 @@ div {
     border-radius: 3px;
   }
 
-  .sitelist_container {
-    width: 75vw;
-    float: right;
-  }
-
-  .header {
-    width: 75vw;
-    right:0;
-  }
-
   .sideBar_close_button {
     display: none;
   }
@@ -705,8 +719,4 @@ div {
     cursor: pointer;
   }
 
-  .siteManang_container {
-    width: 75vw;
-    float: right;
-  }
 }
