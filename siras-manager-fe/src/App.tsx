@@ -14,8 +14,6 @@ import SideBar from './components/MenuBar/SideBar';
 import SiteManagementPage from './containers/SiteManagementPage/SiteManagementPage';
 import MediaQuery from './components/MediaQuery/MediaQuery';
 
-console.log(AppConfig.BACKEND.URL);
-
 const client = new ApolloClient({
   uri: AppConfig.BACKEND.URL,
   cache: new InMemoryCache()
