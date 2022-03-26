@@ -4,25 +4,20 @@ import SiteOverview from '../../components/SiteOverview/SiteOverview';
 
 const SITE_IDS = ['A123456789', 'A223456789'];
 
-const SiteListPage = (props:{sideBarState:Boolean, changePageName:Function, changeDisplaySite:Function}) => {
+const SiteListPage = () => {
   const { loading, error, data } = useGetSitesQuery({ variables: { siteIds: SITE_IDS }});
   if (loading || error || !data?.sites) {
     return <></>;
   }
   const sites = data.sites;
-  const {
-    changePageName,
-    changeDisplaySite,
-    sideBarState,
-  } = props
   return (
-    <div className={sideBarState?"sitelist_container sidebar_on":"sitelist_container"}>
+    <div className={"sitelist_container sidebar_on"}>
       {sites.map((site) => (
           <SiteOverview 
             key={site.siteId}
             siteData={site}
-            changePageName={changePageName}
-            changeDisplaySite={changeDisplaySite} />
+            link={`/site/${site.siteId}`}
+          />
       ))}
     </div>
   );

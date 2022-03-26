@@ -1,17 +1,9 @@
 import * as React from 'react';
+import { useParams } from 'react-router-dom';
 import { Line, LineChart, Tooltip, XAxis } from 'recharts';
 
- type ISiteManagementPageProps = {
-  displaySite: String;
-  sideBarState: Boolean;
-}
-
-export default function SiteManagementPage (props: ISiteManagementPageProps) {
-  const {
-    displaySite,
-    sideBarState,
-  } = props
-  
+export default function SiteManagementPage () {
+  const { siteId } = useParams();
   const [bookmarkNow, changeBookmark] = React.useState('siteStatus')
   const value = {
     'air':14.77,
@@ -36,10 +28,10 @@ export default function SiteManagementPage (props: ISiteManagementPageProps) {
   ];
   
   return (
-    <div className={sideBarState?'siteManage_container':''}>
-      <div className={sideBarState?'siteManage_Header_container sidebar_on':'siteManage_Header_container'}>
+    <div className={'siteManang_container'}>
+      <div className={'siteManage_Header_container sidebar_on'}>
         <div>
-          <p className='siteManage_Header_siteId'>{displaySite}</p>
+          <p className='siteManage_Header_siteId'>{siteId}</p>
           <img className='siteManage_Header_search_icon' src={require('../../img/search.png')} alt='searching' />
         </div>
         <div>
@@ -48,7 +40,7 @@ export default function SiteManagementPage (props: ISiteManagementPageProps) {
           <img className='siteManage_Header_moreInfo_icon' src={require('../../img/moreInfo_black.png')} alt='more info' />
         </div>
       </div>
-      <div className={sideBarState?'siteManage_divider sidebar_on':'siteManage_divider'}></div>
+      <div className={'siteManage_divider sidebar_on'}></div>
       <div className='siteManage_body_container'>
         <div className='siteManage_body_subcontainer'>
           <div className='siteManage_body_item_header'>

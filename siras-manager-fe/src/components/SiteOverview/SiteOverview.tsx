@@ -1,10 +1,10 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import { GetSitesQuery } from '../../containers/SiteListPage/SiteListPage.graphql.generated';
 
 type SiteOverviewProps = {
   siteData: GetSitesQuery['sites'][number];
-  changePageName:Function;
-  changeDisplaySite:Function;
+  link: string;
 }
 
 export default function SiteOverview (props: SiteOverviewProps) {
@@ -19,8 +19,7 @@ export default function SiteOverview (props: SiteOverviewProps) {
       capacity,
       area,
     },
-    changePageName,
-    changeDisplaySite
+    link,
   } = props
   return (
     <div className='siteoverview_container' > 
@@ -28,7 +27,9 @@ export default function SiteOverview (props: SiteOverviewProps) {
         <p className='siteoverview_subhead'>案場</p>
         <div>
           <p className='siteoverview_caseId'>{siteId}</p>
-          <div className='bnt siteoverview_button' onClick={() =>{ changePageName('SiteManagementPage'); changeDisplaySite(siteId)}}> 案場管理</div>
+          <Link to={link}>
+            <div className='bnt siteoverview_button'>案場管理</div>
+          </Link>
         </div>
       </div>
       <div className='siteoverview_body_container'>
