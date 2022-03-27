@@ -14,6 +14,14 @@ export type Scalars = {
   Float: number;
 };
 
+export type Op = {
+  __typename?: 'Op';
+  name: Scalars['String'];
+  opId: Scalars['Int'];
+  sensorName?: Maybe<Scalars['String']>;
+  unit?: Maybe<Scalars['String']>;
+};
+
 export type Pond = {
   __typename?: 'Pond';
   administrativeNumber?: Maybe<Scalars['String']>;
@@ -25,8 +33,21 @@ export type Pond = {
 
 export type Query = {
   __typename?: 'Query';
+  op?: Maybe<Op>;
+  sensorData?: Maybe<SensorData>;
   site?: Maybe<Site>;
   sites: Array<Site>;
+};
+
+
+export type QueryOpArgs = {
+  opId: Scalars['Int'];
+};
+
+
+export type QuerySensorDataArgs = {
+  deviceId: Scalars['String'];
+  opId: Scalars['Int'];
 };
 
 
@@ -37,6 +58,14 @@ export type QuerySiteArgs = {
 
 export type QuerySitesArgs = {
   siteIds: Array<Scalars['ID']>;
+};
+
+export type SensorData = {
+  __typename?: 'SensorData';
+  deviceId: Scalars['String'];
+  opId: Scalars['Int'];
+  timeSeries: Array<TimeSeriesDataPoint>;
+  warningThreshold: Scalars['Float'];
 };
 
 export type Site = {
@@ -82,6 +111,12 @@ export enum SiteValidationStatus {
   Rejected = 'REJECTED',
   UnderReview = 'UNDER_REVIEW'
 }
+
+export type TimeSeriesDataPoint = {
+  __typename?: 'TimeSeriesDataPoint';
+  timestamp: Scalars['Int'];
+  value: Scalars['Float'];
+};
 
 
 
@@ -156,12 +191,15 @@ export type ResolversTypes = {
   Float: ResolverTypeWrapper<Scalars['Float']>;
   ID: ResolverTypeWrapper<Scalars['ID']>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
+  Op: ResolverTypeWrapper<Op>;
   Pond: ResolverTypeWrapper<Pond>;
   Query: ResolverTypeWrapper<{}>;
+  SensorData: ResolverTypeWrapper<SensorData>;
   Site: ResolverTypeWrapper<Site>;
   SiteStatus: SiteStatus;
   SiteValidationStatus: SiteValidationStatus;
   String: ResolverTypeWrapper<Scalars['String']>;
+  TimeSeriesDataPoint: ResolverTypeWrapper<TimeSeriesDataPoint>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -170,10 +208,21 @@ export type ResolversParentTypes = {
   Float: Scalars['Float'];
   ID: Scalars['ID'];
   Int: Scalars['Int'];
+  Op: Op;
   Pond: Pond;
   Query: {};
+  SensorData: SensorData;
   Site: Site;
   String: Scalars['String'];
+  TimeSeriesDataPoint: TimeSeriesDataPoint;
+};
+
+export type OpResolvers<ContextType = any, ParentType extends ResolversParentTypes['Op'] = ResolversParentTypes['Op']> = {
+  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  opId?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  sensorName?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  unit?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type PondResolvers<ContextType = any, ParentType extends ResolversParentTypes['Pond'] = ResolversParentTypes['Pond']> = {
@@ -186,8 +235,18 @@ export type PondResolvers<ContextType = any, ParentType extends ResolversParentT
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
+  op?: Resolver<Maybe<ResolversTypes['Op']>, ParentType, ContextType, RequireFields<QueryOpArgs, 'opId'>>;
+  sensorData?: Resolver<Maybe<ResolversTypes['SensorData']>, ParentType, ContextType, RequireFields<QuerySensorDataArgs, 'deviceId' | 'opId'>>;
   site?: Resolver<Maybe<ResolversTypes['Site']>, ParentType, ContextType, RequireFields<QuerySiteArgs, 'siteId'>>;
   sites?: Resolver<Array<ResolversTypes['Site']>, ParentType, ContextType, RequireFields<QuerySitesArgs, 'siteIds'>>;
+};
+
+export type SensorDataResolvers<ContextType = any, ParentType extends ResolversParentTypes['SensorData'] = ResolversParentTypes['SensorData']> = {
+  deviceId?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  opId?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  timeSeries?: Resolver<Array<ResolversTypes['TimeSeriesDataPoint']>, ParentType, ContextType>;
+  warningThreshold?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type SiteResolvers<ContextType = any, ParentType extends ResolversParentTypes['Site'] = ResolversParentTypes['Site']> = {
@@ -222,9 +281,18 @@ export type SiteResolvers<ContextType = any, ParentType extends ResolversParentT
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export type TimeSeriesDataPointResolvers<ContextType = any, ParentType extends ResolversParentTypes['TimeSeriesDataPoint'] = ResolversParentTypes['TimeSeriesDataPoint']> = {
+  timestamp?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  value?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type Resolvers<ContextType = any> = {
+  Op?: OpResolvers<ContextType>;
   Pond?: PondResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
+  SensorData?: SensorDataResolvers<ContextType>;
   Site?: SiteResolvers<ContextType>;
+  TimeSeriesDataPoint?: TimeSeriesDataPointResolvers<ContextType>;
 };
 

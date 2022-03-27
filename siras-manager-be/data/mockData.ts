@@ -1,8 +1,11 @@
-import { Site, SiteStatus, SiteValidationStatus } from "../src/generated/graphql";
+import { Site, Op, SiteStatus, SiteValidationStatus } from "../src/generated/graphql";
 
 type MockData = {
   sites: {
     [key: string]: Site;
+  },
+  ops: {
+    [key: number]: Op;
   }
 }
 
@@ -83,6 +86,200 @@ const mockData: MockData = {
       awardRecordList: ['2021漁產金質獎', '2020環境友善獎'],
       trademark: '夜蝦食堂',
       note: '',
+    },
+  },
+  ops: {
+    1: {
+      opId: 1,
+      name: "水溫",
+      unit: "℃",
+      sensorName: "DS18B20",
+    },
+    2: {
+      opId: 2,
+      name: "TDS",
+      unit: "ppm",
+      sensorName: "",
+    },
+    3: {
+      opId: 3,
+      name: "pH",
+      unit: "",
+      sensorName: "Nerset PH",
+    },
+    4: {
+      opId: 4,
+      name: "ORP",
+      unit: "mV",
+      sensorName: "ORP",
+    },
+    5: {
+      opId: 5,
+      name: "原電池型溶氧",
+      unit: "ppm",
+      sensorName: "Galvanic Dissolved Oxygen",
+    },
+    10: {
+      opId: 10,
+      name: "電流偵測1",
+      unit: "A",
+      sensorName: "15A/1V CT",
+    },
+    11: {
+      opId: 11,
+      name: "電流偵測2",
+      unit: "A",
+      sensorName: "15A/1V CT",
+    },
+    12: {
+      opId: 12,
+      name: "電流偵測3",
+      unit: "A",
+      sensorName: "15A/1V CT",
+    },
+    13: {
+      opId: 13,
+      name: "電流偵測4",
+      unit: "A",
+      sensorName: "15A/1V CT",
+    },
+    14: {
+      opId: 14,
+      name: "電流偵測5",
+      unit: "A",
+      sensorName: "15A/1V CT",
+    },
+    15: {
+      opId: 15,
+      name: "電流偵測6",
+      unit: "A",
+      sensorName: "15A/1V CT",
+    },
+    16: {
+      opId: 16,
+      name: "電流偵測7",
+      unit: "A",
+      sensorName: "15A/1V CT",
+    },
+    17: {
+      opId: 17,
+      name: "電流偵測8",
+      unit: "A",
+      sensorName: "15A/1V CT",
+    },
+    18: {
+      opId: 18,
+      name: "氣壓",
+      unit: "hPa",
+      sensorName: "BME280",
+    },
+    19: {
+      opId: 19,
+      name: "風速",
+      unit: "m/s",
+      sensorName: "氣象站配套風速計",
+    },
+    20: {
+      opId: 20,
+      name: "風向",
+      unit: "",
+      sensorName: "氣象站配套風向計",
+    },
+    21: {
+      opId: 21,
+      name: "雨量",
+      unit: "mm",
+      sensorName: "氣象站配套雨量計",
+    },
+    41: {
+      opId: 41,
+      name: "空氣濕度",
+      unit: "%",
+      sensorName: "DHT11",
+    },
+    64: {
+      opId: 64,
+      name: "氣溫",
+      unit: "℃",
+      sensorName: "DHT11",
+    },
+    67: {
+      opId: 67,
+      name: "土壤濕度",
+      unit: "%",
+      sensorName: "電容式土壤濕度帶線Epoxy防水",
+    },
+    68: {
+      opId: 68,
+      name: "土壤溫度",
+      unit: "℃",
+      sensorName: "DS18B20",
+    },
+    69: {
+      opId: 69,
+      name: "光亮度",
+      unit: "Lux",
+      sensorName: "MAX44009",
+    },
+    79: {
+      opId: 79,
+      name: "超音波魚浮頭",
+      unit: "",
+      sensorName: "SR04",
+    },
+    84: {
+      opId: 84,
+      name: "CO2",
+      unit: "ppm",
+      sensorName: "",
+    },
+    85: {
+      opId: 85,
+      name: "NOx",
+      unit: "ppm",
+      sensorName: "",
+    },
+    86: {
+      opId: 86,
+      name: "NH3",
+      unit: "ppm",
+      sensorName: "",
+    },
+    87: {
+      opId: 87,
+      name: "TVOC",
+      unit: "ppm",
+      sensorName: "",
+    },
+    88: {
+      opId: 88,
+      name: "水流量",
+      unit: "l/min",
+      sensorName: "YF-DN50",
+    },
+    89: {
+      opId: 89,
+      name: "太陽能電壓",
+      unit: "mV",
+      sensorName: "",
+    },
+    90: {
+      opId: 90,
+      name: "飼料量",
+      unit: "%",
+      sensorName: "SR04",
+    },
+    91: {
+      opId: 91,
+      name: "噴料桶震動馬達偵測",
+      unit: "A",
+      sensorName: "10A/1V CT",
+    },
+    92: {
+      opId: 92,
+      name: "噴料桶鼓風機偵測",
+      unit: "A",
+      sensorName: "10A/1V CT",
     },
   },
 };

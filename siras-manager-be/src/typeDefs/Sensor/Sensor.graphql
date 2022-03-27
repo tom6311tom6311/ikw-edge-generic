@@ -1,0 +1,18 @@
+type Op {
+  opId: Int!
+  name: String!
+  unit: String
+  sensorName: String
+}
+
+type TimeSeriesDataPoint {
+  timestamp: Int!
+  value: Float!
+}
+
+type SensorData {
+  deviceId: String!
+  opId: Int!
+  warningThreshold: Float!
+  timeSeries: [TimeSeriesDataPoint!]!
+}
