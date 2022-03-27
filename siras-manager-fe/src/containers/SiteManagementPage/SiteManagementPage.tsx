@@ -25,13 +25,6 @@ const WARNING_THRESHOLDS = {
   ammonia: 25,
 };
 
-const SAMPLE_SERIES = [
-  { x: 0, y: 3 },
-  { x: 1, y: 2 },
-  { x: 2, y: 4 },
-  { x: 3, y: 10 },
-];
-
 type SelectableOption = {
   target:{
     value: string;
