@@ -1,8 +1,9 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import {
-  Line, LineChart, Tooltip, XAxis,
+  Line, LineChart, Tooltip, XAxis, ResponsiveContainer,
 } from 'recharts';
+import { EuiSelect } from '@elastic/eui';
 import SearchImg from '../../img/search.png';
 import MoreInfoImg from '../../img/moreInfo_black.png';
 import NitriteSampleImg from '../../img/nitrite_sample.png';
@@ -31,9 +32,87 @@ const SAMPLE_SERIES = [
   { x: 3, y: 10 },
 ];
 
+type SelectableOption = {
+  target:{
+    value: string;
+  }
+}
+
 function SiteManagementPage() {
   const { siteId } = useParams();
   const [bookmarkNow] = React.useState('siteStatus');
+
+  const sampledata = [
+    {
+      time: '09:00',
+      air: 14.7,
+      air_temp: 33,
+      light: 99,
+      O2: 18.8,
+      ammonia: 0,
+    },
+    {
+      time: '10:00',
+      air: 15.3,
+      air_temp: 32,
+      light: 98,
+      O2: 19.0,
+      ammonia: 0,
+    },
+    {
+      time: '11:00',
+      air: 15.7,
+      air_temp: 32,
+      light: 99,
+      O2: 19.3,
+      ammonia: 0,
+    },
+    {
+      time: '12:00',
+      air: 16.0,
+      air_temp: 31,
+      light: 99,
+      O2: 19.5,
+      ammonia: 0,
+    },
+    {
+      time: '13:00',
+      air: 15.9,
+      air_temp: 31,
+      light: 99,
+      O2: 19.4,
+      ammonia: 0,
+    },
+    {
+      time: '14:00',
+      air: 15.5,
+      air_temp: 31,
+      light: 99,
+      O2: 19.3,
+      ammonia: 0,
+    },
+  ];
+
+  const displaydataOptions = [
+    { value: 'air/air_temp/light', text: '打氣/風管溫度/光照' },
+  ];
+
+  const displaytimeOptions = [
+    { value: '0.5hr', text: '過去半小時' },
+    { value: '1hr', text: '過去一小時' },
+    { value: '3hr', text: '過去三小時' },
+  ];
+
+  const [displayTime, setDisplayTime] = useState(displaytimeOptions[0].value);
+  const [displayData, setDisplayData] = useState(displaydataOptions[0].value);
+
+  const onQueryTimeChange = (queryTime: SelectableOption) => {
+    setDisplayTime(queryTime.target.value);
+  };
+
+  const onQueryDataChange = (queryData: SelectableOption) => {
+    setDisplayData(queryData.target.value);
+  };
 
   return (
     <div className="siteManage_container">
@@ -97,15 +176,43 @@ function SiteManagementPage() {
           </div>
           <div>
             <div className="siteManage_body_basicItem" style={{ width: 'calc(100% - 10px)', height: '386px' }}>
-              <LineChart
-                width={400}
-                height={400}
-                data={SAMPLE_SERIES}
-              >
-                <XAxis dataKey="x" />
-                <Tooltip />
-                <Line dataKey="y" />
-              </LineChart>
+              <ResponsiveContainer width="100%" height="85%">
+                <LineChart
+                  style={{ position: 'inherit' }}
+                  margin={{
+                    top: 30, right: 50, left: 50, bottom: 10,
+                  }}
+                  data={sampledata}
+                >
+                  <XAxis dataKey="time" />
+                  <Tooltip />
+                  <Line name="air voltage" type="monotone" dataKey="air" stroke="red" />
+                  <Line name="air temp" type="monotone" dataKey="air_temp" stroke="yellow" />
+                  <Line name="light" type="monotone" dataKey="light" stroke="blue" />
+                </LineChart>
+              </ResponsiveContainer>
+              <div style={{ display: 'flex', flexDirection: 'row' }}>
+                <div style={{ flex: 6 }}>
+                  <EuiSelect
+                    className="siteManage_EuiSelect"
+                    id="DataSelector"
+                    options={displaydataOptions}
+                    value={displayData}
+                    onChange={(e) => onQueryDataChange(e)}
+                    aria-label="Use aria labels when no actual label is in use"
+                  />
+                </div>
+                <div style={{ flex: 4 }}>
+                  <EuiSelect
+                    className="siteManage_EuiSelect"
+                    id="timeSelector"
+                    options={displaytimeOptions}
+                    value={displayTime}
+                    onChange={(e) => onQueryTimeChange(e)}
+                    aria-label="Use aria labels when no actual label is in use"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -289,6 +396,7 @@ function SiteManagementPage() {
                   <img src={CctvImg} alt="CCTV_1" className="siteManage_body_CCTVImg" />
                   <div className="siteManage_body_CCTVtxt">鏡頭名稱/位置</div>
                 </div>
+                <div style={{ flex: '1' }} />
               </div>
             </div>
           </div>

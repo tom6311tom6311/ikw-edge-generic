@@ -304,7 +304,7 @@ div {
 
 .sideBar_logo {
   float: left;
-  margin: 10px auto 10px 20px;
+  margin: 10px 20px;
   width: 30px;
   cursor: pointer;
 }
@@ -430,6 +430,11 @@ div {
   margin: 12px 0;
   float: right;
   cursor: pointer;
+}
+
+.siteManage_container {
+  width: 100%;
+  float: right;
 }
 
 .siteManage_body_container{
@@ -668,7 +673,7 @@ div {
 
 .siteManage_body_CCTVImg {
   margin: 5px;
-  width: calc(37.5vw - 50px);
+  width: calc(100% - 10px);
   height: 182px;
 }
 
@@ -679,8 +684,13 @@ div {
   color: transparent;
 }
 
-
 .sidebar_on .siteManage_container {
   width: 75vw;
   float: right;
+}
+
+.siteManage_EuiSelect {
+  height: 40px;
+  padding: 10px;
+  margin: 10px 80px;
 }
