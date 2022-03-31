@@ -26,6 +26,120 @@ const WARNING_THRESHOLDS = {
   ammonia: 25,
 };
 
+const SAMPLE_SENSOR_DATA = [
+  {
+    time: '09:00',
+    air: 14.7,
+    air_temp: 33,
+    light: 99,
+    O2: 18.8,
+    ammonia: 0,
+  },
+  {
+    time: '10:00',
+    air: 15.3,
+    air_temp: 32,
+    light: 98,
+    O2: 19.0,
+    ammonia: 0,
+  },
+  {
+    time: '11:00',
+    air: 15.7,
+    air_temp: 32,
+    light: 99,
+    O2: 19.3,
+    ammonia: 0,
+  },
+  {
+    time: '12:00',
+    air: 16.0,
+    air_temp: 31,
+    light: 99,
+    O2: 19.5,
+    ammonia: 0,
+  },
+  {
+    time: '13:00',
+    air: 15.9,
+    air_temp: 31,
+    light: 99,
+    O2: 19.4,
+    ammonia: 0,
+  },
+  {
+    time: '14:00',
+    air: 15.5,
+    air_temp: 31,
+    light: 99,
+    O2: 19.3,
+    ammonia: 0,
+  },
+];
+
+const SAMPLE_SIRAS_LIST = [
+  {
+    sirasId: 'B123456781',
+    species: '赤鰭笛鯛',
+    amount: 999,
+    status: '養殖中',
+  },
+  {
+    sirasId: 'B123456782',
+    species: '斑點石鯛',
+    amount: 999,
+    status: '養殖中',
+  },
+  {
+    sirasId: 'B123456783',
+    species: '赤鰭笛鯛',
+    amount: 999,
+    status: '養殖中',
+  },
+  {
+    sirasId: 'B123456784',
+    species: '斑點石鯛',
+    amount: 999,
+    status: '養殖中',
+  },
+  {
+    sirasId: 'B123456785',
+    species: null,
+    amount: null,
+    status: null,
+  },
+  {
+    sirasId: 'B123456786',
+    species: '黑毛',
+    amount: 999,
+    status: '換池中',
+  },
+  {
+    sirasId: 'B123456787',
+    species: '赤鰭笛鯛',
+    amount: 999,
+    status: '養殖中',
+  },
+  {
+    sirasId: 'B123456788',
+    species: '赤鰭笛鯛',
+    amount: 999,
+    status: '養殖中',
+  },
+  {
+    sirasId: 'B123456789',
+    species: '赤鰭笛鯛',
+    amount: 999,
+    status: '養殖中',
+  },
+  {
+    sirasId: 'B123456790',
+    species: '赤鰭笛鯛',
+    amount: 999,
+    status: '養殖中',
+  },
+];
+
 type SelectableOption = {
   target:{
     value: string;
@@ -34,57 +148,6 @@ type SelectableOption = {
 
 function SiteManagementPage() {
   const { siteId } = useParams();
-
-  const sampledata = [
-    {
-      time: '09:00',
-      air: 14.7,
-      air_temp: 33,
-      light: 99,
-      O2: 18.8,
-      ammonia: 0,
-    },
-    {
-      time: '10:00',
-      air: 15.3,
-      air_temp: 32,
-      light: 98,
-      O2: 19.0,
-      ammonia: 0,
-    },
-    {
-      time: '11:00',
-      air: 15.7,
-      air_temp: 32,
-      light: 99,
-      O2: 19.3,
-      ammonia: 0,
-    },
-    {
-      time: '12:00',
-      air: 16.0,
-      air_temp: 31,
-      light: 99,
-      O2: 19.5,
-      ammonia: 0,
-    },
-    {
-      time: '13:00',
-      air: 15.9,
-      air_temp: 31,
-      light: 99,
-      O2: 19.4,
-      ammonia: 0,
-    },
-    {
-      time: '14:00',
-      air: 15.5,
-      air_temp: 31,
-      light: 99,
-      O2: 19.3,
-      ammonia: 0,
-    },
-  ];
 
   const displaydataOptions = [
     { value: 'air/air_temp/light', text: '打氣/風管溫度/光照' },
@@ -96,73 +159,10 @@ function SiteManagementPage() {
     { value: '3hr', text: '過去三小時' },
   ];
 
-  const SiRASList = [
-    {
-      SiRAS: 'B123456789',
-      species: '赤鰭笛鯛',
-      numbers: 999,
-      state: '養殖中',
-    },
-    {
-      SiRAS: 'B123456789',
-      species: '斑點石鯛',
-      numbers: 999,
-      state: '養殖中',
-    },
-    {
-      SiRAS: 'B123456789',
-      species: '赤鰭笛鯛',
-      numbers: 999,
-      state: '養殖中',
-    },
-    {
-      SiRAS: 'B123456789',
-      species: '斑點石鯛',
-      numbers: 999,
-      state: '養殖中',
-    },
-    {
-      SiRAS: 'B123456789',
-      species: null,
-      numbers: null,
-      state: null,
-    },
-    {
-      SiRAS: 'B123456789',
-      species: '黑毛',
-      numbers: 999,
-      state: '換池中',
-    },
-    {
-      SiRAS: 'B123456789',
-      species: '赤鰭笛鯛',
-      numbers: 999,
-      state: '養殖中',
-    },
-    {
-      SiRAS: 'B123456789',
-      species: '赤鰭笛鯛',
-      numbers: 999,
-      state: '養殖中',
-    },
-    {
-      SiRAS: 'B123456789',
-      species: '赤鰭笛鯛',
-      numbers: 999,
-      state: '養殖中',
-    },
-    {
-      SiRAS: 'B123456789',
-      species: '赤鰭笛鯛',
-      numbers: 999,
-      state: '養殖中',
-    },
-  ];
-
   const [displayTime, setDisplayTime] = useState(displaytimeOptions[0].value);
   const [displayData, setDisplayData] = useState(displaydataOptions[0].value);
   const [bookmarkNow] = useState<String>('SiRASList');
-  const [SiRASPageNow] = useState<Number>(1);
+  const [currPageIdx, setCurrpageIdx] = useState<Number>(0);
 
   const onQueryTimeChange = (queryTime: SelectableOption) => {
     setDisplayTime(queryTime.target.value);
@@ -247,7 +247,7 @@ function SiteManagementPage() {
                         margin={{
                           top: 30, right: 50, left: 50, bottom: 10,
                         }}
-                        data={sampledata}
+                        data={SAMPLE_SENSOR_DATA}
                       >
                         <XAxis dataKey="time" />
                         <Tooltip />
@@ -478,21 +478,25 @@ function SiteManagementPage() {
                   <p className="siteManage_SiRAS_table_header_txt">養殖狀況</p>
                 </div>
                 {
-                  SiRASList.map((item) => (
-                    <div className="siteManage_SiRAS_table_bodyrow">
-                      <p className="siteManage_SiRAS_table_bodyrow_SiRAS" style={{ marginLeft: '15px' }}>{item.SiRAS}</p>
-                      <p className="siteManage_SiRAS_table_bodyrow_info">{item.species}</p>
-                      <p className="siteManage_SiRAS_table_bodyrow_info" style={{ flex: 0.7 }}>{item.numbers !== null ? `${item.numbers}尾` : ''}</p>
-                      <p className="siteManage_SiRAS_table_bodyrow_info">{item.state}</p>
+                  SAMPLE_SIRAS_LIST.map(({
+                    sirasId, species, amount, status,
+                  }) => (
+                    <div key={sirasId} className="siteManage_SiRAS_table_bodyrow">
+                      <p className="siteManage_SiRAS_table_bodyrow_SiRAS" style={{ marginLeft: '15px' }}>{sirasId}</p>
+                      <p className="siteManage_SiRAS_table_bodyrow_info">{species}</p>
+                      <p className="siteManage_SiRAS_table_bodyrow_info" style={{ flex: 0.7 }}>{amount !== null ? `${amount}尾` : ''}</p>
+                      <p className="siteManage_SiRAS_table_bodyrow_info">{status}</p>
                     </div>
                   ))
                 }
               </div>
               <div className="siteManage_SiRAS_PageList_container">
                 <div className="siteManage_SiRAS_page_container">
-                  <p className={SiRASPageNow === 1 ? 'siteManage_SiRAS_page_on' : 'siteManage_SiRAS_page_off'}>1</p>
-                  <p className={SiRASPageNow === 2 ? 'siteManage_SiRAS_page_on' : 'siteManage_SiRAS_page_off'}>2</p>
-                  <p className={SiRASPageNow === 3 ? 'siteManage_SiRAS_page_on' : 'siteManage_SiRAS_page_off'}>3</p>
+                  {Array.from(Array(3).keys()).map((pageIdx) => (
+                    <button type="button" onClick={() => { setCurrpageIdx(pageIdx); }}>
+                      <p key={pageIdx} className={currPageIdx === pageIdx ? 'siteManage_SiRAS_page_on' : 'siteManage_SiRAS_page_off'}>{pageIdx + 1}</p>
+                    </button>
+                  ))}
                   <div className="siteManage_SiRAS_Nextpage_button"><img style={{ width: '11px', margin: '8px 13px 8px 16px' }} src={nextPageIcon} alt="nextPage" /></div>
                 </div>
               </div>
