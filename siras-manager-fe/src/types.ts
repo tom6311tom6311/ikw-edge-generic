@@ -40,7 +40,7 @@ export type Query = {
   __typename?: 'Query';
   op?: Maybe<Op>;
   ops: Array<Op>;
-  sensorData?: Maybe<SensorData>;
+  sensorData: Array<SensorData>;
   site?: Maybe<Site>;
   sites: Array<Site>;
 };
@@ -58,7 +58,7 @@ export type QueryOpsArgs = {
 
 export type QuerySensorDataArgs = {
   deviceId: Scalars['String'];
-  opId: Scalars['Int'];
+  opIds: Array<Scalars['Int']>;
   timeEnd: Scalars['Int'];
   timeStart: Scalars['Int'];
 };

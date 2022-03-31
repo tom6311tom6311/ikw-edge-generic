@@ -22,6 +22,10 @@ const mockData: MockData = {
       capacity: 0,
       speciesList: [],
       validationStatus: SiteValidationStatus.Passed,
+      centralDevice: {
+        deviceId: '61',
+        opIds: [1, 3, 4],
+      },
       ponds: [
         {
           administrativeNumber: 'ABCDE1234567890',

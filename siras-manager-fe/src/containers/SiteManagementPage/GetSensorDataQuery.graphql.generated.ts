@@ -5,20 +5,20 @@ import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 export type GetSensorDataQueryVariables = Types.Exact<{
   deviceId: Types.Scalars['String'];
-  opId: Types.Scalars['Int'];
+  opIds: Array<Types.Scalars['Int']> | Types.Scalars['Int'];
   timeStart: Types.Scalars['Int'];
   timeEnd: Types.Scalars['Int'];
 }>;
 
 
-export type GetSensorDataQuery = { __typename?: 'Query', sensorData?: { __typename?: 'SensorData', timeSeries: Array<{ __typename?: 'TimeSeriesDataPoint', timestamp: number, value: number }> } | null };
+export type GetSensorDataQuery = { __typename?: 'Query', sensorData: Array<{ __typename?: 'SensorData', timeSeries: Array<{ __typename?: 'TimeSeriesDataPoint', timestamp: number, value: number }> }> };
 
 
 export const GetSensorDataDocument = gql`
-    query GetSensorData($deviceId: String!, $opId: Int!, $timeStart: Int!, $timeEnd: Int!) {
+    query GetSensorData($deviceId: String!, $opIds: [Int!]!, $timeStart: Int!, $timeEnd: Int!) {
   sensorData(
     deviceId: $deviceId
-    opId: $opId
+    opIds: $opIds
     timeStart: $timeStart
     timeEnd: $timeEnd
   ) {
@@ -43,7 +43,7 @@ export const GetSensorDataDocument = gql`
  * const { data, loading, error } = useGetSensorDataQuery({
  *   variables: {
  *      deviceId: // value for 'deviceId'
- *      opId: // value for 'opId'
+ *      opIds: // value for 'opIds'
  *      timeStart: // value for 'timeStart'
  *      timeEnd: // value for 'timeEnd'
  *   },
