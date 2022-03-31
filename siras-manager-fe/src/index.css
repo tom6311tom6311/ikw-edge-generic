@@ -381,30 +381,7 @@ div {
   opacity: 0.5;
 }
 
-.siteManage_bookmark_on {
-  width: auto;
-  height:36px;
-  float: left;
-  margin-right: 20px;
-
-  font-family: Noto Sans TC;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
-  /* identical to box height */
-
-  align-items: center;
-  text-align: center;
-  letter-spacing: 0.05em;
-
-  color: rgba(23, 25, 26, 0.9);
-  border-width: 0 0 2px 0;
-  border-color: #17191A;
-  border-style: solid;
-}
-
-.siteManage_bookmark_off {
+.siteManage_bookmark {
   width: auto;
   height: 36px;
   float: left;
@@ -421,8 +398,19 @@ div {
   text-align: center;
   letter-spacing: 0.05em;
 
+  background: none;
+	border: none;
+	padding: 0;
+	outline: inherit;
   color: rgba(23, 25, 26, 0.9);
   cursor: pointer;
+}
+
+.siteManage_bookmark_on {
+  line-height: 24px;
+  border-width: 0 0 2px 0;
+  border-color: #17191A;
+  border-style: solid;
 }
 
 .siteManage_Header_moreInfo_icon {

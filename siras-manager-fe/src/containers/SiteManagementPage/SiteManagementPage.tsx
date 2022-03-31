@@ -10,6 +10,8 @@ import NitriteSampleImg from '../../img/nitrite_sample.png';
 import CctvImg from '../../img/CCTV_1.png';
 import nextPageIcon from '../../img/nextPage.png';
 
+const TAB_NAMES = ['案場狀態', 'SiRAS列表'];
+
 const VALUES = {
   air: 14.77,
   air_temp: 33,
@@ -159,9 +161,9 @@ function SiteManagementPage() {
     { value: '3hr', text: '過去三小時' },
   ];
 
+  const [currTabIdx, setCurrTabIdx] = useState<Number>(0);
   const [displayTime, setDisplayTime] = useState(displaytimeOptions[0].value);
   const [displayData, setDisplayData] = useState(displaydataOptions[0].value);
-  const [bookmarkNow] = useState<String>('SiRASList');
   const [currPageIdx, setCurrpageIdx] = useState<Number>(0);
 
   const onQueryTimeChange = (queryTime: SelectableOption) => {
@@ -172,10 +174,6 @@ function SiteManagementPage() {
     setDisplayData(queryData.target.value);
   };
 
-  // const changeBookmark = (e:String) => {
-  //   setbookmarkNow(e);
-  // };
-
   return (
     <div className="siteManage_container">
       <div className="siteManage_Header_container">
@@ -184,14 +182,22 @@ function SiteManagementPage() {
           <img className="siteManage_Header_search_icon" src={SearchImg} alt="searching" />
         </div>
         <div>
-          <div className={bookmarkNow === 'siteStatus' ? 'siteManage_bookmark_on' : 'siteManage_bookmark_off'}>案場狀態</div>
-          <div className={bookmarkNow === 'SiRASList' ? 'siteManage_bookmark_on' : 'siteManage_bookmark_off'}>SiRAS列表</div>
+          {TAB_NAMES.map((tabName, tabIdx) => (
+            <button
+              key={tabName}
+              type="button"
+              className={`siteManage_bookmark ${tabIdx === currTabIdx ? 'siteManage_bookmark_on' : ''}`}
+              onClick={() => { setCurrTabIdx(tabIdx); }}
+            >
+              {tabName}
+            </button>
+          ))}
           <img className="siteManage_Header_moreInfo_icon" src={MoreInfoImg} alt="more info" />
         </div>
       </div>
       <div className="siteManage_divider" />
       {
-        bookmarkNow === 'siteStatus'
+        currTabIdx === 0
           ? (
             <div className="siteManage_body_container">
               <div className="siteManage_body_subcontainer">
@@ -493,8 +499,8 @@ function SiteManagementPage() {
               <div className="siteManage_SiRAS_PageList_container">
                 <div className="siteManage_SiRAS_page_container">
                   {Array.from(Array(3).keys()).map((pageIdx) => (
-                    <button type="button" onClick={() => { setCurrpageIdx(pageIdx); }}>
-                      <p key={pageIdx} className={currPageIdx === pageIdx ? 'siteManage_SiRAS_page_on' : 'siteManage_SiRAS_page_off'}>{pageIdx + 1}</p>
+                    <button key={pageIdx} type="button" onClick={() => { setCurrpageIdx(pageIdx); }}>
+                      <p className={currPageIdx === pageIdx ? 'siteManage_SiRAS_page_on' : 'siteManage_SiRAS_page_off'}>{pageIdx + 1}</p>
                     </button>
                   ))}
                   <div className="siteManage_SiRAS_Nextpage_button"><img style={{ width: '11px', margin: '8px 13px 8px 16px' }} src={nextPageIcon} alt="nextPage" /></div>
