@@ -151,10 +151,6 @@ type SelectableOption = {
 function SiteManagementPage() {
   const { siteId } = useParams();
 
-  const displaydataOptions = [
-    { value: 'air/air_temp/light', text: '打氣/風管溫度/光照' },
-  ];
-
   const displaytimeOptions = [
     { value: '0.5hr', text: '過去半小時' },
     { value: '1hr', text: '過去一小時' },
@@ -163,15 +159,10 @@ function SiteManagementPage() {
 
   const [currTabIdx, setCurrTabIdx] = useState<Number>(0);
   const [displayTime, setDisplayTime] = useState(displaytimeOptions[0].value);
-  const [displayData, setDisplayData] = useState(displaydataOptions[0].value);
   const [currPageIdx, setCurrpageIdx] = useState<Number>(0);
 
   const onQueryTimeChange = (queryTime: SelectableOption) => {
     setDisplayTime(queryTime.target.value);
-  };
-
-  const onQueryDataChange = (queryData: SelectableOption) => {
-    setDisplayData(queryData.target.value);
   };
 
   return (
@@ -263,7 +254,7 @@ function SiteManagementPage() {
                       </LineChart>
                     </ResponsiveContainer>
                     <div className="siteManage_chartBottom_container">
-                      <div className="siteManage_chart_dataSelector_container">
+                      {/* <div className="siteManage_chart_dataSelector_container">
                         <EuiSelect
                           className="siteManage_EuiSelect"
                           id="dataSelector"
@@ -272,7 +263,7 @@ function SiteManagementPage() {
                           onChange={(e) => onQueryDataChange(e)}
                           aria-label="Use aria labels when no actual label is in use"
                         />
-                      </div>
+                      </div> */}
                       <div className="siteManage_chart_timeSelector_container">
                         <EuiSelect
                           className="siteManage_EuiSelect"
