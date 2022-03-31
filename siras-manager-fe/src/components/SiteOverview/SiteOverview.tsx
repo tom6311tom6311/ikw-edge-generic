@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { GetSitesQuery } from '../../containers/SiteListPage/SiteListPage.graphql.generated';
+import { GetSitesQuery } from '../../containers/SiteListPage/GetSitesQuery.graphql.generated';
 
 type SiteOverviewProps = {
   siteData: GetSitesQuery['sites'][number];

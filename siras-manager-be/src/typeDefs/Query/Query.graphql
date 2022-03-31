@@ -1,4 +1,7 @@
 type Query {
   site(siteId: ID!): Site
   sites(siteIds: [ID!]!): [Site!]!
+  op(opId: Int!): Op
+  ops(opIds: [Int!]!): [Op!]!
+  sensorData(deviceId: String!, opIds: [Int!]!, timeStart: Int!, timeEnd: Int!): [SensorData!]!
 }

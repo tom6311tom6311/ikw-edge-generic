@@ -60,6 +60,10 @@ services:
   siras-manager-be:
     build:
       context: ./siras-manager-be
+    environment:
+      INFLUX_ORG: $INFLUX_ORG
+      INFLUX_TOKEN: $INFLUX_TOKEN
+      INFLUX_BUCKET: $INFLUX_BUCKET
     ports:
       - 14001:4000
     networks:

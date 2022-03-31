@@ -9,75 +9,82 @@ import MoreInfoImg from '../../img/moreInfo_black.png';
 import NitriteSampleImg from '../../img/nitrite_sample.png';
 import CctvImg from '../../img/CCTV_1.png';
 import nextPageIcon from '../../img/nextPage.png';
+import { useGetSiteQuery } from './GetSiteQuery.graphql.generated';
+import { useGetOpsQuery } from './GetOpsQuery.graphql.generated';
+import { useGetSensorDataQuery } from './GetSensorDataQuery.graphql.generated';
+
+type DataPoint = {
+  [key: string]: string|number
+};
 
 const TAB_NAMES = ['案場狀態', 'SiRAS列表'];
 
-const VALUES = {
-  air: 14.77,
-  air_temp: 33,
-  light: 99,
-  O2: 20.9,
-  ammonia: 0,
-};
+// const VALUES = {
+//   air: 14.77,
+//   air_temp: 33,
+//   light: 99,
+//   O2: 20.9,
+//   ammonia: 0,
+// };
 
-const WARNING_THRESHOLDS = {
-  air: 10,
-  air_temp: 35,
-  light: 70,
-  O2: 35,
-  ammonia: 25,
-};
+// const WARNING_THRESHOLDS = {
+//   air: 10,
+//   air_temp: 35,
+//   light: 70,
+//   O2: 35,
+//   ammonia: 25,
+// };
 
-const SAMPLE_SENSOR_DATA = [
-  {
-    time: '09:00',
-    air: 14.7,
-    air_temp: 33,
-    light: 99,
-    O2: 18.8,
-    ammonia: 0,
-  },
-  {
-    time: '10:00',
-    air: 15.3,
-    air_temp: 32,
-    light: 98,
-    O2: 19.0,
-    ammonia: 0,
-  },
-  {
-    time: '11:00',
-    air: 15.7,
-    air_temp: 32,
-    light: 99,
-    O2: 19.3,
-    ammonia: 0,
-  },
-  {
-    time: '12:00',
-    air: 16.0,
-    air_temp: 31,
-    light: 99,
-    O2: 19.5,
-    ammonia: 0,
-  },
-  {
-    time: '13:00',
-    air: 15.9,
-    air_temp: 31,
-    light: 99,
-    O2: 19.4,
-    ammonia: 0,
-  },
-  {
-    time: '14:00',
-    air: 15.5,
-    air_temp: 31,
-    light: 99,
-    O2: 19.3,
-    ammonia: 0,
-  },
-];
+// const SAMPLE_SENSOR_DATA = [
+//   {
+//     time: '09:00',
+//     air: 14.7,
+//     air_temp: 33,
+//     light: 99,
+//     O2: 18.8,
+//     ammonia: 0,
+//   },
+//   {
+//     time: '10:00',
+//     air: 15.3,
+//     air_temp: 32,
+//     light: 98,
+//     O2: 19.0,
+//     ammonia: 0,
+//   },
+//   {
+//     time: '11:00',
+//     air: 15.7,
+//     air_temp: 32,
+//     light: 99,
+//     O2: 19.3,
+//     ammonia: 0,
+//   },
+//   {
+//     time: '12:00',
+//     air: 16.0,
+//     air_temp: 31,
+//     light: 99,
+//     O2: 19.5,
+//     ammonia: 0,
+//   },
+//   {
+//     time: '13:00',
+//     air: 15.9,
+//     air_temp: 31,
+//     light: 99,
+//     O2: 19.4,
+//     ammonia: 0,
+//   },
+//   {
+//     time: '14:00',
+//     air: 15.5,
+//     air_temp: 31,
+//     light: 99,
+//     O2: 19.3,
+//     ammonia: 0,
+//   },
+// ];
 
 const SAMPLE_SIRAS_LIST = [
   {
@@ -150,16 +157,49 @@ type SelectableOption = {
 
 function SiteManagementPage() {
   const { siteId } = useParams();
-
   const displaytimeOptions = [
     { value: '0.5hr', text: '過去半小時' },
     { value: '1hr', text: '過去一小時' },
     { value: '3hr', text: '過去三小時' },
   ];
-
   const [currTabIdx, setCurrTabIdx] = useState<Number>(0);
   const [displayTime, setDisplayTime] = useState(displaytimeOptions[0].value);
   const [currPageIdx, setCurrpageIdx] = useState<Number>(0);
+  const { loading: isGetSiteLoading, error: getSiteError, data: getSiteData } = useGetSiteQuery({ variables: { siteId: siteId || '' } });
+  const isGetSiteReady = !(isGetSiteLoading || getSiteError || !getSiteData?.site);
+  const { loading: isGetOpsLoading, error: getOpsError, data: getOpsData } = useGetOpsQuery({
+    skip: !isGetSiteReady,
+    variables: { opIds: getSiteData?.site?.centralDevice?.opIds || [] },
+  });
+  const isGetOpsReady = !(isGetOpsLoading || getOpsError || !getOpsData?.ops);
+  const {
+    loading: isGetSensorDataLoading,
+    error: getSensorDataError,
+    data: getSensorDataData,
+  } = useGetSensorDataQuery({
+    skip: !isGetOpsReady,
+    variables: {
+      deviceId: getSiteData?.site?.centralDevice?.deviceId || '',
+      opIds: getSiteData?.site?.centralDevice?.opIds || [],
+      timeStart: Math.floor(Date.now() / 1000) - 30 * 60,
+      timeEnd: Math.floor(Date.now() / 1000),
+    },
+  });
+  const isGetSensorDataReady = !(
+    isGetSensorDataLoading || getSensorDataError || !getSensorDataData?.sensorData
+  );
+
+  const opNames = getOpsData?.ops.map(({ name }) => name);
+  let chartData: DataPoint[] = [];
+  if (isGetSensorDataReady && getSensorDataData.sensorData[0].timeSeries) {
+    chartData = getSensorDataData.sensorData[0].timeSeries.map(({ timestamp }, dataPointIdx) => {
+      const dataPoint: DataPoint = { timestamp };
+      opNames?.forEach((name, opIdx) => {
+        dataPoint[name] = getSensorDataData.sensorData[opIdx].timeSeries[dataPointIdx].value;
+      });
+      return dataPoint;
+    });
+  }
 
   const onQueryTimeChange = (queryTime: SelectableOption) => {
     setDisplayTime(queryTime.target.value);
@@ -169,7 +209,7 @@ function SiteManagementPage() {
     <div className="siteManage_container">
       <div className="siteManage_Header_container">
         <div>
-          <p className="siteManage_Header_siteId">{siteId}</p>
+          <p className="siteManage_Header_siteId">{getSiteData?.site?.siteId}</p>
           <img className="siteManage_Header_search_icon" src={SearchImg} alt="searching" />
         </div>
         <div>
@@ -201,14 +241,14 @@ function SiteManagementPage() {
                     <div className="siteManage_body_basicItem">
                       <p className="siteManage_body_item_name">公司</p>
                       <div className="siteManage_body_item_container">
-                        <p className="siteManage_body_item_companyName">愛諾華特</p>
+                        <p className="siteManage_body_item_companyName">{getSiteData?.site?.companyNameChin}</p>
                         <p className="siteManage_body_item_unit" style={{ borderColor: 'white' }} />
                       </div>
                     </div>
                     <div className="siteManage_body_basicItem">
                       <p className="siteManage_body_item_name">SiRAS</p>
                       <div className="siteManage_body_item_container">
-                        <p className="siteManage_body_item_info">99</p>
+                        <p className="siteManage_body_item_info">{getSiteData?.site?.numSiras}</p>
                         <p className="siteManage_body_item_unit">U</p>
                       </div>
                     </div>
@@ -217,14 +257,14 @@ function SiteManagementPage() {
                     <div className="siteManage_body_basicItem">
                       <p className="siteManage_body_item_name">數量</p>
                       <div className="siteManage_body_item_container">
-                        <p className="siteManage_body_item_info">9999</p>
+                        <p className="siteManage_body_item_info">{getSiteData?.site?.capacity}</p>
                         <p className="siteManage_body_item_unit">尾</p>
                       </div>
                     </div>
                     <div className="siteManage_body_basicItem">
                       <p className="siteManage_body_item_name">面積</p>
                       <div className="siteManage_body_item_container">
-                        <p className="siteManage_body_item_info">0.1</p>
+                        <p className="siteManage_body_item_info">{getSiteData?.site?.area}</p>
                         <p className="siteManage_body_item_unit">公頃</p>
                       </div>
                     </div>
@@ -244,13 +284,13 @@ function SiteManagementPage() {
                         margin={{
                           top: 30, right: 50, left: 50, bottom: 10,
                         }}
-                        data={SAMPLE_SENSOR_DATA}
+                        data={chartData}
                       >
                         <XAxis dataKey="time" />
                         <Tooltip />
-                        <Line name="air voltage" type="monotone" dataKey="air" stroke="red" />
-                        <Line name="air temp" type="monotone" dataKey="air_temp" stroke="yellow" />
-                        <Line name="light" type="monotone" dataKey="light" stroke="blue" />
+                        {opNames?.map((opName) => (
+                          <Line key={opName} name={opName} type="monotone" dataKey={opName} />
+                        ))}
                       </LineChart>
                     </ResponsiveContainer>
                     <div className="siteManage_chartBottom_container">
@@ -285,135 +325,29 @@ function SiteManagementPage() {
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
                   <div style={{ display: 'flex', flexDirection: 'row', flex: '1' }}>
-                    <div className="siteManage_body_basicItem">
-                      <div>
-                        <div className={VALUES.air <= WARNING_THRESHOLDS.air ? 'siteManage_paralight_red' : 'siteManage_paralight_blue'} />
-                        <p
-                          className="siteManage_body_item_name"
-                          style={{
-                            float: 'left', width: 'auto', margin: '13px 0 0 0', padding: '0',
-                          }}
-                        >
-                          打氣
-                        </p>
+                    {getOpsData?.ops.map((op, opIdx) => (
+                      <div key={op.name} className="siteManage_body_basicItem">
+                        <div>
+                          <div className="siteManage_paralight_blue" />
+                          <p
+                            className="siteManage_body_item_name"
+                            style={{
+                              float: 'left', width: 'auto', margin: '13px 0 0 0', padding: '0',
+                            }}
+                          >
+                            {op.name}
+                          </p>
+                        </div>
+                        <div className="siteManage_body_item_systemData_container">
+                          <p className="siteManage_body_item_systemData">
+                            {getSensorDataData?.sensorData[opIdx].timeSeries.slice(-1)[0]}
+                            {' '}
+                            {op.unit}
+                          </p>
+                          <p className="siteManage_body_item_systemInfo">即時數據</p>
+                        </div>
                       </div>
-                      <div className="siteManage_body_item_systemData_container">
-                        <p className={VALUES.air <= WARNING_THRESHOLDS.air ? 'siteManage_body_item_systemData_alert' : 'siteManage_body_item_systemData'}>
-                          {VALUES.air}
-                          {' '}
-                          A
-                        </p>
-                        {
-                      VALUES.air <= WARNING_THRESHOLDS.air
-                        ? <p className="siteManage_body_item_systemInfo_alert">打氣異常</p>
-                        : <p className="siteManage_body_item_systemInfo">即時數據</p>
-                    }
-                      </div>
-                    </div>
-                    <div className="siteManage_body_basicItem">
-                      <div>
-                        <div className={VALUES.air_temp >= WARNING_THRESHOLDS.air_temp ? 'siteManage_paralight_red' : 'siteManage_paralight_blue'} />
-                        <p
-                          className="siteManage_body_item_name"
-                          style={{
-                            float: 'left', width: 'auto', margin: '13px 0 0 0', padding: '0',
-                          }}
-                        >
-                          風管溫度
-                        </p>
-                      </div>
-                      <div className="siteManage_body_item_systemData_container">
-                        <p className={VALUES.air_temp >= WARNING_THRESHOLDS.air_temp ? 'siteManage_body_item_systemData_alert' : 'siteManage_body_item_systemData'}>
-                          {VALUES.air_temp}
-                          {' '}
-                          °C
-                        </p>
-                        {
-                      VALUES.air_temp >= WARNING_THRESHOLDS.air_temp
-                        ? <p className="siteManage_body_item_systemInfo_alert">風管溫度異常</p>
-                        : <p className="siteManage_body_item_systemInfo">即時數據</p>
-                    }
-                      </div>
-                    </div>
-                  </div>
-                  <div style={{ display: 'flex', flexDirection: 'row', flex: '1' }}>
-                    <div className="siteManage_body_basicItem">
-                      <div>
-                        <div className={VALUES.light <= WARNING_THRESHOLDS.light ? 'siteManage_paralight_red' : 'siteManage_paralight_blue'} />
-                        <p
-                          className="siteManage_body_item_name"
-                          style={{
-                            float: 'left', width: 'auto', margin: '13px 0 0 0', padding: '0',
-                          }}
-                        >
-                          光照計
-                        </p>
-                      </div>
-                      <div className="siteManage_body_item_systemData_container">
-                        <p className={VALUES.light <= WARNING_THRESHOLDS.light ? 'siteManage_body_item_systemData_alert' : 'siteManage_body_item_systemData'}>
-                          {VALUES.light}
-                          {' '}
-                          lux
-                        </p>
-                        {
-                      VALUES.light <= WARNING_THRESHOLDS.light
-                        ? <p className="siteManage_body_item_systemInfo_alert">光照異常</p>
-                        : <p className="siteManage_body_item_systemInfo">即時數據</p>
-                    }
-                      </div>
-                    </div>
-                    <div className="siteManage_body_basicItem">
-                      <div>
-                        <div className={VALUES.O2 <= WARNING_THRESHOLDS.O2 ? 'siteManage_paralight_red' : 'siteManage_paralight_blue'} />
-                        <p
-                          className="siteManage_body_item_name"
-                          style={{
-                            float: 'left', width: 'auto', margin: '13px 0 0 0', padding: '0',
-                          }}
-                        >
-                          O2
-                        </p>
-                      </div>
-                      <div className="siteManage_body_item_systemData_container">
-                        <p className={VALUES.O2 <= WARNING_THRESHOLDS.O2 ? 'siteManage_body_item_systemData_alert' : 'siteManage_body_item_systemData'}>
-                          {VALUES.O2}
-                          {' '}
-                          %
-                        </p>
-                        {
-                      VALUES.O2 <= WARNING_THRESHOLDS.O2
-                        ? <p className="siteManage_body_item_systemInfo_alert">氧氣含量異常</p>
-                        : <p className="siteManage_body_item_systemInfo">即時數據</p>
-                    }
-                      </div>
-                    </div>
-                  </div>
-                  <div style={{ display: 'flex', flexDirection: 'row', flex: '1' }}>
-                    <div className="siteManage_body_basicItem">
-                      <div>
-                        <div className={VALUES.ammonia >= WARNING_THRESHOLDS.ammonia ? 'siteManage_paralight_red' : 'siteManage_paralight_blue'} />
-                        <p
-                          className="siteManage_body_item_name"
-                          style={{
-                            float: 'left', width: 'auto', margin: '13px 0 0 0', padding: '0',
-                          }}
-                        >
-                          氨氣
-                        </p>
-                      </div>
-                      <div className="siteManage_body_item_systemData_container">
-                        <p className={VALUES.ammonia >= WARNING_THRESHOLDS.ammonia ? 'siteManage_body_item_systemData_alert' : 'siteManage_body_item_systemData'}>
-                          {VALUES.ammonia}
-                          {' '}
-                          ppm
-                        </p>
-                        {
-                      VALUES.ammonia >= WARNING_THRESHOLDS.ammonia
-                        ? <p className="siteManage_body_item_systemInfo_alert">氨氣含量異常</p>
-                        : <p className="siteManage_body_item_systemInfo">即時數據</p>
-                    }
-                      </div>
-                    </div>
+                    ))}
                   </div>
                 </div>
               </div>

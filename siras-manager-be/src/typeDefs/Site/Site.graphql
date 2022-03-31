@@ -9,6 +9,7 @@ type Site {
   capacity: Float!
   speciesList: [String!]!
   validationStatus: SiteValidationStatus!
+  centralDevice: Device
   ponds: [Pond!]!
   ownerNameEng: String!
   ownerNameChin: String!

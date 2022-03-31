@@ -1,8 +1,8 @@
 import React from 'react';
-import { useGetSitesQuery } from './SiteListPage.graphql.generated';
+import { useGetSitesQuery } from './GetSitesQuery.graphql.generated';
 import SiteOverview from '../../components/SiteOverview/SiteOverview';
 
-const SITE_IDS = ['A123456789', 'A223456789'];
+const SITE_IDS = ['BangladeshNo1'];
 
 function SiteListPage() {
   const { loading, error, data } = useGetSitesQuery({ variables: { siteIds: SITE_IDS } });

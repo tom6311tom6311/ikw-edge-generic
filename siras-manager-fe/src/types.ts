@@ -12,6 +12,21 @@ export type Scalars = {
   Float: number;
 };
 
+export type Device = {
+  __typename?: 'Device';
+  deviceId: Scalars['String'];
+  opIds: Array<Scalars['Int']>;
+};
+
+export type Op = {
+  __typename?: 'Op';
+  defaultWarningThreshold?: Maybe<Threshold>;
+  name: Scalars['String'];
+  opId: Scalars['Int'];
+  sensorName?: Maybe<Scalars['String']>;
+  unit?: Maybe<Scalars['String']>;
+};
+
 export type Pond = {
   __typename?: 'Pond';
   administrativeNumber?: Maybe<Scalars['String']>;
@@ -23,8 +38,29 @@ export type Pond = {
 
 export type Query = {
   __typename?: 'Query';
+  op?: Maybe<Op>;
+  ops: Array<Op>;
+  sensorData: Array<SensorData>;
   site?: Maybe<Site>;
   sites: Array<Site>;
+};
+
+
+export type QueryOpArgs = {
+  opId: Scalars['Int'];
+};
+
+
+export type QueryOpsArgs = {
+  opIds: Array<Scalars['Int']>;
+};
+
+
+export type QuerySensorDataArgs = {
+  deviceId: Scalars['String'];
+  opIds: Array<Scalars['Int']>;
+  timeEnd: Scalars['Int'];
+  timeStart: Scalars['Int'];
 };
 
 
@@ -37,6 +73,13 @@ export type QuerySitesArgs = {
   siteIds: Array<Scalars['ID']>;
 };
 
+export type SensorData = {
+  __typename?: 'SensorData';
+  deviceId: Scalars['String'];
+  opId: Scalars['Int'];
+  timeSeries: Array<TimeSeriesDataPoint>;
+};
+
 export type Site = {
   __typename?: 'Site';
   addressChin: Scalars['String'];
@@ -44,6 +87,7 @@ export type Site = {
   area?: Maybe<Scalars['Float']>;
   awardRecordList: Array<Scalars['String']>;
   capacity: Scalars['Float'];
+  centralDevice?: Maybe<Device>;
   companyNameChin?: Maybe<Scalars['String']>;
   companyNameEng?: Maybe<Scalars['String']>;
   county: Scalars['String'];
@@ -80,3 +124,15 @@ export enum SiteValidationStatus {
   Rejected = 'REJECTED',
   UnderReview = 'UNDER_REVIEW'
 }
+
+export type Threshold = {
+  __typename?: 'Threshold';
+  high?: Maybe<Scalars['Float']>;
+  low?: Maybe<Scalars['Float']>;
+};
+
+export type TimeSeriesDataPoint = {
+  __typename?: 'TimeSeriesDataPoint';
+  timestamp: Scalars['Int'];
+  value: Scalars['Float'];
+};

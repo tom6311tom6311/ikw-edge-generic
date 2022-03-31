@@ -1,0 +1,10 @@
+type TimeSeriesDataPoint {
+  timestamp: Int!
+  value: Float!
+}
+
+type SensorData {
+  deviceId: String!
+  opId: Int!
+  timeSeries: [TimeSeriesDataPoint!]!
+}
