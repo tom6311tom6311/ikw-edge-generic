@@ -9,6 +9,8 @@ import MoreInfoImg from '../../img/moreInfo_black.png';
 import NitriteSampleImg from '../../img/nitrite_sample.png';
 import CctvImg from '../../img/CCTV_1.png';
 import nextPageIcon from '../../img/nextPage.png';
+import { useGetSiteQuery } from './GetSiteQuery.graphql.generated';
+import { useGetOpsQuery } from './GetOpsQuery.graphql.generated';
 
 const TAB_NAMES = ['案場狀態', 'SiRAS列表'];
 
@@ -150,6 +152,14 @@ type SelectableOption = {
 
 function SiteManagementPage() {
   const { siteId } = useParams();
+  const { loading: isGetSiteLoading, error: getSiteError, data: getSiteData } = useGetSiteQuery({ variables: { siteId: siteId || '' } });
+  const isGetSiteReady = !(isGetSiteLoading || getSiteError || !getSiteData?.site);
+  const { loading: isGetOpsLoading, error: getOpsError, data: getOpsData } = useGetOpsQuery({
+    skip: !isGetSiteReady,
+    variables: { opIds: getSiteData?.site?.centralDevice?.opIds || [] },
+  });
+  const isGetOpsReady = !(isGetOpsLoading || getOpsError || !getOpsData?.ops);
+  console.log(isGetOpsReady);
 
   const displaytimeOptions = [
     { value: '0.5hr', text: '過去半小時' },
@@ -169,7 +179,7 @@ function SiteManagementPage() {
     <div className="siteManage_container">
       <div className="siteManage_Header_container">
         <div>
-          <p className="siteManage_Header_siteId">{siteId}</p>
+          <p className="siteManage_Header_siteId">{getSiteData?.site?.siteId}</p>
           <img className="siteManage_Header_search_icon" src={SearchImg} alt="searching" />
         </div>
         <div>
@@ -201,14 +211,14 @@ function SiteManagementPage() {
                     <div className="siteManage_body_basicItem">
                       <p className="siteManage_body_item_name">公司</p>
                       <div className="siteManage_body_item_container">
-                        <p className="siteManage_body_item_companyName">愛諾華特</p>
+                        <p className="siteManage_body_item_companyName">{getSiteData?.site?.companyNameChin}</p>
                         <p className="siteManage_body_item_unit" style={{ borderColor: 'white' }} />
                       </div>
                     </div>
                     <div className="siteManage_body_basicItem">
                       <p className="siteManage_body_item_name">SiRAS</p>
                       <div className="siteManage_body_item_container">
-                        <p className="siteManage_body_item_info">99</p>
+                        <p className="siteManage_body_item_info">{getSiteData?.site?.numSiras}</p>
                         <p className="siteManage_body_item_unit">U</p>
                       </div>
                     </div>
@@ -217,14 +227,14 @@ function SiteManagementPage() {
                     <div className="siteManage_body_basicItem">
                       <p className="siteManage_body_item_name">數量</p>
                       <div className="siteManage_body_item_container">
-                        <p className="siteManage_body_item_info">9999</p>
+                        <p className="siteManage_body_item_info">{getSiteData?.site?.capacity}</p>
                         <p className="siteManage_body_item_unit">尾</p>
                       </div>
                     </div>
                     <div className="siteManage_body_basicItem">
                       <p className="siteManage_body_item_name">面積</p>
                       <div className="siteManage_body_item_container">
-                        <p className="siteManage_body_item_info">0.1</p>
+                        <p className="siteManage_body_item_info">{getSiteData?.site?.area}</p>
                         <p className="siteManage_body_item_unit">公頃</p>
                       </div>
                     </div>

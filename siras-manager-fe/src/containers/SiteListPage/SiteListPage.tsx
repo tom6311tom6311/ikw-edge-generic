@@ -1,5 +1,5 @@
 import React from 'react';
-import { useGetSitesQuery } from './SiteListPage.graphql.generated';
+import { useGetSitesQuery } from './GetSitesQuery.graphql.generated';
 import SiteOverview from '../../components/SiteOverview/SiteOverview';
 
 const SITE_IDS = ['BangladeshNo1'];

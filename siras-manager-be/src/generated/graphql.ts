@@ -14,6 +14,12 @@ export type Scalars = {
   Float: number;
 };
 
+export type Device = {
+  __typename?: 'Device';
+  deviceId: Scalars['String'];
+  opIds: Array<Scalars['Int']>;
+};
+
 export type Op = {
   __typename?: 'Op';
   defaultWarningThreshold?: Maybe<Threshold>;
@@ -35,6 +41,7 @@ export type Pond = {
 export type Query = {
   __typename?: 'Query';
   op?: Maybe<Op>;
+  ops: Array<Op>;
   sensorData?: Maybe<SensorData>;
   site?: Maybe<Site>;
   sites: Array<Site>;
@@ -43,6 +50,11 @@ export type Query = {
 
 export type QueryOpArgs = {
   opId: Scalars['Int'];
+};
+
+
+export type QueryOpsArgs = {
+  opIds: Array<Scalars['Int']>;
 };
 
 
@@ -77,6 +89,7 @@ export type Site = {
   area?: Maybe<Scalars['Float']>;
   awardRecordList: Array<Scalars['String']>;
   capacity: Scalars['Float'];
+  centralDevice?: Maybe<Device>;
   companyNameChin?: Maybe<Scalars['String']>;
   companyNameEng?: Maybe<Scalars['String']>;
   county: Scalars['String'];
@@ -196,6 +209,7 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
+  Device: ResolverTypeWrapper<Device>;
   Float: ResolverTypeWrapper<Scalars['Float']>;
   ID: ResolverTypeWrapper<Scalars['ID']>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
@@ -214,6 +228,7 @@ export type ResolversTypes = {
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
   Boolean: Scalars['Boolean'];
+  Device: Device;
   Float: Scalars['Float'];
   ID: Scalars['ID'];
   Int: Scalars['Int'];
@@ -225,6 +240,12 @@ export type ResolversParentTypes = {
   String: Scalars['String'];
   Threshold: Threshold;
   TimeSeriesDataPoint: TimeSeriesDataPoint;
+};
+
+export type DeviceResolvers<ContextType = any, ParentType extends ResolversParentTypes['Device'] = ResolversParentTypes['Device']> = {
+  deviceId?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  opIds?: Resolver<Array<ResolversTypes['Int']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type OpResolvers<ContextType = any, ParentType extends ResolversParentTypes['Op'] = ResolversParentTypes['Op']> = {
@@ -247,6 +268,7 @@ export type PondResolvers<ContextType = any, ParentType extends ResolversParentT
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   op?: Resolver<Maybe<ResolversTypes['Op']>, ParentType, ContextType, RequireFields<QueryOpArgs, 'opId'>>;
+  ops?: Resolver<Array<ResolversTypes['Op']>, ParentType, ContextType, RequireFields<QueryOpsArgs, 'opIds'>>;
   sensorData?: Resolver<Maybe<ResolversTypes['SensorData']>, ParentType, ContextType, RequireFields<QuerySensorDataArgs, 'deviceId' | 'opId' | 'timeEnd' | 'timeStart'>>;
   site?: Resolver<Maybe<ResolversTypes['Site']>, ParentType, ContextType, RequireFields<QuerySiteArgs, 'siteId'>>;
   sites?: Resolver<Array<ResolversTypes['Site']>, ParentType, ContextType, RequireFields<QuerySitesArgs, 'siteIds'>>;
@@ -265,6 +287,7 @@ export type SiteResolvers<ContextType = any, ParentType extends ResolversParentT
   area?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
   awardRecordList?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
   capacity?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+  centralDevice?: Resolver<Maybe<ResolversTypes['Device']>, ParentType, ContextType>;
   companyNameChin?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   companyNameEng?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   county?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -304,6 +327,7 @@ export type TimeSeriesDataPointResolvers<ContextType = any, ParentType extends R
 };
 
 export type Resolvers<ContextType = any> = {
+  Device?: DeviceResolvers<ContextType>;
   Op?: OpResolvers<ContextType>;
   Pond?: PondResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
