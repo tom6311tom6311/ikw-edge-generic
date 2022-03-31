@@ -953,6 +953,11 @@
   resolved "https://registry.yarnpkg.com/@iarna/toml/-/toml-2.2.5.tgz#b32366c89b43c6f8cefbdefac778b9c828e3ba8c"
   integrity sha512-trnsAYxU3xnS1gPHPyU961coFyLkh4gAD/0zQ5mymY4yOZ+CYvsPqUbOFSw0aDM4y0tV7tiFxL/1XfXPNC6IPg==
 
+"@influxdata/influxdb-client@^1.24.0":
+  version "1.24.0"
+  resolved "https://registry.yarnpkg.com/@influxdata/influxdb-client/-/influxdb-client-1.24.0.tgz#f054a65fe77f1051683fb0b07cdeadd8463b4b09"
+  integrity sha512-UsqTvmhgVy4Z3o71kp8794FoxMWuF9I9yjZ3RCjzNPLQZsO7wmG3bD+Bik7tTDq9gnRdb/CV9wypdDl0ApHhIg==
+
 "@jridgewell/resolve-uri@^3.0.3":
   version "3.0.5"
   resolved "https://registry.yarnpkg.com/@jridgewell/resolve-uri/-/resolve-uri-3.0.5.tgz#68eb521368db76d040a6315cdb24bf2483037b9c"

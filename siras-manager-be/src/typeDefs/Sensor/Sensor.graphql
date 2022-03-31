@@ -1,8 +1,14 @@
+type Threshold {
+  low: Float
+  high: Float
+}
+
 type Op {
   opId: Int!
   name: String!
   unit: String
   sensorName: String
+  defaultWarningThreshold: Threshold
 }
 
 type TimeSeriesDataPoint {
@@ -13,6 +19,5 @@ type TimeSeriesDataPoint {
 type SensorData {
   deviceId: String!
   opId: Int!
-  warningThreshold: Float!
   timeSeries: [TimeSeriesDataPoint!]!
 }

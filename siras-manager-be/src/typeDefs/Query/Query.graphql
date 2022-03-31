@@ -2,5 +2,5 @@ type Query {
   site(siteId: ID!): Site
   sites(siteIds: [ID!]!): [Site!]!
   op(opId: Int!): Op
-  sensorData(deviceId: String!, opId: Int!): SensorData
+  sensorData(deviceId: String!, opId: Int!, timeStart: Int!, timeEnd: Int!): SensorData
 }

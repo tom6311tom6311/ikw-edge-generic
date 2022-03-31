@@ -16,6 +16,7 @@ export type Scalars = {
 
 export type Op = {
   __typename?: 'Op';
+  defaultWarningThreshold?: Maybe<Threshold>;
   name: Scalars['String'];
   opId: Scalars['Int'];
   sensorName?: Maybe<Scalars['String']>;
@@ -48,6 +49,8 @@ export type QueryOpArgs = {
 export type QuerySensorDataArgs = {
   deviceId: Scalars['String'];
   opId: Scalars['Int'];
+  timeEnd: Scalars['Int'];
+  timeStart: Scalars['Int'];
 };
 
 
@@ -65,7 +68,6 @@ export type SensorData = {
   deviceId: Scalars['String'];
   opId: Scalars['Int'];
   timeSeries: Array<TimeSeriesDataPoint>;
-  warningThreshold: Scalars['Float'];
 };
 
 export type Site = {
@@ -111,6 +113,12 @@ export enum SiteValidationStatus {
   Rejected = 'REJECTED',
   UnderReview = 'UNDER_REVIEW'
 }
+
+export type Threshold = {
+  __typename?: 'Threshold';
+  high?: Maybe<Scalars['Float']>;
+  low?: Maybe<Scalars['Float']>;
+};
 
 export type TimeSeriesDataPoint = {
   __typename?: 'TimeSeriesDataPoint';
@@ -199,6 +207,7 @@ export type ResolversTypes = {
   SiteStatus: SiteStatus;
   SiteValidationStatus: SiteValidationStatus;
   String: ResolverTypeWrapper<Scalars['String']>;
+  Threshold: ResolverTypeWrapper<Threshold>;
   TimeSeriesDataPoint: ResolverTypeWrapper<TimeSeriesDataPoint>;
 };
 
@@ -214,10 +223,12 @@ export type ResolversParentTypes = {
   SensorData: SensorData;
   Site: Site;
   String: Scalars['String'];
+  Threshold: Threshold;
   TimeSeriesDataPoint: TimeSeriesDataPoint;
 };
 
 export type OpResolvers<ContextType = any, ParentType extends ResolversParentTypes['Op'] = ResolversParentTypes['Op']> = {
+  defaultWarningThreshold?: Resolver<Maybe<ResolversTypes['Threshold']>, ParentType, ContextType>;
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   opId?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   sensorName?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
@@ -236,7 +247,7 @@ export type PondResolvers<ContextType = any, ParentType extends ResolversParentT
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   op?: Resolver<Maybe<ResolversTypes['Op']>, ParentType, ContextType, RequireFields<QueryOpArgs, 'opId'>>;
-  sensorData?: Resolver<Maybe<ResolversTypes['SensorData']>, ParentType, ContextType, RequireFields<QuerySensorDataArgs, 'deviceId' | 'opId'>>;
+  sensorData?: Resolver<Maybe<ResolversTypes['SensorData']>, ParentType, ContextType, RequireFields<QuerySensorDataArgs, 'deviceId' | 'opId' | 'timeEnd' | 'timeStart'>>;
   site?: Resolver<Maybe<ResolversTypes['Site']>, ParentType, ContextType, RequireFields<QuerySiteArgs, 'siteId'>>;
   sites?: Resolver<Array<ResolversTypes['Site']>, ParentType, ContextType, RequireFields<QuerySitesArgs, 'siteIds'>>;
 };
@@ -245,7 +256,6 @@ export type SensorDataResolvers<ContextType = any, ParentType extends ResolversP
   deviceId?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   opId?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   timeSeries?: Resolver<Array<ResolversTypes['TimeSeriesDataPoint']>, ParentType, ContextType>;
-  warningThreshold?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -281,6 +291,12 @@ export type SiteResolvers<ContextType = any, ParentType extends ResolversParentT
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export type ThresholdResolvers<ContextType = any, ParentType extends ResolversParentTypes['Threshold'] = ResolversParentTypes['Threshold']> = {
+  high?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
+  low?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type TimeSeriesDataPointResolvers<ContextType = any, ParentType extends ResolversParentTypes['TimeSeriesDataPoint'] = ResolversParentTypes['TimeSeriesDataPoint']> = {
   timestamp?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   value?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
@@ -293,6 +309,7 @@ export type Resolvers<ContextType = any> = {
   Query?: QueryResolvers<ContextType>;
   SensorData?: SensorDataResolvers<ContextType>;
   Site?: SiteResolvers<ContextType>;
+  Threshold?: ThresholdResolvers<ContextType>;
   TimeSeriesDataPoint?: TimeSeriesDataPointResolvers<ContextType>;
 };
 
