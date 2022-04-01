@@ -340,7 +340,7 @@ function SiteManagementPage() {
                         </div>
                         <div className="siteManage_body_item_systemData_container">
                           <p className="siteManage_body_item_systemData">
-                            {getSensorDataData?.sensorData[opIdx].timeSeries.slice(-1)[0]}
+                            {getSensorDataData?.sensorData[opIdx].timeSeries.slice(-1)[0].value}
                             {' '}
                             {op.unit}
                           </p>
