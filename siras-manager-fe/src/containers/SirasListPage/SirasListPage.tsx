@@ -71,7 +71,7 @@ function SiteManagementPage() {
   const [currPageIdx, setCurrPageIdx] = useState<Number>(0);
 
   return (
-    <div className="siteManage_container">
+    <div className="sitemanage_container">
       <TabHeader
         title={siteId || '/'}
         currActiveIdx={1}
@@ -80,36 +80,36 @@ function SiteManagementPage() {
           { text: 'SiRAS列表', link: `/site/${siteId || ''}/siras` },
         ]}
       />
-      <div className="siteManage_divider" />
-      <div className='siteManage_body_container"'>
-        <div className="siteManage_SiRAS_table_container">
-          <div className="siteManage_SiRAS_table_header">
-            <p className="siteManage_SiRAS_table_header_txt" style={{ marginLeft: '15px' }}>SiRAS(30)</p>
-            <p className="siteManage_SiRAS_table_header_txt">魚種</p>
-            <p className="siteManage_SiRAS_table_header_txt" style={{ flex: 0.7 }}>數量</p>
-            <p className="siteManage_SiRAS_table_header_txt">養殖狀況</p>
+      <div className="sitemanage_divider" />
+      <div className='sitemanage_body_container"'>
+        <div className="sitemanage_siras_table_container">
+          <div className="sitemanage_siras_table_header">
+            <p className="sitemanage_siras_table_header_txt" style={{ marginLeft: '15px' }}>SiRAS(30)</p>
+            <p className="sitemanage_siras_table_header_txt">魚種</p>
+            <p className="sitemanage_siras_table_header_txt" style={{ flex: 0.7 }}>數量</p>
+            <p className="sitemanage_siras_table_header_txt">養殖狀況</p>
           </div>
           {
             SAMPLE_SIRAS_LIST.map(({
               sirasId, species, amount, status,
             }) => (
-              <div key={sirasId} className="siteManage_SiRAS_table_bodyrow">
-                <p className="siteManage_SiRAS_table_bodyrow_SiRAS" style={{ marginLeft: '15px' }}>{sirasId}</p>
-                <p className="siteManage_SiRAS_table_bodyrow_info">{species}</p>
-                <p className="siteManage_SiRAS_table_bodyrow_info" style={{ flex: 0.7 }}>{amount !== null ? `${amount}尾` : ''}</p>
-                <p className="siteManage_SiRAS_table_bodyrow_info">{status}</p>
+              <div key={sirasId} className="sitemanage_siras_table_bodyrow">
+                <p className="sitemanage_siras_table_bodyrow_siras" style={{ marginLeft: '15px' }}>{sirasId}</p>
+                <p className="sitemanage_siras_table_bodyrow_info">{species}</p>
+                <p className="sitemanage_siras_table_bodyrow_info" style={{ flex: 0.7 }}>{amount !== null ? `${amount}尾` : ''}</p>
+                <p className="sitemanage_siras_table_bodyrow_info">{status}</p>
               </div>
             ))
           }
         </div>
-        <div className="siteManage_SiRAS_PageList_container">
-          <div className="siteManage_SiRAS_page_container">
+        <div className="sitemanage_siras_pagelist_container">
+          <div className="sitemanage_siras_page_container">
             {Array.from(Array(3).keys()).map((pageIdx) => (
               <button key={pageIdx} type="button" onClick={() => { setCurrPageIdx(pageIdx); }}>
-                <p className={currPageIdx === pageIdx ? 'siteManage_SiRAS_page_on' : 'siteManage_SiRAS_page_off'}>{pageIdx + 1}</p>
+                <p className={currPageIdx === pageIdx ? 'sitemanage_siras_page_on' : 'sitemanage_siras_page_off'}>{pageIdx + 1}</p>
               </button>
             ))}
-            <div className="siteManage_SiRAS_Nextpage_button"><img style={{ width: '11px', margin: '8px 13px 8px 16px' }} src={nextPageIcon} alt="nextPage" /></div>
+            <div className="sitemanage_siras_nextpage_button"><img style={{ width: '11px', margin: '8px 13px 8px 16px' }} src={nextPageIcon} alt="nextPage" /></div>
           </div>
         </div>
       </div>

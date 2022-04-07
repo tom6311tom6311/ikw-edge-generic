@@ -13,6 +13,7 @@ import SiteListPage from './containers/SiteListPage/SiteListPage';
 import SideBar from './components/MenuBar/SideBar';
 import SirasListTab from './containers/SirasListPage/SirasListPage';
 import SiteStatusTab from './containers/SiteStatusPage/SiteStatusPage';
+import Login from './components/Login/Login';
 
 const client = new ApolloClient({
   uri: AppConfig.BACKEND.URL,
@@ -34,6 +35,7 @@ function App() {
               <Route path="*" element={<SiteStatusTab />} />
               <Route index element={<SiteStatusTab />} />
             </Route>
+            <Route path="/login" element={<Login />} />
             <Route path="*" element={<SiteListPage />} />
             <Route index element={<SiteListPage />} />
           </Routes>
