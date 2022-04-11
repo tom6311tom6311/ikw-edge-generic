@@ -21,6 +21,15 @@ type SelectableOption = {
   }
 }
 
+const LINE_COLORS = [
+  '#FF0000',
+  '#00FF00',
+  '#0000FF',
+  '#FFFF00',
+  '#00FFFF',
+  '#FF00FF',
+];
+
 function SiteStatusTab() {
   const { siteId } = useParams();
   const displayTimeOptions = [
@@ -53,12 +62,13 @@ function SiteStatusTab() {
     isGetSensorDataLoading || getSensorDataError || !getSensorDataData?.sensorData
   );
 
-  const opNames = getOpsData?.ops.map(({ name }) => name);
   let chartData: DataPoint[] = [];
   if (isGetSensorDataReady && getSensorDataData.sensorData[0].timeSeries) {
     chartData = getSensorDataData.sensorData[0].timeSeries.map(({ timestamp }, dataPointIdx) => {
       const dataPoint: DataPoint = { timestamp };
-      opNames?.forEach((name, opIdx) => {
+      const time = new Date(timestamp * 1000);
+      dataPoint.readableTime = `${String(time.getHours()).padStart(2, '0')}:${String(time.getMinutes()).padStart(2, '0')}`;
+      getOpsData?.ops?.forEach(({ name }, opIdx) => {
         dataPoint[name] = getSensorDataData.sensorData[opIdx].timeSeries[dataPointIdx].value;
       });
       return dataPoint;
@@ -136,10 +146,10 @@ function SiteStatusTab() {
                   }}
                   data={chartData}
                 >
-                  <XAxis dataKey="time" />
+                  <XAxis dataKey="readableTime" />
                   <Tooltip />
-                  {opNames?.map((opName) => (
-                    <Line key={opName} name={opName} type="monotone" dataKey={opName} />
+                  {getOpsData?.ops.map(({ name: opName, unit }, idx) => (
+                    <Line key={opName} name={opName} type="monotone" dataKey={opName} stroke={LINE_COLORS[idx % LINE_COLORS.length]} unit={` ${unit}` || ''} />
                   ))}
                 </LineChart>
               </ResponsiveContainer>
