@@ -59,6 +59,7 @@ export type QueryOpsArgs = {
 
 
 export type QuerySensorDataArgs = {
+  aggregateWindow: Scalars['String'];
   deviceId: Scalars['String'];
   opIds: Array<Scalars['Int']>;
   timeEnd: Scalars['Int'];
@@ -269,7 +270,7 @@ export type PondResolvers<ContextType = any, ParentType extends ResolversParentT
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   op?: Resolver<Maybe<ResolversTypes['Op']>, ParentType, ContextType, RequireFields<QueryOpArgs, 'opId'>>;
   ops?: Resolver<Array<ResolversTypes['Op']>, ParentType, ContextType, RequireFields<QueryOpsArgs, 'opIds'>>;
-  sensorData?: Resolver<Array<ResolversTypes['SensorData']>, ParentType, ContextType, RequireFields<QuerySensorDataArgs, 'deviceId' | 'opIds' | 'timeEnd' | 'timeStart'>>;
+  sensorData?: Resolver<Array<ResolversTypes['SensorData']>, ParentType, ContextType, RequireFields<QuerySensorDataArgs, 'aggregateWindow' | 'deviceId' | 'opIds' | 'timeEnd' | 'timeStart'>>;
   site?: Resolver<Maybe<ResolversTypes['Site']>, ParentType, ContextType, RequireFields<QuerySiteArgs, 'siteId'>>;
   sites?: Resolver<Array<ResolversTypes['Site']>, ParentType, ContextType, RequireFields<QuerySitesArgs, 'siteIds'>>;
 };

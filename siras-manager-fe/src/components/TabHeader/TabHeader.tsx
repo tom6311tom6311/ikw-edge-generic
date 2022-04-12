@@ -25,6 +25,7 @@ function TabHeader({ title, currActiveIdx, elements }:TabHeaderProps) {
         {elements.map(({ text, link }, idx) => (
           <Link
             to={link}
+            key={text}
             className={`siteManage_bookmark ${idx === currActiveIdx ? 'siteManage_bookmark_on' : ''}`}
           >
             {text}

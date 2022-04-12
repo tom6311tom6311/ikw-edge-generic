@@ -10,6 +10,7 @@ import { useGetSiteQuery } from './GetSiteQuery.graphql.generated';
 import { useGetOpsQuery } from './GetOpsQuery.graphql.generated';
 import { useGetSensorDataQuery } from './GetSensorDataQuery.graphql.generated';
 import TabHeader from '../../components/TabHeader/TabHeader';
+import TimeUtils from '../../utils/TimeUtils';
 
 type DataPoint = {
   [key: string]: string|number
@@ -30,14 +31,24 @@ const LINE_COLORS = [
   '#FF00FF',
 ];
 
+const TIME_SPAN_OPTIONS = [
+  {
+    text: '過去3小時', value: '0', span: 10800, labelConversion: TimeUtils.timestampToHourAndMin, aggregateWindow: '10m',
+  },
+  {
+    text: '過去1天', value: '1', span: 86400, labelConversion: TimeUtils.timestampToHourAndMin, aggregateWindow: '1h',
+  },
+  {
+    text: '過去10天', value: '2', span: 864000, labelConversion: TimeUtils.timestampToDate, aggregateWindow: '1d',
+  },
+  {
+    text: '過去30天', value: '3', span: 2592000, labelConversion: TimeUtils.timestampToDate, aggregateWindow: '1d',
+  },
+];
+
 function SiteStatusTab() {
   const { siteId } = useParams();
-  const displayTimeOptions = [
-    { value: '0.5hr', text: '過去半小時' },
-    { value: '1hr', text: '過去一小時' },
-    { value: '3hr', text: '過去三小時' },
-  ];
-  const [displayTime, setDisplayTime] = useState(displayTimeOptions[0].value);
+  const [timeSpan, setTimeSpan] = useState(TIME_SPAN_OPTIONS[0]);
   const { loading: isGetSiteLoading, error: getSiteError, data: getSiteData } = useGetSiteQuery({ variables: { siteId: siteId || '' } });
   const isGetSiteReady = !(isGetSiteLoading || getSiteError || !getSiteData?.site);
   const { loading: isGetOpsLoading, error: getOpsError, data: getOpsData } = useGetOpsQuery({
@@ -54,8 +65,9 @@ function SiteStatusTab() {
     variables: {
       deviceId: getSiteData?.site?.centralDevice?.deviceId || '',
       opIds: getSiteData?.site?.centralDevice?.opIds || [],
-      timeStart: Math.floor(Date.now() / 1000) - 30 * 60,
+      timeStart: Math.floor(Date.now() / 1000) - timeSpan.span,
       timeEnd: Math.floor(Date.now() / 1000),
+      aggregateWindow: timeSpan.aggregateWindow,
     },
   });
   const isGetSensorDataReady = !(
@@ -66,8 +78,7 @@ function SiteStatusTab() {
   if (isGetSensorDataReady && getSensorDataData.sensorData[0].timeSeries) {
     chartData = getSensorDataData.sensorData[0].timeSeries.map(({ timestamp }, dataPointIdx) => {
       const dataPoint: DataPoint = { timestamp };
-      const time = new Date(timestamp * 1000);
-      dataPoint.readableTime = `${String(time.getHours()).padStart(2, '0')}:${String(time.getMinutes()).padStart(2, '0')}`;
+      dataPoint.readableTime = timeSpan.labelConversion(timestamp);
       getOpsData?.ops?.forEach(({ name }, opIdx) => {
         dataPoint[name] = getSensorDataData.sensorData[opIdx].timeSeries[dataPointIdx].value;
       });
@@ -75,8 +86,8 @@ function SiteStatusTab() {
     });
   }
 
-  const onQueryTimeChange = (queryTime: SelectableOption) => {
-    setDisplayTime(queryTime.target.value);
+  const onQueryTimeChange = (opt: SelectableOption) => {
+    setTimeSpan(TIME_SPAN_OPTIONS[parseInt(opt.target.value, 10)]);
   };
 
   return (
@@ -168,8 +179,8 @@ function SiteStatusTab() {
                   <EuiSelect
                     className="siteManage_EuiSelect"
                     id="timeSelector"
-                    options={displayTimeOptions}
-                    value={displayTime}
+                    options={TIME_SPAN_OPTIONS.map(({ text, value }) => ({ text, value }))}
+                    value={timeSpan.value}
                     onChange={(e) => onQueryTimeChange(e)}
                     aria-label="Use aria labels when no actual label is in use"
                   />

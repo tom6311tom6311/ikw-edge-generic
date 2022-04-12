@@ -57,6 +57,7 @@ export type QueryOpsArgs = {
 
 
 export type QuerySensorDataArgs = {
+  aggregateWindow: Scalars['String'];
   deviceId: Scalars['String'];
   opIds: Array<Scalars['Int']>;
   timeEnd: Scalars['Int'];

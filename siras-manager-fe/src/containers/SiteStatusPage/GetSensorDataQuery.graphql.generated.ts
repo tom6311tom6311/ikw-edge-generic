@@ -8,6 +8,7 @@ export type GetSensorDataQueryVariables = Types.Exact<{
   opIds: Array<Types.Scalars['Int']> | Types.Scalars['Int'];
   timeStart: Types.Scalars['Int'];
   timeEnd: Types.Scalars['Int'];
+  aggregateWindow: Types.Scalars['String'];
 }>;
 
 
@@ -15,12 +16,13 @@ export type GetSensorDataQuery = { __typename?: 'Query', sensorData: Array<{ __t
 
 
 export const GetSensorDataDocument = gql`
-    query GetSensorData($deviceId: String!, $opIds: [Int!]!, $timeStart: Int!, $timeEnd: Int!) {
+    query GetSensorData($deviceId: String!, $opIds: [Int!]!, $timeStart: Int!, $timeEnd: Int!, $aggregateWindow: String!) {
   sensorData(
     deviceId: $deviceId
     opIds: $opIds
     timeStart: $timeStart
     timeEnd: $timeEnd
+    aggregateWindow: $aggregateWindow
   ) {
     timeSeries {
       timestamp
@@ -46,6 +48,7 @@ export const GetSensorDataDocument = gql`
  *      opIds: // value for 'opIds'
  *      timeStart: // value for 'timeStart'
  *      timeEnd: // value for 'timeEnd'
+ *      aggregateWindow: // value for 'aggregateWindow'
  *   },
  * });
  */
