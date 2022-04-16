@@ -91,7 +91,7 @@ function SiteStatusTab() {
   };
 
   return (
-    <div className="siteManage_container">
+    <div className="sitemanage_container">
       <TabHeader
         title={siteId || '/'}
         currActiveIdx={0}
@@ -100,55 +100,61 @@ function SiteStatusTab() {
           { text: 'SiRAS列表', link: `/site/${siteId || ''}/siras` },
         ]}
       />
-      <div className="siteManage_divider" />
-      <div className="siteManage_body_container">
-        <div className="siteManage_body_subcontainer">
-          <div className="siteManage_body_item_header">
-            <p className="siteManage_body_title">基本資料</p>
-            <p className="siteManage_body_option">看更多</p>
+      <div className="sitemanage_divider" />
+      <div className="sitemanage_body_container">
+        <div className="sitemanage_body_subcontainer">
+          <div className="sitemanage_body_item_header">
+            <p className="sitemanage_body_title">基本資料</p>
+            <p className="sitemanage_body_option">看更多</p>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
-            <div style={{ display: 'flex', flexDirection: 'row', flex: '1' }}>
-              <div className="siteManage_body_basicItem">
-                <p className="siteManage_body_item_name">公司</p>
-                <div className="siteManage_body_item_container">
-                  <p className="siteManage_body_item_companyName">{getSiteData?.site?.companyNameChin}</p>
-                  <p className="siteManage_body_item_unit" style={{ borderColor: 'white' }} />
+          <div className="container" style={{ padding: '0', margin: '0' }}>
+            <div className="row" style={{ width: 'calc(100% + 12px)' }}>
+              <div className="col-sm-6 col-xl-4" style={{ padding: '0' }}>
+                <div className="sitemanage_body_basicitem">
+                  <p className="sitemanage_body_item_name">公司</p>
+                  <div className="sitemanage_body_item_container">
+                    <p className="sitemanage_body_item_company">{getSiteData?.site?.companyNameChin}</p>
+                    <p className="sitemanage_body_item_unit" style={{ borderColor: 'white' }} />
+                  </div>
                 </div>
               </div>
-              <div className="siteManage_body_basicItem">
-                <p className="siteManage_body_item_name">SiRAS</p>
-                <div className="siteManage_body_item_container">
-                  <p className="siteManage_body_item_info">{getSiteData?.site?.numSiras}</p>
-                  <p className="siteManage_body_item_unit">U</p>
+              <div className="col-sm-6 col-xl-4" style={{ padding: '0', margin: '0' }}>
+                <div className="sitemanage_body_basicitem">
+                  <p className="sitemanage_body_item_name">SiRAS</p>
+                  <div className="sitemanage_body_item_container">
+                    <p className="sitemanage_body_item_info">{getSiteData?.site?.numSiras}</p>
+                    <p className="sitemanage_body_item_unit">U</p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'row', flex: '1' }}>
-              <div className="siteManage_body_basicItem">
-                <p className="siteManage_body_item_name">數量</p>
-                <div className="siteManage_body_item_container">
-                  <p className="siteManage_body_item_info">{getSiteData?.site?.capacity}</p>
-                  <p className="siteManage_body_item_unit">尾</p>
+              <div className="col-sm-6 col-xl-4" style={{ padding: '0' }}>
+                <div className="sitemanage_body_basicitem">
+                  <p className="sitemanage_body_item_name">數量</p>
+                  <div className="sitemanage_body_item_container">
+                    <p className="sitemanage_body_item_info">{getSiteData?.site?.capacity}</p>
+                    <p className="sitemanage_body_item_unit">尾</p>
+                  </div>
                 </div>
               </div>
-              <div className="siteManage_body_basicItem">
-                <p className="siteManage_body_item_name">面積</p>
-                <div className="siteManage_body_item_container">
-                  <p className="siteManage_body_item_info">{getSiteData?.site?.area}</p>
-                  <p className="siteManage_body_item_unit">公頃</p>
+              <div className="col-sm-6 col-xl-4" style={{ padding: '0' }}>
+                <div className="sitemanage_body_basicitem">
+                  <p className="sitemanage_body_item_name">面積</p>
+                  <div className="sitemanage_body_item_container">
+                    <p className="sitemanage_body_item_info">{getSiteData?.site?.area}</p>
+                    <p className="sitemanage_body_item_unit">公頃</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="siteManage_body_subcontainer">
-          <div className="siteManage_body_item_header">
-            <p className="siteManage_body_title">監測圖表</p>
-            <p className="siteManage_body_option">看更多</p>
+        <div className="sitemanage_body_subcontainer">
+          <div className="sitemanage_body_item_header">
+            <p className="sitemanage_body_title">監測圖表</p>
+            <p className="sitemanage_body_option">看更多</p>
           </div>
           <div>
-            <div className="siteManage_body_basicItem" style={{ width: 'calc(100% - 10px)', height: 'fit-content' }}>
+            <div className="sitemanage_body_basicitem" style={{ width: 'calc(100% - 10px)', height: 'fit-content' }}>
               <ResponsiveContainer width="100%" height={380}>
                 <LineChart
                   style={{ position: 'inherit' }}
@@ -164,10 +170,10 @@ function SiteStatusTab() {
                   ))}
                 </LineChart>
               </ResponsiveContainer>
-              <div className="siteManage_chartBottom_container">
-                {/* <div className="siteManage_chart_dataSelector_container">
+              <div className="sitemanage_chartbottom_container">
+                {/* <div className="sitemanage_chart_dataselector_container">
                   <EuiSelect
-                    className="siteManage_EuiSelect"
+                    className="sitemanage_euiselect"
                     id="dataSelector"
                     options={displaydataOptions}
                     value={displayData}
@@ -175,9 +181,9 @@ function SiteStatusTab() {
                     aria-label="Use aria labels when no actual label is in use"
                   />
                 </div> */}
-                <div className="siteManage_chart_timeSelector_container">
+                <div className="sitemanage_chart_timeselector_container">
                   <EuiSelect
-                    className="siteManage_EuiSelect"
+                    className="sitemanage_euiselect"
                     id="timeSelector"
                     options={TIME_SPAN_OPTIONS.map(({ text, value }) => ({ text, value }))}
                     value={timeSpan.value}
@@ -189,81 +195,80 @@ function SiteStatusTab() {
             </div>
           </div>
         </div>
-        <div className="siteManage_body_subcontainer" style={{ height: 'fit-content' }}>
-          <div className="siteManage_body_item_header">
-            <p className="siteManage_body_title">中央系統數據</p>
-            {/* <p className='siteManage_body_option'>設定</p> */}
+        <div className="sitemanage_body_subcontainer" style={{ height: 'fit-content' }}>
+          <div className="sitemanage_body_item_header">
+            <p className="sitemanage_body_title">中央系統數據</p>
+            {/* <p className='sitemanage_body_option'>設定</p> */}
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
-            <div style={{ display: 'flex', flexDirection: 'row', flex: '1' }}>
+          <div className="container" style={{ padding: '0', margin: '0' }}>
+            <div className="row" style={{ width: 'calc(100% + 12px)' }}>
               {getOpsData?.ops.map((op, opIdx) => (
-                <div key={op.name} className="siteManage_body_basicItem">
-                  <div>
-                    <div className="siteManage_paralight_blue" />
-                    <p
-                      className="siteManage_body_item_name"
-                      style={{
-                        float: 'left', width: 'auto', margin: '13px 0 0 0', padding: '0',
-                      }}
-                    >
-                      {op.name}
-                    </p>
-                  </div>
-                  <div className="siteManage_body_item_systemData_container">
-                    <p className="siteManage_body_item_systemData">
-                      {getSensorDataData?.sensorData[opIdx].timeSeries.slice(-1)[0].value}
-                      {' '}
-                      {op.unit}
-                    </p>
-                    <p className="siteManage_body_item_systemInfo">即時數據</p>
+                <div className="col-sm-6 col-xl-4" style={{ padding: '0' }}>
+                  <div key={op.name} className="sitemanage_body_basicitem">
+                    <div style={{ width: 'calc(100% - 40px)', display: 'flex', margin: '10px 20px' }}>
+                      <div className="sitemanage_paralight_blue" />
+                      <p
+                        className="sitemanage_body_item_name"
+                        style={{
+                          margin: '3.5px 0', padding: '0',
+                        }}
+                      >
+                        {op.name}
+                      </p>
+                    </div>
+                    <div className="sitemanage_body_item_systemdata_container">
+                      <p className="sitemanage_body_item_systemdata">
+                        {getSensorDataData?.sensorData[opIdx].timeSeries.slice(-1)[0].value}
+                        {' '}
+                        {op.unit}
+                      </p>
+                      <p className="sitemanage_body_item_systeminfo">即時數據</p>
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
           </div>
         </div>
-        <div className="siteManage_body_subcontainer">
-          <div className="siteManage_body_item_header">
-            <p className="siteManage_body_title">亞硝酸採樣</p>
-            <p className="siteManage_body_option">＋新增採樣</p>
+        <div className="sitemanage_body_subcontainer">
+          <div className="sitemanage_body_item_header">
+            <p className="sitemanage_body_title">亞硝酸採樣</p>
+            <p className="sitemanage_body_option">＋新增採樣</p>
           </div>
           <div>
             <div
-              className="siteManage_body_basicItem siteManage_body_sampling_container"
+              className="row sitemanage_body_basicitem sitemanage_body_sampling_container"
               style={{
                 width: 'calc(100% - 10px)', height: 'fit-content', padding: '5px', alignItems: 'center',
               }}
             >
-              <img src={NitriteSampleImg} alt="nitrite_sample" style={{ flex: '1', height: '130px', margin: '5px' }} />
-              <div className="siteManage_body_sampling_info">
-                <p className="siteManage_body_item_descr">採樣時間</p>
-                <p className="siteManage_body_item_sampleTime">10:00 am 111年1月26日</p>
+              <img src={NitriteSampleImg} alt="nitrite_sample" className="col-6 sitemanage_body_sampling_img" style={{ padding: '0' }} />
+              <div className="col-6 sitemanage_body_sampling_info" style={{ padding: '0' }}>
+                <p className="sitemanage_body_item_descr">採樣時間</p>
+                <p className="sitemanage_body_item_sampletime">10:00 am 111年1月26日</p>
               </div>
             </div>
           </div>
         </div>
-        <div className="siteManage_body_subcontainer">
-          <div className="siteManage_body_item_header">
-            <p className="siteManage_body_title">現場監控影像</p>
+        <div className="sitemanage_body_subcontainer">
+          <div className="sitemanage_body_item_header">
+            <p className="sitemanage_body_title">現場監控影像</p>
           </div>
           <div>
-            <div className="siteManage_body_basicItem" style={{ width: 'calc(100% - 10px)', height: '384px', borderWidth: '0' }}>
-              <div style={{ flexDirection: 'row', display: 'flex', height: 'fit-content' }}>
-                <div style={{ flex: '1', position: 'relative' }}>
-                  <img src={CctvImg} alt="CCTV_1" className="siteManage_body_CCTVImg" />
-                  <div className="siteManage_body_CCTVtxt">鏡頭名稱/位置</div>
+            <div className="container sitemanage_body_basicitem" style={{ width: 'calc(100% - 10px)', height: '384px', borderWidth: '0' }}>
+              <div className="row" style={{ width: 'calc(100% + 12px)' }}>
+                <div className="col-6 col-xl-4" style={{ padding: '0' }}>
+                  <img src={CctvImg} alt="CCTV_1" className="sitemanage_body_cctvimg" />
+                  <div className="sitemanage_body_cctvtxt">鏡頭名稱/位置</div>
                 </div>
-                <div style={{ flex: '1', position: 'relative' }}>
-                  <img src={CctvImg} alt="CCTV_1" className="siteManage_body_CCTVImg" />
-                  <div className="siteManage_body_CCTVtxt">鏡頭名稱/位置</div>
+                <div className="col-6 col-xl-4" style={{ padding: '0' }}>
+                  <img src={CctvImg} alt="CCTV_1" className="sitemanage_body_cctvimg" />
+                  <div className="sitemanage_body_cctvtxt">鏡頭名稱/位置</div>
                 </div>
-              </div>
-              <div style={{ flexDirection: 'row', display: 'flex', height: 'fit-content' }}>
-                <div style={{ flex: '1', position: 'relative' }}>
-                  <img src={CctvImg} alt="CCTV_1" className="siteManage_body_CCTVImg" />
-                  <div className="siteManage_body_CCTVtxt">鏡頭名稱/位置</div>
+                <div className="col-6 col-xl-4" style={{ padding: '0' }}>
+                  <img src={CctvImg} alt="CCTV_1" className="sitemanage_body_cctvimg" />
+                  <div className="sitemanage_body_cctvtxt">鏡頭名稱/位置</div>
                 </div>
-                <div style={{ flex: '1', position: 'relative' }} />
               </div>
             </div>
           </div>
