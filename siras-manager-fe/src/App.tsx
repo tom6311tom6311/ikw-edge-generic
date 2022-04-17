@@ -3,7 +3,9 @@ import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
+  createHttpLink,
 } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 import {
   BrowserRouter, Routes, Route,
 } from 'react-router-dom';
@@ -14,8 +16,22 @@ import SiteListPage from './containers/SiteListPage/SiteListPage';
 import SirasListTab from './containers/SirasListPage/SirasListPage';
 import SiteStatusTab from './containers/SiteStatusPage/SiteStatusPage';
 
-const client = new ApolloClient({
+const httpLink = createHttpLink({
   uri: AppConfig.BACKEND.URL,
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('x-token') || '';
+  return {
+    headers: {
+      ...headers,
+      'x-token': token,
+    },
+  };
+});
+
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 
