@@ -11,7 +11,7 @@ import {
   BrowserRouter, Routes, Route,
 } from 'react-router-dom';
 import AppConfig from './const/AppConfig';
-import Login from './components/Login/Login';
+import Login from './containers/LoginPage/LoginPage';
 import MainPage from './containers/MainPage/MainPage';
 import SiteListPage from './containers/SiteListPage/SiteListPage';
 import SirasListTab from './containers/SirasListPage/SirasListPage';

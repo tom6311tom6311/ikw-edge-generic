@@ -1,9 +1,6 @@
 import * as React from 'react';
 
-export interface ILoginProps {
-}
-
-export default function Login() {
+export default function LoginPage() {
   return (
     // 768px*960px
     <div className="login_background">
