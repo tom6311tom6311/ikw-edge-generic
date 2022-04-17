@@ -6,6 +6,7 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import { onError } from '@apollo/client/link/error';
 import {
   BrowserRouter, Routes, Route,
 } from 'react-router-dom';
@@ -30,8 +31,18 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
+const errorLink = onError(({ graphQLErrors }) => {
+  if (graphQLErrors) {
+    graphQLErrors.forEach(({ extensions }) => {
+      if (extensions?.code === 401) {
+        window.location.replace('/login');
+      }
+    });
+  }
+});
+
 const client = new ApolloClient({
-  link: authLink.concat(httpLink),
+  link: authLink.concat(errorLink).concat(httpLink),
   cache: new InMemoryCache(),
 });
 
