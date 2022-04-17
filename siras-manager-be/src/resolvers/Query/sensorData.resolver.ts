@@ -9,11 +9,13 @@ interface InfluxRow {
   _value: number;
 }
 
-const org = 'ikw'; //process.env.INFLUX_ORG || '';
-const token = 'W1o05E8K9aGg-Omn4yOm2-5qhBIZF7RrR5IF_9jskDWC_0vcdpEoDWv0bdFwaLvUCQXqF-mu7grRKtGvKnQSMg=='; //process.env.INFLUX_TOKEN || '';
-const bucket = 'ikw-sensing'; // process.env.INFLUX_BUCKET || '';
+const org = process.env.INFLUX_ORG || '';
+const token = process.env.INFLUX_TOKEN || '';
+const bucket = process.env.INFLUX_BUCKET || '';
+const influxHost = process.env.INFLUX_HOST || 'influxdb';
+const influxPort = process.env.INFLUX_PORT || 8086;
 
-const client = new InfluxDB({url: 'http://fullybnb.synology.me:10861', token: token});
+const client = new InfluxDB({url: `http://${influxHost}:${influxPort}`, token: token});
 
 const sensorData: SensorDataResolver = async (parent, { deviceId, opIds, timeStart, timeEnd, aggregateWindow }, { claims }) => {
   if (claims === null) {

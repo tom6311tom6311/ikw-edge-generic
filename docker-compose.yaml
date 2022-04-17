@@ -64,6 +64,9 @@ services:
       INFLUX_ORG: $INFLUX_ORG
       INFLUX_TOKEN: $INFLUX_TOKEN
       INFLUX_BUCKET: $INFLUX_BUCKET
+      INFLUX_HOST: $INFLUX_HOST
+      INFLUX_PORT: $INFLUX_PORT
+      JWT_SECRET: $JWT_SECRET
     ports:
       - 14001:4000
     networks:

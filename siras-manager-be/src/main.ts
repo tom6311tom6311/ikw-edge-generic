@@ -10,7 +10,7 @@ async function main() {
       resolvers,
     },
     context: (req) => ({
-      claims: JwtUtils.parseToken(req.request.headers.get('x-token') || '', 'testikwsecret'),
+      claims: JwtUtils.parseToken(req.request.headers.get('x-token') || '', process.env.JWT_SECRET || ''),
     }),
   })
   await server.start()

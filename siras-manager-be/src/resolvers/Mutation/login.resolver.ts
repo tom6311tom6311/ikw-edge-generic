@@ -8,7 +8,7 @@ const login: LoginResolver = (parent, { email, password }) => {
   if (!password || password !== mockData.userCredentials?.[email]) {
     return null;
   }
-  return JwtUtils.createToken(email, 'testikwsecret');
+  return JwtUtils.createToken(email, process.env.JWT_SECRET || '');
 };
 
 export default login;
