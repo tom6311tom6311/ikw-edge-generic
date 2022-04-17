@@ -24,7 +24,7 @@ const users = {
 };
 
 const userCredentials = {
-  'info@afilgroup.com': 'lalala',
+  'info@afilgroup.com': '66596868',
 };
 
 
