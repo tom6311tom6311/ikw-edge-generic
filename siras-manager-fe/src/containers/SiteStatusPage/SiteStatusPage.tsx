@@ -218,7 +218,7 @@ function SiteStatusPage() {
                     </div>
                     <div className="sitemanage_body_item_systemdata_container">
                       <p className="sitemanage_body_item_systemdata">
-                        {getSensorDataData?.sensorData[opIdx].timeSeries.slice(-1)[0].value}
+                        {getSensorDataData?.sensorData[opIdx].timeSeries.slice(-1)[0]?.value}
                         {' '}
                         {op.unit}
                       </p>
