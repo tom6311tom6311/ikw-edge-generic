@@ -46,7 +46,7 @@ const TIME_SPAN_OPTIONS = [
   },
 ];
 
-function SiteStatusTab() {
+function SiteStatusPage() {
   const { siteId } = useParams();
   const [timeSpan, setTimeSpan] = useState(TIME_SPAN_OPTIONS[0]);
   const { loading: isGetSiteLoading, error: getSiteError, data: getSiteData } = useGetSiteQuery({ variables: { siteId: siteId || '' } });
@@ -278,4 +278,4 @@ function SiteStatusTab() {
   );
 }
 
-export default SiteStatusTab;
+export default SiteStatusPage;

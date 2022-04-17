@@ -14,8 +14,8 @@ import AppConfig from './const/AppConfig';
 import Login from './containers/LoginPage/LoginPage';
 import MainPage from './containers/MainPage/MainPage';
 import SiteListPage from './containers/SiteListPage/SiteListPage';
-import SirasListTab from './containers/SirasListPage/SirasListPage';
-import SiteStatusTab from './containers/SiteStatusPage/SiteStatusPage';
+import SirasListPage from './containers/SirasListPage/SirasListPage';
+import SiteStatusPage from './containers/SiteStatusPage/SiteStatusPage';
 
 const httpLink = createHttpLink({
   uri: AppConfig.BACKEND.URL,
@@ -54,9 +54,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<MainPage />}>
             <Route path="site/:siteId">
-              <Route path="siras" element={<SirasListTab />} />
-              <Route path="*" element={<SiteStatusTab />} />
-              <Route index element={<SiteStatusTab />} />
+              <Route path="siras" element={<SirasListPage />} />
+              <Route path="*" element={<SiteStatusPage />} />
+              <Route index element={<SiteStatusPage />} />
             </Route>
             <Route path="*" element={<SiteListPage />} />
             <Route index element={<SiteListPage />} />
