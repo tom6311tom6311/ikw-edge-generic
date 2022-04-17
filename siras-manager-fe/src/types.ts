@@ -18,6 +18,18 @@ export type Device = {
   opIds: Array<Scalars['Int']>;
 };
 
+export type Mutation = {
+  __typename?: 'Mutation';
+  login?: Maybe<Scalars['String']>;
+  logout?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationLoginArgs = {
+  email: Scalars['String'];
+  password: Scalars['String'];
+};
+
 export type Op = {
   __typename?: 'Op';
   defaultWarningThreshold?: Maybe<Threshold>;
@@ -101,8 +113,7 @@ export type Site = {
   numEmployees?: Maybe<Scalars['Int']>;
   numSiras: Scalars['Int'];
   organization: Scalars['String'];
-  ownerNameChin: Scalars['String'];
-  ownerNameEng: Scalars['String'];
+  owner?: Maybe<User>;
   ponds: Array<Pond>;
   siteId: Scalars['ID'];
   speciesList: Array<Scalars['String']>;
@@ -136,4 +147,11 @@ export type TimeSeriesDataPoint = {
   __typename?: 'TimeSeriesDataPoint';
   timestamp: Scalars['Int'];
   value: Scalars['Float'];
+};
+
+export type User = {
+  __typename?: 'User';
+  email: Scalars['String'];
+  nameChin: Scalars['String'];
+  nameEng: Scalars['String'];
 };
