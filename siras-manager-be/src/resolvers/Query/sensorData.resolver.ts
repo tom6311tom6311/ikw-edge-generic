@@ -1,3 +1,4 @@
+import { GraphQLYogaError } from '@graphql-yoga/node';
 import { InfluxDB } from '@influxdata/influxdb-client';
 import { QueryResolvers, SensorData, TimeSeriesDataPoint } from '../../generated/graphql';
 
@@ -14,8 +15,10 @@ const bucket = 'ikw-sensing'; // process.env.INFLUX_BUCKET || '';
 
 const client = new InfluxDB({url: 'http://fullybnb.synology.me:10861', token: token});
 
-const sensorData: SensorDataResolver = async (parent, args) => {
-  const { deviceId, opIds, timeStart, timeEnd, aggregateWindow } = args;
+const sensorData: SensorDataResolver = async (parent, { deviceId, opIds, timeStart, timeEnd, aggregateWindow }, { claims }) => {
+  if (claims === null) {
+    throw new GraphQLYogaError("Authentication failed", { code: 401 });
+  }
   const queryApi = client.getQueryApi(org);
   const timeStartISOStr = new Date(timeStart * 1000).toISOString();
   const timeEndISOStr = new Date(timeEnd * 1000).toISOString();
