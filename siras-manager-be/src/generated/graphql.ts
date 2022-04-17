@@ -20,6 +20,18 @@ export type Device = {
   opIds: Array<Scalars['Int']>;
 };
 
+export type Mutation = {
+  __typename?: 'Mutation';
+  login?: Maybe<Scalars['String']>;
+  logout?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationLoginArgs = {
+  email: Scalars['String'];
+  password: Scalars['String'];
+};
+
 export type Op = {
   __typename?: 'Op';
   defaultWarningThreshold?: Maybe<Threshold>;
@@ -103,8 +115,7 @@ export type Site = {
   numEmployees?: Maybe<Scalars['Int']>;
   numSiras: Scalars['Int'];
   organization: Scalars['String'];
-  ownerNameChin: Scalars['String'];
-  ownerNameEng: Scalars['String'];
+  owner?: Maybe<User>;
   ponds: Array<Pond>;
   siteId: Scalars['ID'];
   speciesList: Array<Scalars['String']>;
@@ -138,6 +149,13 @@ export type TimeSeriesDataPoint = {
   __typename?: 'TimeSeriesDataPoint';
   timestamp: Scalars['Int'];
   value: Scalars['Float'];
+};
+
+export type User = {
+  __typename?: 'User';
+  email: Scalars['String'];
+  nameChin: Scalars['String'];
+  nameEng: Scalars['String'];
 };
 
 
@@ -214,6 +232,7 @@ export type ResolversTypes = {
   Float: ResolverTypeWrapper<Scalars['Float']>;
   ID: ResolverTypeWrapper<Scalars['ID']>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
+  Mutation: ResolverTypeWrapper<{}>;
   Op: ResolverTypeWrapper<Op>;
   Pond: ResolverTypeWrapper<Pond>;
   Query: ResolverTypeWrapper<{}>;
@@ -224,6 +243,7 @@ export type ResolversTypes = {
   String: ResolverTypeWrapper<Scalars['String']>;
   Threshold: ResolverTypeWrapper<Threshold>;
   TimeSeriesDataPoint: ResolverTypeWrapper<TimeSeriesDataPoint>;
+  User: ResolverTypeWrapper<User>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -233,6 +253,7 @@ export type ResolversParentTypes = {
   Float: Scalars['Float'];
   ID: Scalars['ID'];
   Int: Scalars['Int'];
+  Mutation: {};
   Op: Op;
   Pond: Pond;
   Query: {};
@@ -241,12 +262,18 @@ export type ResolversParentTypes = {
   String: Scalars['String'];
   Threshold: Threshold;
   TimeSeriesDataPoint: TimeSeriesDataPoint;
+  User: User;
 };
 
 export type DeviceResolvers<ContextType = any, ParentType extends ResolversParentTypes['Device'] = ResolversParentTypes['Device']> = {
   deviceId?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   opIds?: Resolver<Array<ResolversTypes['Int']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  login?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, RequireFields<MutationLoginArgs, 'email' | 'password'>>;
+  logout?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
 };
 
 export type OpResolvers<ContextType = any, ParentType extends ResolversParentTypes['Op'] = ResolversParentTypes['Op']> = {
@@ -301,8 +328,7 @@ export type SiteResolvers<ContextType = any, ParentType extends ResolversParentT
   numEmployees?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   numSiras?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   organization?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  ownerNameChin?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  ownerNameEng?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  owner?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>;
   ponds?: Resolver<Array<ResolversTypes['Pond']>, ParentType, ContextType>;
   siteId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   speciesList?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
@@ -327,8 +353,16 @@ export type TimeSeriesDataPointResolvers<ContextType = any, ParentType extends R
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
+  email?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  nameChin?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  nameEng?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type Resolvers<ContextType = any> = {
   Device?: DeviceResolvers<ContextType>;
+  Mutation?: MutationResolvers<ContextType>;
   Op?: OpResolvers<ContextType>;
   Pond?: PondResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
@@ -336,5 +370,6 @@ export type Resolvers<ContextType = any> = {
   Site?: SiteResolvers<ContextType>;
   Threshold?: ThresholdResolvers<ContextType>;
   TimeSeriesDataPoint?: TimeSeriesDataPointResolvers<ContextType>;
+  User?: UserResolvers<ContextType>;
 };
 

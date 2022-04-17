@@ -3,19 +3,46 @@ import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
+  createHttpLink,
 } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
+import { onError } from '@apollo/client/link/error';
 import {
   BrowserRouter, Routes, Route,
 } from 'react-router-dom';
 import AppConfig from './const/AppConfig';
-import Login from './components/Login/Login';
+import Login from './containers/LoginPage/LoginPage';
 import MainPage from './containers/MainPage/MainPage';
 import SiteListPage from './containers/SiteListPage/SiteListPage';
-import SirasListTab from './containers/SirasListPage/SirasListPage';
-import SiteStatusTab from './containers/SiteStatusPage/SiteStatusPage';
+import SirasListPage from './containers/SirasListPage/SirasListPage';
+import SiteStatusPage from './containers/SiteStatusPage/SiteStatusPage';
+
+const httpLink = createHttpLink({
+  uri: AppConfig.BACKEND.URL,
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('x-token') || '';
+  return {
+    headers: {
+      ...headers,
+      'x-token': token,
+    },
+  };
+});
+
+const errorLink = onError(({ graphQLErrors }) => {
+  if (graphQLErrors) {
+    graphQLErrors.forEach(({ extensions }) => {
+      if (extensions?.code === 401) {
+        window.location.replace('/login');
+      }
+    });
+  }
+});
 
 const client = new ApolloClient({
-  uri: AppConfig.BACKEND.URL,
+  link: authLink.concat(errorLink).concat(httpLink),
   cache: new InMemoryCache(),
 });
 
@@ -27,9 +54,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<MainPage />}>
             <Route path="site/:siteId">
-              <Route path="siras" element={<SirasListTab />} />
-              <Route path="*" element={<SiteStatusTab />} />
-              <Route index element={<SiteStatusTab />} />
+              <Route path="siras" element={<SirasListPage />} />
+              <Route path="*" element={<SiteStatusPage />} />
+              <Route index element={<SiteStatusPage />} />
             </Route>
             <Route path="*" element={<SiteListPage />} />
             <Route index element={<SiteListPage />} />

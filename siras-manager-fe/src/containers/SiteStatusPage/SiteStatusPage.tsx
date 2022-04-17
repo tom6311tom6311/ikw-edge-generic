@@ -46,7 +46,7 @@ const TIME_SPAN_OPTIONS = [
   },
 ];
 
-function SiteStatusTab() {
+function SiteStatusPage() {
   const { siteId } = useParams();
   const [timeSpan, setTimeSpan] = useState(TIME_SPAN_OPTIONS[0]);
   const { loading: isGetSiteLoading, error: getSiteError, data: getSiteData } = useGetSiteQuery({ variables: { siteId: siteId || '' } });
@@ -218,7 +218,7 @@ function SiteStatusTab() {
                     </div>
                     <div className="sitemanage_body_item_systemdata_container">
                       <p className="sitemanage_body_item_systemdata">
-                        {getSensorDataData?.sensorData[opIdx].timeSeries.slice(-1)[0].value}
+                        {getSensorDataData?.sensorData[opIdx].timeSeries.slice(-1)[0]?.value}
                         {' '}
                         {op.unit}
                       </p>
@@ -278,4 +278,4 @@ function SiteStatusTab() {
   );
 }
 
-export default SiteStatusTab;
+export default SiteStatusPage;
