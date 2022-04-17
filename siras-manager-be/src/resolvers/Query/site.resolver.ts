@@ -1,5 +1,5 @@
-import mockData from '../../data/mockData';
-import { QueryResolvers } from '../generated/graphql';
+import mockData from '../../../data/mockData';
+import { QueryResolvers } from '../../generated/graphql';
 
 type SiteResolver = QueryResolvers['site'];
 

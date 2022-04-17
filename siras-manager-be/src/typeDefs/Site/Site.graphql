@@ -10,9 +10,8 @@ type Site {
   speciesList: [String!]!
   validationStatus: SiteValidationStatus!
   centralDevice: Device
+  owner: User
   ponds: [Pond!]!
-  ownerNameEng: String!
-  ownerNameChin: String!
   addressEng: String!
   addressChin: String!
   telCompany: String

@@ -1,15 +1,36 @@
-import { Site, Op, SiteStatus, SiteValidationStatus } from "../src/generated/graphql";
+import { User, Site, Op, SiteStatus, SiteValidationStatus } from "../src/generated/graphql";
 
 type MockData = {
+  users: {
+    [key: string]: User;
+  }
+  userCredentials: {
+    [key: string]: string;
+  }
   sites: {
     [key: string]: Site;
   },
   ops: {
     [key: number]: Op;
   }
-}
+};
+
+const users = {
+  'info@afilgroup.com': {
+    email: 'info@afilgroup.com',
+    nameEng: 'AFIL',
+    nameChin: 'AFIL',
+  },
+};
+
+const userCredentials = {
+  'info@afilgroup.com': 'lalala',
+};
+
 
 const mockData: MockData = {
+  users,
+  userCredentials,
   sites: {
     BangladeshNo1: {
       siteId: 'BangladeshNo1',
@@ -35,8 +56,7 @@ const mockData: MockData = {
           typeCode: '1234567890',
         },
       ],
-      ownerNameEng: 'AFIL',
-      ownerNameChin: 'AFIL',
+      owner: users['info@afilgroup.com'],
       addressEng: 'Akij Chamber ,(7th floor) 73, Dilkusha C/A Dhaka-1000. Bangladesh',
       addressChin: 'Akij Chamber ,(7th floor) 73, Dilkusha C/A Dhaka-1000. Bangladesh',
       telCompany: 'NA',

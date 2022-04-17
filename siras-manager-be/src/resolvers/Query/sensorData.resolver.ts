@@ -1,5 +1,5 @@
 import { InfluxDB } from '@influxdata/influxdb-client';
-import { QueryResolvers, SensorData, TimeSeriesDataPoint } from '../generated/graphql';
+import { QueryResolvers, SensorData, TimeSeriesDataPoint } from '../../generated/graphql';
 
 type SensorDataResolver = QueryResolvers['sensorData'];
 interface InfluxRow {
