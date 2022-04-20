@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import {
-  Line, LineChart, Tooltip, XAxis, ResponsiveContainer,
+  Line, LineChart, Tooltip, XAxis, ResponsiveContainer, ReferenceLine,
 } from 'recharts';
 import { EuiSelect } from '@elastic/eui';
 import NitriteSampleImg from '../../img/nitrite_sample.png';
@@ -75,6 +75,7 @@ function SiteStatusPage() {
   );
 
   let chartData: DataPoint[] = [];
+  let averages: number[] = [];
   if (isGetSensorDataReady && getSensorDataData.sensorData[0].timeSeries) {
     chartData = getSensorDataData.sensorData[0].timeSeries.map(({ timestamp }, dataPointIdx) => {
       const dataPoint: DataPoint = { timestamp };
@@ -84,6 +85,13 @@ function SiteStatusPage() {
       });
       return dataPoint;
     });
+    averages = getSensorDataData.sensorData
+      .map(
+        ({ timeSeries }) => timeSeries.reduce((acc, { value }) => (acc + value), 0),
+      )
+      .map(
+        (sum) => (chartData.length === 0 ? 0 : Math.round((sum / chartData.length) * 100) / 100),
+      );
   }
 
   const onQueryTimeChange = (opt: SelectableOption) => {
@@ -166,7 +174,28 @@ function SiteStatusPage() {
                   <XAxis dataKey="readableTime" />
                   <Tooltip />
                   {getOpsData?.ops.map(({ name: opName, unit }, idx) => (
-                    <Line key={opName} name={opName} type="monotone" dataKey={opName} stroke={LINE_COLORS[idx % LINE_COLORS.length]} unit={` ${unit}` || ''} />
+                    <>
+                      <Line
+                        key={opName}
+                        name={opName}
+                        type="monotone"
+                        dataKey={opName}
+                        stroke={LINE_COLORS[idx % LINE_COLORS.length]}
+                        unit={` ${unit}` || ''}
+                      />
+                      <ReferenceLine
+                        key={`${opName}-avg`}
+                        y={averages[idx]}
+                        label={{
+                          position: 'top',
+                          value: `${averages[idx]} ${unit}`,
+                          fill: LINE_COLORS[idx % LINE_COLORS.length],
+                          fontSize: 10,
+                        }}
+                        stroke={LINE_COLORS[idx % LINE_COLORS.length]}
+                        strokeDasharray="3 3"
+                      />
+                    </>
                   ))}
                 </LineChart>
               </ResponsiveContainer>
