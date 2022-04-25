@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import {
-  Line, LineChart, Tooltip, XAxis, ResponsiveContainer, ReferenceLine,
+  Line, LineChart, Tooltip, XAxis, ResponsiveContainer, ReferenceLine, YAxis, LabelProps,
 } from 'recharts';
 import { EuiSelect } from '@elastic/eui';
 import NitriteSampleImg from '../../img/nitrite_sample.png';
@@ -29,6 +29,12 @@ const LINE_COLORS = [
   '#FFFF00',
   '#00FFFF',
   '#FF00FF',
+];
+
+const LABEL_POSITIONS: LabelProps['position'][] = [
+  'insideBottomLeft',
+  'top',
+  'insideBottomRight',
 ];
 
 const TIME_SPAN_OPTIONS = [
@@ -167,35 +173,56 @@ function SiteStatusPage() {
                 <LineChart
                   style={{ position: 'inherit' }}
                   margin={{
-                    top: 30, right: 50, left: 50, bottom: 10,
+                    top: 30, right: 50, left: 30, bottom: 10,
                   }}
                   data={chartData}
                 >
                   <XAxis dataKey="readableTime" />
                   <Tooltip />
+                  {getOpsData?.ops.map(({ name: opName }, idx) => (
+                    <YAxis
+                      key={`${opName}-y-axis`}
+                      yAxisId={`${opName}-y-axis`}
+                      label={{
+                        position: 'top',
+                        value: opName,
+                        fill: LINE_COLORS[idx % LINE_COLORS.length],
+                        fontSize: 10,
+                      }}
+                      type="number"
+                      domain={['dataMin', 'dataMax']}
+                      allowDecimals={false}
+                      width={30}
+                      tickSize={3}
+                      stroke={LINE_COLORS[idx % LINE_COLORS.length]}
+                      tick={{ fontSize: 10 }}
+                    />
+                  ))}
                   {getOpsData?.ops.map(({ name: opName, unit }, idx) => (
-                    <>
-                      <Line
-                        key={opName}
-                        name={opName}
-                        type="monotone"
-                        dataKey={opName}
-                        stroke={LINE_COLORS[idx % LINE_COLORS.length]}
-                        unit={` ${unit}` || ''}
-                      />
-                      <ReferenceLine
-                        key={`${opName}-avg`}
-                        y={averages[idx]}
-                        label={{
-                          position: 'top',
-                          value: `${averages[idx]} ${unit}`,
-                          fill: LINE_COLORS[idx % LINE_COLORS.length],
-                          fontSize: 10,
-                        }}
-                        stroke={LINE_COLORS[idx % LINE_COLORS.length]}
-                        strokeDasharray="3 3"
-                      />
-                    </>
+                    <Line
+                      key={`${opName}-line`}
+                      name={opName}
+                      type="monotone"
+                      yAxisId={`${opName}-y-axis`}
+                      dataKey={opName}
+                      stroke={LINE_COLORS[idx % LINE_COLORS.length]}
+                      unit={` ${unit}` || ''}
+                    />
+                  ))}
+                  {getOpsData?.ops.map(({ name: opName, unit }, idx) => (
+                    <ReferenceLine
+                      key={`${opName}-avg`}
+                      y={averages[idx]}
+                      yAxisId={`${opName}-y-axis`}
+                      label={{
+                        position: LABEL_POSITIONS[idx % LABEL_POSITIONS.length],
+                        value: `${opName}平均: ${averages[idx]} ${unit}`,
+                        fill: LINE_COLORS[idx % LINE_COLORS.length],
+                        fontSize: 10,
+                      }}
+                      stroke={LINE_COLORS[idx % LINE_COLORS.length]}
+                      strokeDasharray="3 3"
+                    />
                   ))}
                 </LineChart>
               </ResponsiveContainer>
@@ -232,7 +259,7 @@ function SiteStatusPage() {
           <div className="container" style={{ padding: '0', margin: '0' }}>
             <div className="row" style={{ width: 'calc(100% + 12px)' }}>
               {getOpsData?.ops.map((op, opIdx) => (
-                <div className="col-sm-6 col-xl-4" style={{ padding: '0' }}>
+                <div key={`${op.name}-live-value`} className="col-sm-6 col-xl-4" style={{ padding: '0' }}>
                   <div key={op.name} className="sitemanage_body_basicitem">
                     <div style={{ width: 'calc(100% - 40px)', display: 'flex', margin: '10px 20px' }}>
                       <div className="sitemanage_paralight_blue" />
