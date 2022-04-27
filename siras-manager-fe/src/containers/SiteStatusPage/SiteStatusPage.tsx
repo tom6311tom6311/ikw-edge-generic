@@ -122,7 +122,7 @@ function SiteStatusPage() {
             <p className="sitemanage_body_option">看更多</p>
           </div>
           <div className="container" style={{ padding: '0', margin: '0' }}>
-            <div className="row" style={{ width: 'calc(100% + 12px)' }}>
+            <div className="row" style={{ width: '100%', margin: '0' }}>
               <div className="col-sm-6 col-xl-4" style={{ padding: '0' }}>
                 <div className="sitemanage_body_basicitem">
                   <p className="sitemanage_body_item_name">公司</p>
