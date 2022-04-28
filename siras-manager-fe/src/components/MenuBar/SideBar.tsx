@@ -1,11 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import LogoImg from '../../img/logo_h.png';
 
 function SideBar() {
   return (
     <div className="sidebar_wrapper">
       <div className="sidebar_container">
-        <div className="sidebar_header" />
+        <div className="sidebar_header">
+          <img src={LogoImg} alt="logo" className="sidebar_logo" />
+        </div>
         <Link to="/">
           <div className="sidebar_item_container" style={{ marginTop: '10px' }}><p className="sidebar_item_p">案場總覽</p></div>
         </Link>

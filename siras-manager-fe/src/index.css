@@ -27,7 +27,7 @@ div {
 }
 
 .sidebar_on .header {
-  width: calc(100vw - 126px);
+  width: 75vw;
   right:0;
 }
 
@@ -56,6 +56,7 @@ div {
 	font: inherit;
 	cursor: pointer;
 	outline: inherit;
+  float: left;
 }
 
 .menu_icon {
@@ -305,8 +306,8 @@ div {
 
 .sidebar_logo {
   float: left;
-  margin: 10px 20px;
-  width: 30px;
+  margin: 10px 0 10px 14px;
+  height: 30px;
   cursor: pointer;
 }
 
@@ -422,7 +423,7 @@ div {
 }
 
 .sitemanage_body_container{
-  padding: 190px 35px 90px 35px;
+  padding: 190px 0 90px 0;
   height: 100vh;
   margin: 0 calc(50% -  248px);
   overflow-y: scroll;
@@ -1023,7 +1024,58 @@ div {
   .sidebar_container {
     min-width: 126px;
   }
-  
+
+  .sidebar_on .header {
+    max-width: calc(100vw - 126px);
+  }
+
+  .sitemanage_body_container {
+    margin: 0 calc(9.32% - 13.33px);
+  }
+
+  .sitemanage_header_container {
+    padding: 37px calc(9.32% - 13.33px) 20px calc(9.32% - 13.33px);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .sidebar_container {
+    max-width: 192px;
+  }
+
+  .sidebar_on .header {
+    width: calc(100vw - 192px);
+  }
+
+  .sidebar_on .overview_header_text {
+    margin-left: 20px;
+  }
+
+  .sitemanage_body_container {
+    margin: 0 calc(125/8% - 80px);
+  }
+
+  .sidebar_on .sitemanage_container {
+    width: calc(100vw - 192px);
+  }
+
+  .sidebar_wrapper {
+    display: block;
+  }
+
+  .sitemanage_container {
+    width: calc(100% - 192px);
+  }
+
+  .menu_button {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .sitemanage_body_container {
+    margin: 0 80px;
+  }
 }
 
 @media screen and (max-width: 500px) {
@@ -1043,4 +1095,12 @@ div {
   }
 }
 
+@media screen and (max-width: 359px) {
+  .sitemanage_body_container {
+    margin: 0 20px;
+  }
 
+  .sitemanage_header_container {
+    padding: 37px 20px 20px 20px;
+  }
+}
