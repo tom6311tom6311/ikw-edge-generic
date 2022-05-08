@@ -11,7 +11,7 @@ import SamplingSection from '../../components/SamplingSection/SamplingSection';
 import CctvSection from '../../components/CctvSection/CctvSection';
 
 function SirasStatusPage() {
-  const { siteId, sirasId } = useParams();
+  const { sirasId } = useParams();
   const [timeSpan, setTimeSpan] = useState(TIME_SPAN_OPTIONS[0]);
   const {
     loading: isGetSirasLoading,
@@ -78,7 +78,7 @@ function SirasStatusPage() {
         title={sirasId || '/'}
         currActiveIdx={0}
         elements={[
-          { text: 'SiRAS狀態', link: `/site/${siteId || ''}/sirases` },
+          { text: 'SiRAS狀態', link: '#' },
           { text: '餵食紀錄', link: '#' },
           { text: '魚病檢測', link: '#' },
         ]}
