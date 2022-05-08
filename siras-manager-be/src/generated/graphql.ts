@@ -55,6 +55,8 @@ export type Query = {
   op?: Maybe<Op>;
   ops: Array<Op>;
   sensorData: Array<SensorData>;
+  siras?: Maybe<Siras>;
+  sirases: Array<Siras>;
   site?: Maybe<Site>;
   sites: Array<Site>;
 };
@@ -79,6 +81,16 @@ export type QuerySensorDataArgs = {
 };
 
 
+export type QuerySirasArgs = {
+  sirasId: Scalars['ID'];
+};
+
+
+export type QuerySirasesArgs = {
+  sirasIds: Array<Scalars['ID']>;
+};
+
+
 export type QuerySiteArgs = {
   siteId: Scalars['ID'];
 };
@@ -94,6 +106,20 @@ export type SensorData = {
   opId: Scalars['Int'];
   timeSeries: Array<TimeSeriesDataPoint>;
 };
+
+export type Siras = {
+  __typename?: 'Siras';
+  capacity: Scalars['Float'];
+  devices: Array<Device>;
+  sirasId: Scalars['ID'];
+  speciesList: Array<Scalars['String']>;
+  status: SirasStatus;
+};
+
+export enum SirasStatus {
+  Active = 'ACTIVE',
+  Inactive = 'INACTIVE'
+}
 
 export type Site = {
   __typename?: 'Site';
@@ -113,10 +139,10 @@ export type Site = {
   nameEng: Scalars['String'];
   note?: Maybe<Scalars['String']>;
   numEmployees?: Maybe<Scalars['Int']>;
-  numSiras: Scalars['Int'];
   organization: Scalars['String'];
   owner?: Maybe<User>;
   ponds: Array<Pond>;
+  sirasIds: Array<Scalars['ID']>;
   siteId: Scalars['ID'];
   speciesList: Array<Scalars['String']>;
   status: SiteStatus;
@@ -237,6 +263,8 @@ export type ResolversTypes = {
   Pond: ResolverTypeWrapper<Pond>;
   Query: ResolverTypeWrapper<{}>;
   SensorData: ResolverTypeWrapper<SensorData>;
+  Siras: ResolverTypeWrapper<Siras>;
+  SirasStatus: SirasStatus;
   Site: ResolverTypeWrapper<Site>;
   SiteStatus: SiteStatus;
   SiteValidationStatus: SiteValidationStatus;
@@ -258,6 +286,7 @@ export type ResolversParentTypes = {
   Pond: Pond;
   Query: {};
   SensorData: SensorData;
+  Siras: Siras;
   Site: Site;
   String: Scalars['String'];
   Threshold: Threshold;
@@ -298,6 +327,8 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   op?: Resolver<Maybe<ResolversTypes['Op']>, ParentType, ContextType, RequireFields<QueryOpArgs, 'opId'>>;
   ops?: Resolver<Array<ResolversTypes['Op']>, ParentType, ContextType, RequireFields<QueryOpsArgs, 'opIds'>>;
   sensorData?: Resolver<Array<ResolversTypes['SensorData']>, ParentType, ContextType, RequireFields<QuerySensorDataArgs, 'aggregateWindow' | 'deviceId' | 'opIds' | 'timeEnd' | 'timeStart'>>;
+  siras?: Resolver<Maybe<ResolversTypes['Siras']>, ParentType, ContextType, RequireFields<QuerySirasArgs, 'sirasId'>>;
+  sirases?: Resolver<Array<ResolversTypes['Siras']>, ParentType, ContextType, RequireFields<QuerySirasesArgs, 'sirasIds'>>;
   site?: Resolver<Maybe<ResolversTypes['Site']>, ParentType, ContextType, RequireFields<QuerySiteArgs, 'siteId'>>;
   sites?: Resolver<Array<ResolversTypes['Site']>, ParentType, ContextType, RequireFields<QuerySitesArgs, 'siteIds'>>;
 };
@@ -306,6 +337,15 @@ export type SensorDataResolvers<ContextType = any, ParentType extends ResolversP
   deviceId?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   opId?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   timeSeries?: Resolver<Array<ResolversTypes['TimeSeriesDataPoint']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type SirasResolvers<ContextType = any, ParentType extends ResolversParentTypes['Siras'] = ResolversParentTypes['Siras']> = {
+  capacity?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+  devices?: Resolver<Array<ResolversTypes['Device']>, ParentType, ContextType>;
+  sirasId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  speciesList?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
+  status?: Resolver<ResolversTypes['SirasStatus'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -326,10 +366,10 @@ export type SiteResolvers<ContextType = any, ParentType extends ResolversParentT
   nameEng?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   note?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   numEmployees?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
-  numSiras?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   organization?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   owner?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>;
   ponds?: Resolver<Array<ResolversTypes['Pond']>, ParentType, ContextType>;
+  sirasIds?: Resolver<Array<ResolversTypes['ID']>, ParentType, ContextType>;
   siteId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   speciesList?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
   status?: Resolver<ResolversTypes['SiteStatus'], ParentType, ContextType>;
@@ -367,6 +407,7 @@ export type Resolvers<ContextType = any> = {
   Pond?: PondResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   SensorData?: SensorDataResolvers<ContextType>;
+  Siras?: SirasResolvers<ContextType>;
   Site?: SiteResolvers<ContextType>;
   Threshold?: ThresholdResolvers<ContextType>;
   TimeSeriesDataPoint?: TimeSeriesDataPointResolvers<ContextType>;

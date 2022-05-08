@@ -6,6 +6,7 @@
     "paho",
     "persistor",
     "reduxjs",
-    "siras"
+    "siras",
+    "sirases"
   ]
 }

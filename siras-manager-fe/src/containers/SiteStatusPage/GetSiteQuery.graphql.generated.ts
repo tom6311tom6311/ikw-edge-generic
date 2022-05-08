@@ -8,7 +8,7 @@ export type GetSiteQueryVariables = Types.Exact<{
 }>;
 
 
-export type GetSiteQuery = { __typename?: 'Query', site?: { __typename?: 'Site', siteId: string, companyNameChin?: string | null, numSiras: number, capacity: number, area?: number | null, centralDevice?: { __typename?: 'Device', deviceId: string, opIds: Array<number> } | null } | null };
+export type GetSiteQuery = { __typename?: 'Query', site?: { __typename?: 'Site', siteId: string, companyNameChin?: string | null, sirasIds: Array<string>, capacity: number, area?: number | null, centralDevice?: { __typename?: 'Device', deviceId: string, opIds: Array<number> } | null } | null };
 
 
 export const GetSiteDocument = gql`
@@ -16,11 +16,11 @@ export const GetSiteDocument = gql`
   site(siteId: $siteId) {
     siteId
     companyNameChin
-    numSiras
     centralDevice {
       deviceId
       opIds
     }
+    sirasIds
     capacity
     area
   }

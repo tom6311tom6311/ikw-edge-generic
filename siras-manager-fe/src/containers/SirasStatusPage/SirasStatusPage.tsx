@@ -1,35 +1,35 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useGetSiteQuery } from './GetSiteQuery.graphql.generated';
-import { useGetOpsQuery } from './GetOpsQuery.graphql.generated';
-import { useGetSensorDataQuery } from './GetSensorDataQuery.graphql.generated';
+import { useGetSirasQuery } from './GetSirasQuery.graphql.generated';
+import { useGetOpsQuery } from '../SiteStatusPage/GetOpsQuery.graphql.generated';
+import { useGetSensorDataQuery } from '../SiteStatusPage/GetSensorDataQuery.graphql.generated';
 import TabHeader from '../../components/TabHeader/TabHeader';
-import SiteInfoSection from './SiteInfoSection/SiteInfoSection';
+import SirasInfoSection from './SirasInfoSection/SirasInfoSection';
 import MonitorSection, { DataPoint, TIME_SPAN_OPTIONS } from '../../components/MonitorSection/MonitorSection';
 import LiveDataSection from '../../components/LiveDataSection/LiveDataSection';
 import SamplingSection from '../../components/SamplingSection/SamplingSection';
 import CctvSection from '../../components/CctvSection/CctvSection';
 
-function SiteStatusPage() {
-  const { siteId } = useParams();
+function SirasStatusPage() {
+  const { siteId, sirasId } = useParams();
   const [timeSpan, setTimeSpan] = useState(TIME_SPAN_OPTIONS[0]);
   const {
-    loading: isGetSiteLoading,
-    error: getSiteError,
-    data: getSiteData,
-  } = useGetSiteQuery({ variables: { siteId: siteId || '' } });
-  const isGetSiteReady = !(
-    isGetSiteLoading
-    || getSiteError
-    || !getSiteData?.site
+    loading: isGetSirasLoading,
+    error: getSirasError,
+    data: getSirasData,
+  } = useGetSirasQuery({ variables: { sirasId: sirasId || '' } });
+  const isGetSirasReady = !(
+    isGetSirasLoading
+    || getSirasError
+    || !getSirasData?.siras
   );
   const {
     loading: isGetOpsLoading,
     error: getOpsError,
     data: getOpsData,
   } = useGetOpsQuery({
-    skip: !isGetSiteReady,
-    variables: { opIds: getSiteData?.site?.centralDevice?.opIds || [] },
+    skip: !isGetSirasReady,
+    variables: { opIds: getSirasData?.siras?.devices[0]?.opIds || [] },
   });
   const isGetOpsReady = !(isGetOpsLoading || getOpsError || !getOpsData?.ops);
   const {
@@ -39,8 +39,8 @@ function SiteStatusPage() {
   } = useGetSensorDataQuery({
     skip: !isGetOpsReady,
     variables: {
-      deviceId: getSiteData?.site?.centralDevice?.deviceId || '',
-      opIds: getSiteData?.site?.centralDevice?.opIds || [],
+      deviceId: getSirasData?.siras?.devices[0]?.deviceId || '',
+      opIds: getSirasData?.siras?.devices[0]?.opIds || [],
       timeStart: Math.floor(Date.now() / 1000) - timeSpan.span,
       timeEnd: Math.floor(Date.now() / 1000),
       aggregateWindow: timeSpan.aggregateWindow,
@@ -75,20 +75,20 @@ function SiteStatusPage() {
   return (
     <div className="sitemanage_container">
       <TabHeader
-        title={siteId || '/'}
+        title={sirasId || '/'}
         currActiveIdx={0}
         elements={[
-          { text: '案場狀態', link: `/site/${siteId || ''}` },
-          { text: 'SiRAS列表', link: `/site/${siteId || ''}/sirases` },
+          { text: 'SiRAS狀態', link: `/site/${siteId || ''}/sirases` },
+          { text: '餵食紀錄', link: '#' },
+          { text: '魚病檢測', link: '#' },
         ]}
       />
       <div className="sitemanage_divider" />
       <div className="sitemanage_body_container">
-        <SiteInfoSection
-          companyNameChin={getSiteData?.site?.companyNameChin || ''}
-          sirasIds={getSiteData?.site?.sirasIds || []}
-          capacity={getSiteData?.site?.capacity || 0}
-          area={getSiteData?.site?.area || 0}
+        <SirasInfoSection
+          speciesList={getSirasData?.siras?.speciesList || []}
+          capacity={getSirasData?.siras?.capacity || 0}
+          status={getSirasData?.siras?.status || ''}
         />
         <MonitorSection
           ops={getOpsData?.ops || []}
@@ -112,4 +112,4 @@ function SiteStatusPage() {
   );
 }
 
-export default SiteStatusPage;
+export default SirasStatusPage;

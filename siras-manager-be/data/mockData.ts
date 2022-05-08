@@ -1,4 +1,4 @@
-import { User, Site, Op, SiteStatus, SiteValidationStatus } from "../src/generated/graphql";
+import { User, Site, Siras, Op, SiteStatus, SiteValidationStatus, SirasStatus } from "../src/generated/graphql";
 
 type MockData = {
   users: {
@@ -9,6 +9,9 @@ type MockData = {
   }
   sites: {
     [key: string]: Site;
+  },
+  sirases: {
+    [key: string]: Siras;
   },
   ops: {
     [key: number]: Op;
@@ -38,7 +41,6 @@ const mockData: MockData = {
       nameEng: 'AFIL',
       nameChin: 'AFIL',
       licenseNum: 'ABCDE1234567890',
-      numSiras: 0,
       area: 0,
       capacity: 0,
       speciesList: [],
@@ -47,6 +49,7 @@ const mockData: MockData = {
         deviceId: '5859564',
         opIds: [1, 3, 4],
       },
+      sirasIds: ['B123456789', 'B123456788', 'B123456787'],
       ponds: [
         {
           administrativeNumber: 'ABCDE1234567890',
@@ -73,82 +76,44 @@ const mockData: MockData = {
       trademark: 'NA',
       note: '',
     },
-    // A123456789: {
-    //   siteId: 'A123456789',
-    //   status: SiteStatus.Active,
-    //   nameEng: 'I Know Water Tech. Ltd,Co.',
-    //   nameChin: '愛諾華特科技股份有限公司',
-    //   licenseNum: 'ABCDE1234567890',
-    //   numSiras: 30,
-    //   area: 99.9,
-    //   capacity: 99999,
-    //   speciesList: ['赤鰭笛鯛', '黑毛', '斑點石鯛', '吳郭魚'],
-    //   validationStatus: SiteValidationStatus.Passed,
-    //   ponds: [
-    //     {
-    //       administrativeNumber: 'ABCDE1234567890',
-    //       serialNumber: 'ABCDE1234567890',
-    //       landSerialNumber: 'ABCDE1234567890',
-    //       area: 99.9,
-    //       typeCode: '1234567890',
-    //     },
-    //   ],
-    //   ownerNameEng: 'Ming Wang',
-    //   ownerNameChin: '王大明',
-    //   addressEng: '7F., No. 89, Sec. 4, Chongxin Rd., Sanchong Dist., New Taipei City 241012 , Taiwan (R.O.C.)',
-    //   addressChin: '新北市三重區重新路四段89號7樓',
-    //   telCompany: '+886289725569',
-    //   telMobile: '+886987897255',
-    //   telHouse: '+886289725569',
-    //   companyNameEng: 'I Know Water Tech. Ltd,Co.',
-    //   companyNameChin: '愛諾華特科技股份有限公司',
-    //   email: 'service@iknowwater.com',
-    //   county: '雲林縣',
-    //   district: '口湖鄉',
-    //   organization: '',
-    //   numEmployees: 20,
-    //   awardRecordList: ['2021漁產金質獎', '2020環境友善獎'],
-    //   trademark: '夜蝦食堂',
-    //   note: '',
-    // },
-    // A223456789: {
-    //   siteId: 'A223456789',
-    //   status: SiteStatus.Active,
-    //   nameEng: 'I Know Water Tech. Ltd,Co.',
-    //   nameChin: '愛諾華特科技股份有限公司',
-    //   licenseNum: 'ABCDE1234567890',
-    //   numSiras: 30,
-    //   area: 99.9,
-    //   capacity: 99999,
-    //   speciesList: ['赤鰭笛鯛', '黑毛', '斑點石鯛', '吳郭魚'],
-    //   validationStatus: SiteValidationStatus.Passed,
-    //   ponds: [
-    //     {
-    //       administrativeNumber: 'ABCDE1234567890',
-    //       serialNumber: 'ABCDE1234567890',
-    //       landSerialNumber: 'ABCDE1234567890',
-    //       area: 99.9,
-    //       typeCode: '1234567890',
-    //     },
-    //   ],
-    //   ownerNameEng: 'Ming Wang',
-    //   ownerNameChin: '王大明',
-    //   addressEng: '7F., No. 89, Sec. 4, Chongxin Rd., Sanchong Dist., New Taipei City 241012 , Taiwan (R.O.C.)',
-    //   addressChin: '新北市三重區重新路四段89號7樓',
-    //   telCompany: '+886289725569',
-    //   telMobile: '+886987897255',
-    //   telHouse: '+886289725569',
-    //   companyNameEng: 'I Know Water Tech. Ltd,Co.',
-    //   companyNameChin: '愛諾華特科技股份有限公司',
-    //   email: 'service@iknowwater.com',
-    //   county: '雲林縣',
-    //   district: '口湖鄉',
-    //   organization: '',
-    //   numEmployees: 20,
-    //   awardRecordList: ['2021漁產金質獎', '2020環境友善獎'],
-    //   trademark: '夜蝦食堂',
-    //   note: '',
-    // },
+  },
+  sirases: {
+    B123456789: {
+      sirasId: 'B123456789',
+      status: SirasStatus.Active,
+      capacity: 9999,
+      speciesList: ['赤鰭笛鯛'],
+      devices: [
+        {
+          deviceId: '5859564',
+          opIds: [1, 3, 4],
+        }
+      ]
+    },
+    B123456788: {
+      sirasId: 'B123456788',
+      status: SirasStatus.Active,
+      capacity: 8888,
+      speciesList: ['黑毛'],
+      devices: [
+        {
+          deviceId: '5859564',
+          opIds: [1, 3, 4],
+        }
+      ]
+    },
+    B123456787: {
+      sirasId: 'B123456787',
+      status: SirasStatus.Active,
+      capacity: 7777,
+      speciesList: ['龍膽石斑'],
+      devices: [
+        {
+          deviceId: '5859564',
+          opIds: [1, 3, 4],
+        }
+      ]
+    }
   },
   ops: {
     1: {

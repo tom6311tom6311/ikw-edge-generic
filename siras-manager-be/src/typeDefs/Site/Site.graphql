@@ -4,14 +4,14 @@ type Site {
   nameEng: String!
   nameChin: String!
   licenseNum: String
-  numSiras: Int!
   area: Float
   capacity: Float!
   speciesList: [String!]!
   validationStatus: SiteValidationStatus!
   centralDevice: Device
-  owner: User
+  sirasIds: [ID!]!
   ponds: [Pond!]!
+  owner: User
   addressEng: String!
   addressChin: String!
   telCompany: String

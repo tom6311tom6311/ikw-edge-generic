@@ -1,0 +1,12 @@
+type Siras {
+  sirasId: ID!
+  status: SirasStatus!
+  capacity: Float!
+  speciesList: [String!]!
+  devices: [Device!]!
+}
+
+enum SirasStatus {
+  ACTIVE
+  INACTIVE
+}
