@@ -8,7 +8,7 @@ const GetSitesQuery = gql`
       companyNameChin
       county
       district
-      numSiras
+      sirasIds
       speciesList
       capacity
       area

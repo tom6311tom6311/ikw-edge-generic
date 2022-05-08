@@ -8,7 +8,7 @@ export type GetSitesQueryVariables = Types.Exact<{
 }>;
 
 
-export type GetSitesQuery = { __typename?: 'Query', sites: Array<{ __typename?: 'Site', siteId: string, status: Types.SiteStatus, companyNameChin?: string | null, county: string, district: string, numSiras: number, speciesList: Array<string>, capacity: number, area?: number | null }> };
+export type GetSitesQuery = { __typename?: 'Query', sites: Array<{ __typename?: 'Site', siteId: string, status: Types.SiteStatus, companyNameChin?: string | null, county: string, district: string, sirasIds: Array<string>, speciesList: Array<string>, capacity: number, area?: number | null }> };
 
 
 export const GetSitesDocument = gql`
@@ -19,7 +19,7 @@ export const GetSitesDocument = gql`
     companyNameChin
     county
     district
-    numSiras
+    sirasIds
     speciesList
     capacity
     area

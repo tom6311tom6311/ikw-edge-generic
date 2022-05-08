@@ -53,6 +53,8 @@ export type Query = {
   op?: Maybe<Op>;
   ops: Array<Op>;
   sensorData: Array<SensorData>;
+  siras?: Maybe<Siras>;
+  sirases: Array<Siras>;
   site?: Maybe<Site>;
   sites: Array<Site>;
 };
@@ -77,6 +79,16 @@ export type QuerySensorDataArgs = {
 };
 
 
+export type QuerySirasArgs = {
+  sirasId: Scalars['ID'];
+};
+
+
+export type QuerySirasesArgs = {
+  sirasIds: Array<Scalars['ID']>;
+};
+
+
 export type QuerySiteArgs = {
   siteId: Scalars['ID'];
 };
@@ -92,6 +104,20 @@ export type SensorData = {
   opId: Scalars['Int'];
   timeSeries: Array<TimeSeriesDataPoint>;
 };
+
+export type Siras = {
+  __typename?: 'Siras';
+  capacity: Scalars['Float'];
+  devices: Array<Device>;
+  sirasId: Scalars['ID'];
+  speciesList: Array<Scalars['String']>;
+  status: SirasStatus;
+};
+
+export enum SirasStatus {
+  Active = 'ACTIVE',
+  Inactive = 'INACTIVE'
+}
 
 export type Site = {
   __typename?: 'Site';
@@ -111,10 +137,10 @@ export type Site = {
   nameEng: Scalars['String'];
   note?: Maybe<Scalars['String']>;
   numEmployees?: Maybe<Scalars['Int']>;
-  numSiras: Scalars['Int'];
   organization: Scalars['String'];
   owner?: Maybe<User>;
   ponds: Array<Pond>;
+  sirasIds: Array<Scalars['ID']>;
   siteId: Scalars['ID'];
   speciesList: Array<Scalars['String']>;
   status: SiteStatus;

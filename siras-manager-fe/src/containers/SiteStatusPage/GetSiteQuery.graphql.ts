@@ -5,11 +5,11 @@ const GetSiteQuery = gql`
     site(siteId: $siteId) {
       siteId
       companyNameChin
-      numSiras
       centralDevice {
         deviceId
         opIds
       }
+      sirasIds
       capacity
       area
     }

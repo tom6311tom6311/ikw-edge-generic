@@ -54,7 +54,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<MainPage />}>
             <Route path="site/:siteId">
-              <Route path="siras" element={<SirasListPage />} />
+              <Route path="sirases" element={<SirasListPage />} />
               <Route path="*" element={<SiteStatusPage />} />
               <Route index element={<SiteStatusPage />} />
             </Route>

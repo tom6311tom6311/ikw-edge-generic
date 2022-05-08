@@ -14,7 +14,7 @@ export default function SiteOverview(props: SiteOverviewProps) {
       companyNameChin,
       county,
       district,
-      numSiras,
+      sirasIds,
       speciesList,
       capacity,
       area,
@@ -43,7 +43,7 @@ export default function SiteOverview(props: SiteOverviewProps) {
         </div>
         <div className="siteoverview_info_container">
           <p className="siteoverview_info_key">SiRAS</p>
-          <p className="siteoverview_info_value">{numSiras}</p>
+          <p className="siteoverview_info_value">{sirasIds.length}</p>
           <p className="siteoverview_info_unit">U</p>
         </div>
         <div className="siteoverview_info_container" style={{ height: '85px' }}>

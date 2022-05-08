@@ -148,7 +148,7 @@ function SiteStatusPage() {
         currActiveIdx={0}
         elements={[
           { text: '案場狀態', link: `/site/${siteId || ''}` },
-          { text: 'SiRAS列表', link: `/site/${siteId || ''}/siras` },
+          { text: 'SiRAS列表', link: `/site/${siteId || ''}/sirases` },
         ]}
       />
       <div className="sitemanage_divider" />
@@ -181,9 +181,7 @@ function SiteStatusPage() {
                 <div className="sitemanage_body_basicitem">
                   <p className="sitemanage_body_item_name">SiRAS</p>
                   <div className="sitemanage_body_item_container">
-                    <p className="sitemanage_body_item_info">
-                      {getSiteData?.site?.numSiras}
-                    </p>
+                    <p className="sitemanage_body_item_info">{getSiteData?.site?.sirasIds.length}</p>
                     <p className="sitemanage_body_item_unit">U</p>
                   </div>
                 </div>
