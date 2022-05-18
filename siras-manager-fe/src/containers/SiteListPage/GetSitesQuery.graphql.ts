@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 const GetSitesQuery = gql`
-  query GetSites($siteIds: [ID!]!) {
-    sites(siteIds: $siteIds) {
+  query GetSites {
+    sites {
       siteId
       status
       companyNameChin

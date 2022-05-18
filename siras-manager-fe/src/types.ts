@@ -93,11 +93,6 @@ export type QuerySiteArgs = {
   siteId: Scalars['ID'];
 };
 
-
-export type QuerySitesArgs = {
-  siteIds: Array<Scalars['ID']>;
-};
-
 export type SensorData = {
   __typename?: 'SensorData';
   deviceId: Scalars['String'];

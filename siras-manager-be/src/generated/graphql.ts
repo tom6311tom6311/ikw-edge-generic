@@ -95,11 +95,6 @@ export type QuerySiteArgs = {
   siteId: Scalars['ID'];
 };
 
-
-export type QuerySitesArgs = {
-  siteIds: Array<Scalars['ID']>;
-};
-
 export type SensorData = {
   __typename?: 'SensorData';
   deviceId: Scalars['String'];
@@ -330,7 +325,7 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   siras?: Resolver<Maybe<ResolversTypes['Siras']>, ParentType, ContextType, RequireFields<QuerySirasArgs, 'sirasId'>>;
   sirases?: Resolver<Array<ResolversTypes['Siras']>, ParentType, ContextType, RequireFields<QuerySirasesArgs, 'sirasIds'>>;
   site?: Resolver<Maybe<ResolversTypes['Site']>, ParentType, ContextType, RequireFields<QuerySiteArgs, 'siteId'>>;
-  sites?: Resolver<Array<ResolversTypes['Site']>, ParentType, ContextType, RequireFields<QuerySitesArgs, 'siteIds'>>;
+  sites?: Resolver<Array<ResolversTypes['Site']>, ParentType, ContextType>;
 };
 
 export type SensorDataResolvers<ContextType = any, ParentType extends ResolversParentTypes['SensorData'] = ResolversParentTypes['SensorData']> = {

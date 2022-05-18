@@ -3,17 +3,15 @@ import * as Types from '../../types';
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
-export type GetSitesQueryVariables = Types.Exact<{
-  siteIds: Array<Types.Scalars['ID']> | Types.Scalars['ID'];
-}>;
+export type GetSitesQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 
 export type GetSitesQuery = { __typename?: 'Query', sites: Array<{ __typename?: 'Site', siteId: string, status: Types.SiteStatus, companyNameChin?: string | null, county: string, district: string, sirasIds: Array<string>, speciesList: Array<string>, capacity: number, area?: number | null }> };
 
 
 export const GetSitesDocument = gql`
-    query GetSites($siteIds: [ID!]!) {
-  sites(siteIds: $siteIds) {
+    query GetSites {
+  sites {
     siteId
     status
     companyNameChin
@@ -39,11 +37,10 @@ export const GetSitesDocument = gql`
  * @example
  * const { data, loading, error } = useGetSitesQuery({
  *   variables: {
- *      siteIds: // value for 'siteIds'
  *   },
  * });
  */
-export function useGetSitesQuery(baseOptions: Apollo.QueryHookOptions<GetSitesQuery, GetSitesQueryVariables>) {
+export function useGetSitesQuery(baseOptions?: Apollo.QueryHookOptions<GetSitesQuery, GetSitesQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<GetSitesQuery, GetSitesQueryVariables>(GetSitesDocument, options);
       }

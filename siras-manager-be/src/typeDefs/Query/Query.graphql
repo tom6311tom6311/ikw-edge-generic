@@ -1,6 +1,6 @@
 type Query {
   site(siteId: ID!): Site
-  sites(siteIds: [ID!]!): [Site!]!
+  sites: [Site!]!
   siras(sirasId: ID!): Siras
   sirases(sirasIds: [ID!]!): [Siras!]!
   op(opId: Int!): Op

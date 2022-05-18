@@ -54,7 +54,11 @@ function SiteStatusPage() {
 
   let chartData: DataPoint[] = [];
   let averages: number[] = [];
-  if (isGetSensorDataReady && getSensorDataData.sensorData[0].timeSeries) {
+  if (
+    isGetSensorDataReady
+    && getSensorDataData.sensorData[0]
+    && getSensorDataData.sensorData[0].timeSeries
+  ) {
     chartData = getSensorDataData.sensorData[0].timeSeries.map(
       ({ timestamp }, dataPointIdx) => {
         const dataPoint: DataPoint = { timestamp };
