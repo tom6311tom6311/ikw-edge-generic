@@ -25,7 +25,7 @@ export type SelectableOption = {
 
 export const LINE_COLORS = [
   '#FF0000',
-  '#00FF00',
+  '#1E8F3C',
   '#0000FF',
   '#FFFF00',
   '#00FFFF',
