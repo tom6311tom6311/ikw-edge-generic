@@ -24,10 +24,16 @@ const users = {
     nameEng: 'AFIL',
     nameChin: 'AFIL',
   },
+  'truth@iknowwater.com': {
+    email: 'truth@iknowwater.com',
+    nameEng: 'iKnowWater',
+    nameChin: '愛諾華特',
+  },
 };
 
 const userCredentials = {
-  'info@afilgroup.com': '66596868',
+  'info@afilgroup.com': 'Bangla@2021',
+  'truth@iknowwater.com': 'Siras@6868',
 };
 
 
@@ -46,10 +52,10 @@ const mockData: MockData = {
       speciesList: [],
       validationStatus: SiteValidationStatus.Passed,
       centralDevice: {
-        deviceId: '5859564',
-        opIds: [1, 3, 4],
+        deviceId: '',
+        opIds: [],
       },
-      sirasIds: ['B123456789', 'B123456788', 'B123456787'],
+      sirasIds: ['BangladeshNo1_1'],
       ponds: [
         {
           administrativeNumber: 'ABCDE1234567890',
@@ -76,13 +82,66 @@ const mockData: MockData = {
       trademark: 'NA',
       note: '',
     },
+    YGDS: {
+      siteId: 'YGDS',
+      status: SiteStatus.Active,
+      nameEng: 'YingGeDemoSite',
+      nameChin: '鶯歌Demo場',
+      licenseNum: '20220002',
+      area: 400,
+      capacity: 1000,
+      speciesList: ['加州鱸', '銀紋笛鯛', '龍虎斑'],
+      validationStatus: SiteValidationStatus.Passed,
+      centralDevice: {
+        deviceId: '',
+        opIds: [],
+      },
+      sirasIds: ['YGDS_1', 'YGDS_2'],
+      ponds: [
+        {
+          administrativeNumber: 'YGDS',
+          serialNumber: 'YGDS',
+          landSerialNumber: 'YGDS',
+          area: 50,
+          typeCode: '1234567890',
+        },
+      ],
+      owner: users['truth@iknowwater.com'],
+      addressEng: 'No. 43, Yongji St., Yingge Dist., New Taipei City',
+      addressChin: '新北市鶯歌區永吉街43號',
+      telCompany: '02-8972-5569',
+      telMobile: '0952989201',
+      telHouse: 'NA',
+      companyNameEng: 'iKnowWater',
+      companyNameChin: '愛諾華特',
+      email: 'truth@iknowwater.com',
+      county: '新北市',
+      district: '大安區',
+      organization: '',
+      numEmployees: 0,
+      awardRecordList: ['NA'],
+      trademark: 'NA',
+      note: '',
+    },
   },
   sirases: {
-    B123456789: {
-      sirasId: 'B123456789',
+    BangladeshNo1_1: {
+      sirasId: 'BangladeshNo1_1',
       status: SirasStatus.Active,
-      capacity: 9999,
-      speciesList: ['赤鰭笛鯛'],
+      capacity: 0,
+      speciesList: [],
+      devices: [
+        {
+          deviceId: '5859894',
+          opIds: [1, 3, 4],
+        }
+      ]
+    },
+    YGDS_1: {
+      sirasId: 'YGDS_1',
+      status: SirasStatus.Active,
+      capacity: 1000,
+      speciesList: ['加州鱸', '銀紋笛鯛', '龍虎斑'],
       devices: [
         {
           deviceId: '5859564',
@@ -90,26 +149,14 @@ const mockData: MockData = {
         }
       ]
     },
-    B123456788: {
-      sirasId: 'B123456788',
+    YGDS_2: {
+      sirasId: 'YGDS_2',
       status: SirasStatus.Active,
-      capacity: 8888,
-      speciesList: ['黑毛'],
+      capacity: 1000,
+      speciesList: ['加州鱸', '銀紋笛鯛', '龍虎斑'],
       devices: [
         {
-          deviceId: '5859564',
-          opIds: [1, 3, 4],
-        }
-      ]
-    },
-    B123456787: {
-      sirasId: 'B123456787',
-      status: SirasStatus.Active,
-      capacity: 7777,
-      speciesList: ['龍膽石斑'],
-      devices: [
-        {
-          deviceId: '5859564',
+          deviceId: '6304773',
           opIds: [1, 3, 4],
         }
       ]
