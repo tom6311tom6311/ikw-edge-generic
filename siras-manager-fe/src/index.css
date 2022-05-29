@@ -328,17 +328,18 @@ div {
 }
 
 .sidebar_item_p {
+  width: 120px;
+  margin: 0;
+  align-items: center;
+  cursor: pointer;
+  color: #ffffff;
+  letter-spacing: 0.02em;
   font-family: Noto Sans TC;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
-  width: 120px;
-  margin: 0;
-  cursor: pointer;
-  align-items: center;
-  letter-spacing: 0.02em;
-  color: #ffffff;
+  text-align: start;
 }
 
 .sitemanage_header_container {
