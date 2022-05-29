@@ -5,7 +5,7 @@ const timestampToHourAndMin = (timestamp: number) => {
 
 const timestampToDate = (timestamp: number) => {
   const time = new Date(timestamp * 1000);
-  return `${time.getMonth()}/${String(time.getDate()).padStart(2, '0')}`;
+  return `${time.getMonth() + 1}/${String(time.getDate()).padStart(2, '0')}`;
 };
 
 export default {
