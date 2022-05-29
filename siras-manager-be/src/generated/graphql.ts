@@ -135,7 +135,7 @@ export type Site = {
   note?: Maybe<Scalars['String']>;
   numEmployees?: Maybe<Scalars['Int']>;
   organization: Scalars['String'];
-  owner?: Maybe<User>;
+  owners: Array<User>;
   ponds: Array<Pond>;
   sirasIds: Array<Scalars['ID']>;
   siteId: Scalars['ID'];
@@ -362,7 +362,7 @@ export type SiteResolvers<ContextType = any, ParentType extends ResolversParentT
   note?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   numEmployees?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   organization?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  owner?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>;
+  owners?: Resolver<Array<ResolversTypes['User']>, ParentType, ContextType>;
   ponds?: Resolver<Array<ResolversTypes['Pond']>, ParentType, ContextType>;
   sirasIds?: Resolver<Array<ResolversTypes['ID']>, ParentType, ContextType>;
   siteId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;

@@ -11,7 +11,7 @@ type Site {
   centralDevice: Device
   sirasIds: [ID!]!
   ponds: [Pond!]!
-  owner: User
+  owners: [User!]!
   addressEng: String!
   addressChin: String!
   telCompany: String

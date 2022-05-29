@@ -10,7 +10,7 @@ const sites: SitesResolver = (parent, _ , { claims }) => {
   }
   return Object
     .values(mockData.sites)
-    .filter((site) => site.owner?.email === claims.email);
+    .filter((site) => site.owners.find((owner) => (owner?.email === claims.email)));
 }
 
 export default sites;
