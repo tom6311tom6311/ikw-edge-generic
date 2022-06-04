@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Outlet } from 'react-router-dom';
-import { useLogoutMutation } from './LogoutMutation.graphql.generated';
+import { Outlet, useParams } from 'react-router-dom';
+import NavUtils from '../../utils/NavUtils';
+import { useLogoutMutation } from '../../commonApis/LogoutMutation.graphql.generated';
 import SideBar from '../../components/MenuBar/SideBar';
 import Header from '../../components/Header/Header';
 
 function MainPage() {
+  const params = useParams();
+  const [logoutMutation, { data }] = useLogoutMutation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
-  const [logoutMutation, { data }] = useLogoutMutation();
 
   // remove the session token when logout succeeded
   useEffect(() => {
@@ -19,7 +21,7 @@ function MainPage() {
 
   return (
     <div className={isSidebarOpen ? 'sidebar_on' : ''}>
-      <SideBar onLogout={logoutMutation} />
+      <SideBar menuContent={NavUtils.renderMenuContent(params, logoutMutation)} />
       <Header title="案場總覽" isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
       <Outlet />
     </div>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useLoginMutation } from './LoginMutation.graphql.generated';
+import { useLoginMutation } from '../../commonApis/LoginMutation.graphql.generated';
 import LogoImg from '../../img/logo_h.png';
 
 export default function LoginPage() {

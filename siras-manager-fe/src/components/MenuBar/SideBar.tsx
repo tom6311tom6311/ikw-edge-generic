@@ -2,23 +2,48 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import LogoImg from '../../img/logo_h.png';
 
-type SideBarProps = {
-  onLogout: () => void;
+type MenuContentItem = {
+  level: number;
+  text: string;
+  link?: string;
+  onClick?: () => void;
 }
 
-function SideBar({ onLogout }: SideBarProps) {
+type SideBarProps = {
+  menuContent: MenuContentItem[];
+}
+
+const renderTextComponent = (level: number, text: string) => (
+  <p className="sidebar_item_p" style={{ paddingLeft: `${level * 20}px` }}>{text}</p>
+);
+
+function SideBar(props: SideBarProps) {
+  const { menuContent } = props;
   return (
     <div className="sidebar_wrapper">
       <div className="sidebar_container">
         <div className="sidebar_header">
           <img src={LogoImg} alt="logo" className="sidebar_logo" />
         </div>
-        <Link to="/">
-          <div className="sidebar_item_container" style={{ marginTop: '10px' }}><p className="sidebar_item_p">案場總覽</p></div>
-        </Link>
-        <div className="sidebar_item_container"><p className="sidebar_item_p">GIS圖台</p></div>
-        <div className="sidebar_item_container"><p className="sidebar_item_p">市場資訊</p></div>
-        <button type="button" className="sidebar_item_container" style={{ borderWidth: '0' }} onClick={onLogout}><p className="sidebar_item_p">登出</p></button>
+
+        {menuContent.map(({
+          level, text, link, onClick,
+        }) => {
+          if (onClick) {
+            return (
+              <button type="button" key={text} className="sidebar_item_container" onClick={onClick}>
+                {renderTextComponent(level, text)}
+              </button>
+            );
+          }
+          return (
+            <div key={text} className="sidebar_item_container">
+              <Link to={link || '/'}>
+                {renderTextComponent(level, text)}
+              </Link>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
