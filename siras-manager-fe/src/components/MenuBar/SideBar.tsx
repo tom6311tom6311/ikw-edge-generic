@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import LogoImg from '../../img/logo_h.png';
 
-type MenuContentItem = {
+export type MenuContentItem = {
   level: number;
   text: string;
   link?: string;
