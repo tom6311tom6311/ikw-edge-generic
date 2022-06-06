@@ -133,7 +133,7 @@ export type Site = {
   note?: Maybe<Scalars['String']>;
   numEmployees?: Maybe<Scalars['Int']>;
   organization: Scalars['String'];
-  owner?: Maybe<User>;
+  owners: Array<User>;
   ponds: Array<Pond>;
   sirasIds: Array<Scalars['ID']>;
   siteId: Scalars['ID'];

@@ -1,8 +1,20 @@
 import { Params } from 'react-router-dom';
+import { GetNavHierarchyQuery } from '../commonApis/GetNavHierarchyQuery.graphql.generated';
 
-const renderMenuContent = (urlParams: Params<string>, logout: () => void) => {
+const renderMenuContent = (
+  urlParams: Params<string>,
+  navHierarchy: GetNavHierarchyQuery['sites'],
+  logout: () => void,
+) => {
   const { siteId, sirasId } = urlParams;
   if (sirasId && siteId) {
+    const sirasIds = navHierarchy.find(({ siteId: stId }) => (stId === siteId))?.sirasIds || [];
+    const sirasItems = sirasIds
+      .map((srId) => ({
+        level: 1,
+        text: srId,
+        link: `/site/${siteId}/sirases/${srId}/`,
+      }));
     return [
       {
         level: 0,
@@ -14,11 +26,7 @@ const renderMenuContent = (urlParams: Params<string>, logout: () => void) => {
         text: 'SiRAS列表',
         link: `/site/${siteId}/sirases`,
       },
-      {
-        level: 1,
-        text: sirasId,
-        link: `/site/${siteId}/sirases/${sirasId}`,
-      },
+      ...sirasItems,
       {
         level: 0,
         text: '登出',
@@ -28,17 +36,20 @@ const renderMenuContent = (urlParams: Params<string>, logout: () => void) => {
   }
 
   if (siteId) {
+    const siteIds = navHierarchy.map(({ siteId: stId }) => stId) || [];
+    const siteItems = siteIds
+      .map((stId) => ({
+        level: 1,
+        text: stId,
+        link: `/site/${stId}/`,
+      }));
     return [
       {
         level: 0,
         text: '案場',
         link: '/',
       },
-      {
-        level: 1,
-        text: siteId,
-        link: `/site/${siteId}/`,
-      },
+      ...siteItems,
       {
         level: 0,
         text: '登出',
