@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import SearchImg from '../../img/search.png';
+// import SearchImg from '../../img/search.png';
 import MoreInfoImg from '../../img/moreInfo_black.png';
+import Breadcrumb from '../Breadcrumb/Breadcrumb';
 
 type TabHeaderElement = {
   text: string;
@@ -16,10 +17,11 @@ type TabHeaderProps = {
 
 function TabHeader({ title, currActiveIdx, elements }:TabHeaderProps) {
   return (
-    <div className="sitemanage_header_container">
+    <div className="tabheader_container">
       <div>
-        <p className="sitemanage_header_siteid">{title}</p>
-        <img className="sitemanage_header_search_icon" src={SearchImg} alt="searching" />
+        <Breadcrumb />
+        <p className="tabheader_title">{title}</p>
+        {/* <img className="sitemanage_header_search_icon" src={SearchImg} alt="searching" /> */}
       </div>
       <div>
         {elements.map(({ text, link }, idx) => (

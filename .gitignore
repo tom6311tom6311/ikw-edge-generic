@@ -1,1 +1,2 @@
 .env
+./siras-manager-fe/src/const/AppConfig.ts

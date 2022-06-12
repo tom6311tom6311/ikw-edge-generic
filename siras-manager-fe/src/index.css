@@ -343,8 +343,8 @@ div {
   text-align: start;
 }
 
-.sitemanage_header_container {
-  padding: 37px 40px 20px 40px;
+.tabheader_container {
+  padding: 40px 40px 20px 40px;
   height: 160px;
   width: 100vw;
   margin: 50px 0 0 0;
@@ -359,13 +359,13 @@ div {
   border-style: solid;
   border-color: rgba(23, 25, 26, 0.4);
   position: fixed;
-  top: 199px;
+  top: 225px;
   right: 40px;
 }
 
-.sitemanage_header_siteid {
+.tabheader_title {
   width: 208px;
-  height: 53px;
+  height: 52px;
   margin: 0 auto 24px 0;
 
   font-style: normal;
@@ -443,7 +443,7 @@ div {
 .sitemanage_body_subcontainer {
   width: 100%;
   height: fit-content;
-  margin-top: 43px;
+  margin-top: 83px;
 }
 
 .sitemanage_body_item_header {
@@ -705,7 +705,7 @@ div {
 }
 
 .sidebar_on .sitemanage_container,
-.sidebar_on .sitemanage_header_container {
+.sidebar_on .tabheader_container {
   width: 75vw;
   float: right;
 }
@@ -1006,9 +1006,40 @@ div {
   cursor: pointer;
 }
 
+.sitecamera_container {
+  width: 100%;
+  float: right;
+}
+
+.sitecamera_view_container {
+  margin: 265px 40px 20px 40px;
+  text-align: center;
+  background-color: #2E3033;
+}
+
+.sitecamera_view {
+  height: 180px;
+}
+
+.sidebar_on .sitecamera_container {
+  width: 75vw;
+  float: right;
+}
+
+.tabheader_breadcrumb {
+  font-family: 'Noto Sans TC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 23px;
+  letter-spacing: 0.05em;
+  color: rgba(46, 48, 51, 0.7);
+  margin: 0;
+}
+
 @media screen and (min-width: 768px) {
   .sidebar_on .sitemanage_container,
-  .sidebar_on .sitemanage_header_container,
+  .sidebar_on .tabheader_container,
   .sidebar_on .sitelist_container {
     width: calc(100vw - 192px);
   }
@@ -1040,7 +1071,8 @@ div {
   }
 
   .sitemanage_container,
-  .sitemanage_header_container {
+  .tabheader_container,
+  .sitecamera_container {
     width: calc(100vw - 192px);
   }
 
@@ -1086,11 +1118,17 @@ div {
     max-width: calc(100vw - 126px);
   }
 
-  .sitemanage_body_container {
-    margin: 0 calc(9.32% - 13.33px);
+  .sitemanage_body_container,
+  .sitecamera_view_container {
+    margin: 265px calc(9.32% - 13.33px) 20px calc(9.32% - 13.33px);
   }
 
-  .sitemanage_header_container {
-    padding: 37px calc(9.32% - 13.33px) 20px calc(9.32% - 13.33px);
+  .tabheader_container {
+    padding: 40px calc(9.32% - 13.33px) 20px calc(9.32% - 13.33px);
+  }
+
+  .sitemanage_divider {
+    width: calc(81.36% + 26.66px);
+    right: calc(9.32% - 13.33px);
   }
 }
