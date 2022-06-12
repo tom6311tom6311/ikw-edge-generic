@@ -1,12 +1,36 @@
 {
   "files.eol": "\n",
   "cSpell.words": [
+    "basicdata",
+    "basicitem",
+    "bodyrow",
     "browserslist",
+    "cctvimg",
+    "cctvtxt",
+    "chartbottom",
+    "dataselector",
+    "descr",
+    "euiselect",
+    "moreinfo",
     "mqtt",
+    "nextpage",
+    "pagelist",
     "paho",
+    "paralight",
     "persistor",
     "reduxjs",
+    "sirases",
+    "sampletime",
     "siras",
-    "sirases"
+    "siteid",
+    "sitelist",
+    "sitemanage",
+    "tabheader",
+    "sitecamera",
+    "siteoverview",
+    "subcontainer",
+    "systemdata",
+    "systeminfo",
+    "timeselector"
   ]
 }
