@@ -2,7 +2,7 @@ import * as React from 'react';
 
 export default function Breadcrumb() {
   return (
-    <p className="tabheader_breadcrumb">
+    <p className="c-tabheader-breadcrumb                                                                                                                                                                                                                                                                                ">
       breadcrumb
     </p>
   );

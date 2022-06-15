@@ -31,7 +31,7 @@ function MainPage() {
   }, [logoutResult]);
 
   return (
-    <div className={isSidebarOpen ? 'sidebar_on' : ''}>
+    <div className={isSidebarOpen ? 'is-sidebar-on' : ''}>
       <SideBar menuContent={menuContent} />
       <Header title="案場總覽" isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
       <Outlet />
