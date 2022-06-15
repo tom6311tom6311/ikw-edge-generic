@@ -20,7 +20,7 @@ function SirasListPage() {
   });
 
   return (
-    <div className="sitemanage_container">
+    <div className="o-page-container">
       <TabHeader
         title={siteId || '/'}
         currActiveIdx={1}
@@ -29,14 +29,14 @@ function SirasListPage() {
           { text: 'SiRAS列表', link: `/site/${siteId || ''}/sirases` },
         ]}
       />
-      <div className="sitemanage_divider" />
-      <div className='sitemanage_body_container"'>
-        <div className="container sitemanage_siras_table_container">
-          <div className="row sitemanage_siras_table_header">
-            <p className="col-4 sitemanage_siras_table_header_txt">{`SiRAS(${getSirasIdsData?.site?.sirasIds.length})`}</p>
-            <p className="col-3 sitemanage_siras_table_header_txt">魚種</p>
-            <p className="col-3 sitemanage_siras_table_header_txt">數量</p>
-            <p className="col-2 sitemanage_siras_table_header_txt">養殖狀況</p>
+      <div className="c-page-divider" />
+      <div className='o-page-container__body"'>
+        <div className="container o-siras-table">
+          <div className="row o-siras-table__header">
+            <p className="col-4 o-siras-table__header__text">{`SiRAS(${getSirasIdsData?.site?.sirasIds.length})`}</p>
+            <p className="col-3 o-siras-table__header__text">魚種</p>
+            <p className="col-3 o-siras-table__header__text">數量</p>
+            <p className="col-2 o-siras-table__header__text">養殖狀況</p>
           </div>
           <div style={{
             border: 'solid #D9D7D4', borderWidth: '1px 0 0 0', width: '100%', minWidth: '496px', height: '1px',
@@ -46,18 +46,18 @@ function SirasListPage() {
             getSirasesData?.sirases.map(({
               sirasId, status, capacity, speciesList,
             }, index) => (
-              <div key={sirasId} className="row sitemanage_siras_table_bodyrow" style={index % 2 === 0 ? { background: 'rgba(46, 48, 51, 0.05)' } : {}}>
-                <p className="col-4 sitemanage_siras_table_bodyrow_siras"><Link to={`/site/${siteId || ''}/siras/${sirasId}`}>{sirasId}</Link></p>
-                <p className="col-3 sitemanage_siras_table_bodyrow_info">{speciesList.join(', ')}</p>
-                <p className="col-3 sitemanage_siras_table_bodyrow_info">{capacity ? `${capacity}尾` : ''}</p>
-                <p className="col-2 sitemanage_siras_table_bodyrow_info">{status === SirasStatus.Active ? '養殖中' : '換池中'}</p>
+              <div key={sirasId} className="row o-siras-table-bodyrow" style={index % 2 === 0 ? { background: 'rgba(46, 48, 51, 0.05)' } : {}}>
+                <p className="col-4 o-siras-table-bodyrow__siras"><Link to={`/site/${siteId || ''}/siras/${sirasId}`}>{sirasId}</Link></p>
+                <p className="col-3 o-siras-table-bodyrow__info">{speciesList.join(', ')}</p>
+                <p className="col-3 o-siras-table-bodyrow__info">{capacity ? `${capacity}尾` : ''}</p>
+                <p className="col-2 o-siras-table-bodyrow__info">{status === SirasStatus.Active ? '養殖中' : '換池中'}</p>
               </div>
             ))
           }
         </div>
-        {/* <div className="sitemanage_siras_pagelist_container">
-          <div className="sitemanage_siras_page_container">
-            <div className="sitemanage_siras_nextpage_button" style={{ marginRight: '20px' }}>
+        {/* <div className="o-siras-pagelist">
+          <div className="o-siras-pagelist__container">
+            <div className="c-pagelist-nextpage-button" style={{ marginRight: '20px' }}>
               <img
                 src={lastPageIcon}
                 alt="nextPage"
@@ -68,15 +68,15 @@ function SirasListPage() {
                 <p
                   className={
                     currPageIdx === pageIdx
-                      ? 'sitemanage_siras_page_on'
-                      : 'sitemanage_siras_page_off'
+                      ? 'is-siras-page-on'
+                      : 'is-siras-page-off'
                   }
                 >
                   {pageIdx + 1}
                 </p>
               </button>
             ))}
-            <div className="sitemanage_siras_nextpage_button" style={{ marginLeft: '20px' }}>
+            <div className="c-pagelist-nextpage-button" style={{ marginLeft: '20px' }}>
               <img
                 src={nextPageIcon}
                 alt="nextPage"

@@ -23,21 +23,21 @@ export default function LoginPage() {
   };
   return (
     // 768px*960px
-    <div className="login_background">
-      <img src={LogoImg} alt="logo" className="login_logo" />
-      <div className="login_container">
+    <div className="c-login-background">
+      <img src={LogoImg} alt="logo" className="c-login-logo" />
+      <div className="o-login">
         <div>
-          <p className="login_input_title">帳號</p>
-          <input type="text" className="login_input" placeholder="email" value={emailTmp} onChange={(e) => setEmailTmp(e.target.value)} />
+          <p className="c-login-title">帳號</p>
+          <input type="text" className="c-login-input" placeholder="email" value={emailTmp} onChange={(e) => setEmailTmp(e.target.value)} />
         </div>
         <div>
-          <p className="login_input_title">密碼</p>
-          <input type="password" className="login_input" placeholder="*************" value={passwordTmp} onChange={(e) => setPasswordTmp(e.target.value)} />
+          <p className="c-login-title">密碼</p>
+          <input type="password" className="c-login-input" placeholder="*************" value={passwordTmp} onChange={(e) => setPasswordTmp(e.target.value)} />
         </div>
-        <button type="button" className="login_button" onClick={onLoginButtonClicked}>登入</button>
-        <p className="login_contact_txt">忘記密碼？ 請聯絡管理人員</p>
+        <button type="button" className="c-login__button" onClick={onLoginButtonClicked}>登入</button>
+        <p className="c-login__contact-text">忘記密碼？ 請聯絡管理人員</p>
       </div>
-      {/* <p className="login_version">版號：v12345.67890</p> */}
+      {/* <p className="c-login-version">版號：v12345.67890</p> */}
     </div>
   );
 }

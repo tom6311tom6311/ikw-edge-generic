@@ -73,7 +73,7 @@ function SirasStatusPage() {
   }
 
   return (
-    <div className="sitemanage_container">
+    <div className="o-page-container">
       <TabHeader
         title={sirasId || '/'}
         currActiveIdx={0}
@@ -83,8 +83,8 @@ function SirasStatusPage() {
           { text: '魚病檢測', link: '#' },
         ]}
       />
-      <div className="sitemanage_divider" />
-      <div className="sitemanage_body_container">
+      <div className="c-page-divider" />
+      <div className="o-page-container__body">
         <SirasInfoSection
           speciesList={getSirasData?.siras?.speciesList || []}
           capacity={getSirasData?.siras?.capacity || 0}

@@ -17,23 +17,23 @@ type TabHeaderProps = {
 
 function TabHeader({ title, currActiveIdx, elements }:TabHeaderProps) {
   return (
-    <div className="tabheader_container">
+    <div className="o-tabheader">
       <div>
         <Breadcrumb />
-        <p className="tabheader_title">{title}</p>
-        {/* <img className="sitemanage_header_search_icon" src={SearchImg} alt="searching" /> */}
+        <p className="c-tabheader-title">{title}</p>
+        {/* <img className="c-tabheader-icon" src={SearchImg} alt="searching" /> */}
       </div>
       <div>
         {elements.map(({ text, link }, idx) => (
           <Link
             to={link}
             key={text}
-            className={`sitemanage_bookmark ${idx === currActiveIdx ? 'sitemanage_bookmark_on' : ''}`}
+            className={`o-page-bookmark ${idx === currActiveIdx ? 'is-bookmark-on' : ''}`}
           >
             {text}
           </Link>
         ))}
-        <img className="sitemanage_header_moreinfo_icon" src={MoreInfoImg} alt="more info" />
+        <img className="c-moreinfo-icon" src={MoreInfoImg} alt="more info" />
       </div>
     </div>
   );

@@ -77,7 +77,7 @@ function SiteStatusPage() {
   }
 
   return (
-    <div className="sitemanage_container">
+    <div className="o-page-container">
       <TabHeader
         title={siteId || '/'}
         currActiveIdx={0}
@@ -86,8 +86,8 @@ function SiteStatusPage() {
           { text: 'SiRAS列表', link: `/site/${siteId || ''}/sirases` },
         ]}
       />
-      <div className="sitemanage_divider" />
-      <div className="sitemanage_body_container">
+      <div className="c-page-divider" />
+      <div className="o-page-container__body">
         <SiteInfoSection
           companyNameChin={getSiteData?.site?.companyNameChin || ''}
           sirasIds={getSiteData?.site?.sirasIds || []}

@@ -14,16 +14,16 @@ type SideBarProps = {
 }
 
 const renderTextComponent = (level: number, text: string) => (
-  <p className="sidebar_item_p" style={{ paddingLeft: `${level * 20}px` }}>{text}</p>
+  <p className="o-sidebar-item__text" style={{ paddingLeft: `${level * 20}px` }}>{text}</p>
 );
 
 function SideBar(props: SideBarProps) {
   const { menuContent } = props;
   return (
-    <div className="sidebar_wrapper">
-      <div className="sidebar_container">
-        <div className="sidebar_header">
-          <img src={LogoImg} alt="logo" className="sidebar_logo" />
+    <div className="o-sidebar">
+      <div className="o-sidebar__container">
+        <div className="o-sidebar-header">
+          <img src={LogoImg} alt="logo" className="c-sidebar-header__logo" />
         </div>
 
         {menuContent.map(({
@@ -31,13 +31,13 @@ function SideBar(props: SideBarProps) {
         }) => {
           if (onClick) {
             return (
-              <button type="button" key={text} className="sidebar_item_container" onClick={onClick}>
+              <button type="button" key={text} className="o-sidebar-item" onClick={onClick}>
                 {renderTextComponent(level, text)}
               </button>
             );
           }
           return (
-            <div key={text} className="sidebar_item_container">
+            <div key={text} className="o-sidebar-item">
               <Link to={link || '/'}>
                 {renderTextComponent(level, text)}
               </Link>

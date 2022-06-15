@@ -10,11 +10,11 @@ type HeaderProps = {
 
 function Header({ title, isSidebarOpen, toggleSidebar }:HeaderProps) {
   return (
-    <div className="header">
-      <button className="menu_button" type="button" onClick={toggleSidebar}>
-        <img src={isSidebarOpen ? MenuOpenImg : MenuCloseImg} alt="menu" className="menu_icon" />
+    <div className="o-header">
+      <button className="c-header__button" type="button" onClick={toggleSidebar}>
+        <img src={isSidebarOpen ? MenuOpenImg : MenuCloseImg} alt="menu" className="c-menu-icon" />
       </button>
-      <h1 className="overview_header_text">{title}</h1>
+      <h1 className="c-header__text">{title}</h1>
     </div>
   );
 }
