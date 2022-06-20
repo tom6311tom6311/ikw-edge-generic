@@ -82,14 +82,14 @@ function MonitorSection({
   ops, chartData, averages, timeSpan, onTimeSpanChanged,
 }: MonitorSectionProps) {
   return (
-    <div className="sitemanage_body_subcontainer">
-      <div className="sitemanage_body_item_header">
-        <p className="sitemanage_body_title">監測圖表</p>
-        <p className="sitemanage_body_option">看更多</p>
+    <div className="o-page-subcontainer">
+      <div className="o-page-subcontainer__header">
+        <p className="c-page-subcontainer-title">監測圖表</p>
+        <p className="c-page-subcontainer-option">看更多</p>
       </div>
       <div>
         <div
-          className="sitemanage_body_basicitem"
+          className="o-page-subcontainer-basicitem"
           style={{ width: 'calc(100% - 10px)', height: 'fit-content' }}
         >
           <ResponsiveContainer width="100%" height={380}>
@@ -152,10 +152,10 @@ function MonitorSection({
               ))}
             </LineChart>
           </ResponsiveContainer>
-          <div className="sitemanage_chartbottom_container">
-            {/* <div className="sitemanage_chart_dataselector_container">
+          <div className="o-basicitem-chartbottom">
+            {/* <div className="o-chartbottom__selector">
               <EuiSelect
-                className="sitemanage_euiselect"
+                className="c-chartbottom-euiselect"
                 id="dataSelector"
                 options={displaydataOptions}
                 value={displayData}
@@ -163,9 +163,9 @@ function MonitorSection({
                 aria-label="Use aria labels when no actual label is in use"
               />
             </div> */}
-            <div className="sitemanage_chart_timeselector_container">
+            <div className="o-chartbottom__selector">
               <EuiSelect
-                className="sitemanage_euiselect"
+                className="c-chartbottom-euiselect"
                 id="timeSelector"
                 options={TIME_SPAN_OPTIONS.map(({ text, value }) => ({
                   text,

@@ -9,7 +9,7 @@ function SiteListPage() {
   }
   const { sites } = data;
   return (
-    <div className="sitelist_container">
+    <div className="o-sitelist-container">
       {sites.map((site) => (
         <SiteOverview
           key={site.siteId}

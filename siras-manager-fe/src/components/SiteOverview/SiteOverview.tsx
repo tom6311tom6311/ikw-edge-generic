@@ -22,45 +22,45 @@ export default function SiteOverview(props: SiteOverviewProps) {
     link,
   } = props;
   return (
-    <div className="siteoverview_container">
-      <div className="siteoverview_head_container">
-        <p className="siteoverview_subhead">案場</p>
+    <div className="o-siteoverview">
+      <div className="o-siteoverview__head">
+        <p className="c-siteoverview__head__text">案場</p>
         <div>
-          <p className="siteoverview_caseId">{siteId}</p>
+          <p className="c-siteoverview-caseId">{siteId}</p>
           <Link to={link}>
-            <div className="bnt siteoverview_button">案場管理</div>
+            <div className="bnt c-siteoverview-button">案場管理</div>
           </Link>
         </div>
       </div>
-      <div className="siteoverview_body_container">
-        <div className="siteoverview_info_container">
-          <p className="siteoverview_info_key">公司</p>
-          <p className="siteoverview_info_value">{companyNameChin}</p>
+      <div className="o-siteoverview__body">
+        <div className="o-siteoverview-info">
+          <p className="c-siteoverview-info__key">公司</p>
+          <p className="c-siteoverview-info__value">{companyNameChin}</p>
         </div>
-        <div className="siteoverview_info_container">
-          <p className="siteoverview_info_key">地點</p>
-          <p className="siteoverview_info_value">{`${county} ${district}`}</p>
+        <div className="o-siteoverview-info">
+          <p className="c-siteoverview-info__key">地點</p>
+          <p className="c-siteoverview-info__value">{`${county} ${district}`}</p>
         </div>
-        <div className="siteoverview_info_container">
-          <p className="siteoverview_info_key">SiRAS</p>
-          <p className="siteoverview_info_value">{sirasIds.length}</p>
-          <p className="siteoverview_info_unit">U</p>
+        <div className="o-siteoverview-info">
+          <p className="c-siteoverview-info__key">SiRAS</p>
+          <p className="c-siteoverview-info__value">{sirasIds.length}</p>
+          <p className="c-siteoverview-info__unit">U</p>
         </div>
-        <div className="siteoverview_info_container" style={{ height: '85px' }}>
-          <p className="siteoverview_info_key">魚種</p>
-          <p className="siteoverview_info_value" style={{ width: '200px', height: '54px' }}>{speciesList}</p>
+        <div className="o-siteoverview-info" style={{ height: '85px' }}>
+          <p className="c-siteoverview-info__key">魚種</p>
+          <p className="c-siteoverview-info__value" style={{ width: '200px', height: '54px' }}>{speciesList}</p>
         </div>
-        <div className="siteoverview_info_container">
-          <p className="siteoverview_info_key">產量</p>
-          <p className="siteoverview_info_value">{capacity}</p>
-          <p className="siteoverview_info_unit">台斤</p>
+        <div className="o-siteoverview-info">
+          <p className="c-siteoverview-info__key">產量</p>
+          <p className="c-siteoverview-info__value">{capacity}</p>
+          <p className="c-siteoverview-info__unit">台斤</p>
         </div>
-        <div className="siteoverview_info_container" style={{ borderWidth: '0' }}>
-          <p className="siteoverview_info_key">面積</p>
-          <p className="siteoverview_info_value">{area}</p>
-          <p className="siteoverview_info_unit">公頃</p>
+        <div className="o-siteoverview-info" style={{ borderWidth: '0' }}>
+          <p className="c-siteoverview-info__key">面積</p>
+          <p className="c-siteoverview-info__value">{area}</p>
+          <p className="c-siteoverview-info__unit">公頃</p>
         </div>
-        <div className="bnt basicdata_button">養殖場基本資料表</div>
+        <div className="bnt c-siteoverview-basicdata-button">養殖場基本資料表</div>
       </div>
     </div>
   );

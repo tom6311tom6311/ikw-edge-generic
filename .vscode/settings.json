@@ -31,6 +31,7 @@
     "subcontainer",
     "systemdata",
     "systeminfo",
-    "timeselector"
+    "timeselector",
+    "livedata",
   ]
 }

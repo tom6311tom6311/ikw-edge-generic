@@ -18,6 +18,7 @@ import SirasListPage from './containers/SirasListPage/SirasListPage';
 import SiteStatusPage from './containers/SiteStatusPage/SiteStatusPage';
 import SirasStatusPage from './containers/SirasStatusPage/SirasStatusPage';
 import CameraOverview from './components/CameraOverview/CameraOverview';
+import SiteInfoPage from './containers/SiteInfoPage/SiteInfoPage';
 
 const httpLink = createHttpLink({
   uri: AppConfig.BACKEND.URL,
@@ -64,6 +65,7 @@ function App() {
               <Route path="camera/:cameraId" element={<CameraOverview />} />
               <Route path="*" element={<SiteStatusPage />} />
               <Route index element={<SiteStatusPage />} />
+              <Route path="info" element={<SiteInfoPage />} />
             </Route>
             <Route path="*" element={<SiteListPage />} />
             <Route index element={<SiteListPage />} />
