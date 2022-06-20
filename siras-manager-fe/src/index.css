@@ -1,6 +1,8 @@
 body {
   margin: 0;
+  background: #F0EFED;
   font-family: Noto Sans, Noto Sans TC, sans-serif;
+  font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -349,7 +351,7 @@ div {
   width: 100vw;
   margin: 50px 0 0 0;
   position: fixed;
-  background-color: white;
+  background: #F0EFED;
 }
 
 .c-page-divider {
@@ -364,7 +366,6 @@ div {
 }
 
 .c-tabheader-title {
-  width: 208px;
   height: 52px;
   margin: 0 auto 24px 0;
 
@@ -428,7 +429,7 @@ div {
 }
 
 .o-page-container__body {
-  padding: 190px 0 90px 0;
+  padding: 225px 0 90px 0;
   height: 100vh;
   margin: 0 calc(50% - 248px);
   overflow-y: scroll;
@@ -443,7 +444,7 @@ div {
 .o-page-subcontainer {
   width: 100%;
   height: fit-content;
-  margin-top: 83px;
+  margin-top: 40px;
 }
 
 .o-page-subcontainer__header {
@@ -497,6 +498,7 @@ div {
   margin: 5px;
   height: calc(100% - 10px);
   width: calc(100% - 10px);
+  background:#FFFFFF;
 }
 
 .u-flex-direction--row {
@@ -704,17 +706,15 @@ div {
 }
 
 .is-sidebar-on .o-page-container,
-.is-sidebar-on .o-tabheader {
+.is-sidebar-on .o-tabheader,
+.is-sidebar-on .o-sitecamera__view {
   width: 75vw;
   float: right;
 }
 
 .is-sidebar-on .c-page-divider {
-  width: calc(75vw - 80px);
-  float: right;
-}
-
-.is-sidebar-on .c-page-divider {
+  /* width: calc(56.36% + 26.66px); */
+  width: calc(75% - 80px);
   float: right;
 }
 
@@ -735,7 +735,7 @@ div {
 
 .o-siras-table {
   width: calc(100% - 80px);
-  margin: 215px 40px 20px 40px;
+  margin: 265px auto 20px auto;
   padding: 10px 0 40px 0;
   border: 1px solid #d9d7d4;
   border-radius: 3px;
@@ -984,8 +984,14 @@ div {
 }
 
 .o-sitecamera__view {
-  width: 75vw;
+  width: 100vw;
   float: right;
+  text-align: center;
+  padding: 30px 40px;
+}
+
+.c-sitecamera-img {
+  max-width: 100%;
 }
 
 .c-tabheader-breadcrumb                                                                                                                                                                                                                                                                                 {
@@ -999,9 +1005,38 @@ div {
   margin: 0;
 }
 
+.o-siteinfo-section {
+  padding-top: 40px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 23px;
+  letter-spacing: 0.02em;
+  color: rgba(23, 25, 26, 0.9);
+}
+
+.o-siteinfo-section-item {
+  margin: 5px;
+  padding: 10px 0;
+  background: #FFFFFF;
+  border: 1px solid #D9D7D4;
+  border-radius: 3px;
+  width: calc(100% - 10px);
+}
+
+.o-siteinfo-section-key {
+  margin: 10px 20px 0 20px;
+  font-size: 16px;
+}
+
+.o-siteinfo-section-value {
+  margin: 10px 20px 0 20px;
+  font-size: 21px;
+}
+
 @media screen and (min-width: 768px) {
   .is-sidebar-on .o-page-container,
   .is-sidebar-on .o-tabheader,
+  .is-sidebar-on .o-sitecamera__view,
   .is-sidebar-on .o-sitelist-container {
     width: calc(100vw - 192px);
   }
@@ -1034,6 +1069,7 @@ div {
 
   .o-page-container,
   .o-tabheader,
+  .o-sitecamera__view,
   .o-sitecamera                                                                                                                                                                                                                                                                                           {
     width: calc(100vw - 192px);
   }
@@ -1080,17 +1116,19 @@ div {
     max-width: calc(100vw - 126px);
   }
 
-  .o-page-container__body,
-  .o-sitecamera__view                                                                                                                                                                                                                                                                                           {
+  .o-page-container__body{
     margin: 0 calc(9.32% - 13.33px) 20px calc(9.32% - 13.33px);
   }
 
-  .o-tabheader {
+  .o-tabheader{
     padding: 40px calc(9.32% - 13.33px) 20px calc(9.32% - 13.33px);
   }
 
-  .c-page-divider {
-    width: calc(81.36% + 26.66px);
-    right: calc(9.32% - 13.33px);
+  .o-sitecamera__view {
+    padding: 30px calc(9.32% - 13.33px) 30px calc(9.32% - 13.33px);
+  }
+
+  .is-sidebar-on .c-page-divider {
+    width: calc(56.36% + 26.66px);
   }
 }
