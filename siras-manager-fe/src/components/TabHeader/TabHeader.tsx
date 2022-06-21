@@ -28,7 +28,7 @@ function TabHeader({ title, currActiveIdx, elements }:TabHeaderProps) {
           <Link
             to={link}
             key={text}
-            className={`o-page-bookmark ${idx === currActiveIdx ? 'is-bookmark-on' : ''}`}
+            className={`${idx === currActiveIdx ? 'is-bookmark-on' : ''} o-page-bookmark`}
           >
             {text}
           </Link>

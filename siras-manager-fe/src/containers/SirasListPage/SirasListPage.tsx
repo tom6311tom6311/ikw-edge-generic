@@ -30,7 +30,7 @@ function SirasListPage() {
         ]}
       />
       <div className="c-page-divider" />
-      <div className='o-page-container__body"'>
+      <div className="o-page-container__body">
         <div className="container o-siras-table">
           <div className="row o-siras-table__header">
             <p className="col-4 o-siras-table__header__text">{`SiRAS(${getSirasIdsData?.site?.sirasIds.length})`}</p>
