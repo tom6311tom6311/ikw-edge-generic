@@ -10,7 +10,7 @@ export default function CameraOverview() {
   const { siteId } = useParams();
 
   return (
-    <div className="o-sitecamera                                                                                                                                                                                                                                                                                          ">
+    <div className="o-sitecamera">
       <TabHeader
         title={'cameraID/location' || '/'}
         currActiveIdx={0}
@@ -19,8 +19,8 @@ export default function CameraOverview() {
         ]}
       />
       <div className="c-page-divider" />
-      <div className="o-sitecamera__view                                                                                                                                                                                                                                                                                          ">
-        <img src={cameraSample} alt="realtime camera view" className="sitecamera_view" />
+      <div className="o-sitecamera__view">
+        <img src={cameraSample} alt="realtime camera view" className="c-sitecamera-img" />
       </div>
     </div>
   );
