@@ -506,6 +506,10 @@ div {
   flex-direction: row;
 }
 
+.u-flex-direction--column {
+  flex-direction: column;
+}
+
 .c-page-basicitem-company {
   flex: 1;
   float: left;

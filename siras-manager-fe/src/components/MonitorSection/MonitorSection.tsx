@@ -76,14 +76,15 @@ type MonitorSectionProps = {
   timeSpan: typeof TIME_SPAN_OPTIONS[0],
   // eslint-disable-next-line no-unused-vars
   onTimeSpanChanged: (timeSpan: typeof TIME_SPAN_OPTIONS[0]) => void,
+  isHeaderDisplay: boolean,
 };
 
 function MonitorSection({
-  ops, chartData, averages, timeSpan, onTimeSpanChanged,
+  ops, chartData, averages, timeSpan, onTimeSpanChanged, isHeaderDisplay,
 }: MonitorSectionProps) {
   return (
     <div className="o-page-subcontainer">
-      <div className="o-page-subcontainer__header">
+      <div className="o-page-subcontainer__header" style={{ display: `${isHeaderDisplay ? '' : 'none'}` }}>
         <p className="c-page-subcontainer-title">監測圖表</p>
         <p className="c-page-subcontainer-option">看更多</p>
       </div>
