@@ -1,35 +1,34 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useGetSiteQuery } from './GetSiteQuery.graphql.generated';
-import { useGetOpsQuery } from './GetOpsQuery.graphql.generated';
-import { useGetSensorDataQuery } from './GetSensorDataQuery.graphql.generated';
 import TabHeader from '../../components/TabHeader/TabHeader';
-import SiteInfoSection from './SiteInfoSection/SiteInfoSection';
 import MonitorSection, { DataPoint, TIME_SPAN_OPTIONS } from '../../components/MonitorSection/MonitorSection';
-import LiveDataSection from '../../components/LiveDataSection/LiveDataSection';
-import SamplingSection from '../../components/SamplingSection/SamplingSection';
-import CctvSection from '../../components/CctvSection/CctvSection';
+import { useGetOpsQuery } from '../SiteStatusPage/GetOpsQuery.graphql.generated';
+import { useGetSirasQuery } from '../SirasStatusPage/GetSirasQuery.graphql.generated';
+import { useGetSensorDataQuery } from '../SiteStatusPage/GetSensorDataQuery.graphql.generated';
 
-function SiteStatusPage() {
-  const { siteId } = useParams();
+// export interface ISiteSystemMonitorPageProps {
+// }
+
+export default function SiteSystemMonitorPage() {
+  const { siteId, sirasId } = useParams();
   const [timeSpan, setTimeSpan] = useState(TIME_SPAN_OPTIONS[0]);
   const {
-    loading: isGetSiteLoading,
-    error: getSiteError,
-    data: getSiteData,
-  } = useGetSiteQuery({ variables: { siteId: siteId || '' } });
-  const isGetSiteReady = !(
-    isGetSiteLoading
-    || getSiteError
-    || !getSiteData?.site
+    loading: isGetSirasLoading,
+    error: getSirasError,
+    data: getSirasData,
+  } = useGetSirasQuery({ variables: { sirasId: sirasId || '' } });
+  const isGetSirasReady = !(
+    isGetSirasLoading
+    || getSirasError
+    || !getSirasData?.siras
   );
   const {
     loading: isGetOpsLoading,
     error: getOpsError,
     data: getOpsData,
   } = useGetOpsQuery({
-    skip: !isGetSiteReady,
-    variables: { opIds: getSiteData?.site?.centralDevice?.opIds || [] },
+    skip: !isGetSirasReady,
+    variables: { opIds: getSirasData?.siras?.devices[0]?.opIds || [] },
   });
   const isGetOpsReady = !(isGetOpsLoading || getOpsError || !getOpsData?.ops);
   const {
@@ -39,8 +38,8 @@ function SiteStatusPage() {
   } = useGetSensorDataQuery({
     skip: !isGetOpsReady,
     variables: {
-      deviceId: getSiteData?.site?.centralDevice?.deviceId || '',
-      opIds: getSiteData?.site?.centralDevice?.opIds || [],
+      deviceId: getSirasData?.siras?.devices[0]?.deviceId || '',
+      opIds: getSirasData?.siras?.devices[0]?.opIds || [],
       timeStart: Math.floor(Date.now() / 1000) - timeSpan.span,
       timeEnd: Math.floor(Date.now() / 1000),
       aggregateWindow: timeSpan.aggregateWindow,
@@ -54,11 +53,7 @@ function SiteStatusPage() {
 
   let chartData: DataPoint[] = [];
   let averages: number[] = [];
-  if (
-    isGetSensorDataReady
-    && getSensorDataData.sensorData[0]
-    && getSensorDataData.sensorData[0].timeSeries
-  ) {
+  if (isGetSensorDataReady && getSensorDataData.sensorData[0].timeSeries) {
     chartData = getSensorDataData.sensorData[0].timeSeries.map(
       ({ timestamp }, dataPointIdx) => {
         const dataPoint: DataPoint = { timestamp };
@@ -79,42 +74,23 @@ function SiteStatusPage() {
   return (
     <div className="o-page-container">
       <TabHeader
-        title={siteId || '/'}
+        title="中央系統監測圖"
         currActiveIdx={0}
         elements={[
-          { text: '案場狀態', link: `/site/${siteId || ''}` },
-          { text: 'SiRAS列表', link: `/site/${siteId || ''}/sirases` },
+          { text: '監測圖表', link: `/site/${siteId || ''}/systemMonitor` },
         ]}
       />
       <div className="c-page-divider" />
       <div className="o-page-container__body">
-        <SiteInfoSection
-          companyNameChin={getSiteData?.site?.companyNameChin || ''}
-          sirasIds={getSiteData?.site?.sirasIds || []}
-          capacity={getSiteData?.site?.capacity || 0}
-          area={getSiteData?.site?.area || 0}
-        />
         <MonitorSection
           ops={getOpsData?.ops || []}
           chartData={chartData}
           averages={averages}
           timeSpan={timeSpan}
           onTimeSpanChanged={setTimeSpan}
-          isHeaderDisplay
+          isHeaderDisplay={false}
         />
-        <LiveDataSection
-          ops={getOpsData?.ops || []}
-          values={
-            getSensorDataData
-              ?.sensorData
-              .map(({ timeSeries }) => (timeSeries.slice(-1)[0]?.value)) || []
-          }
-        />
-        <SamplingSection />
-        <CctvSection />
       </div>
     </div>
   );
 }
-
-export default SiteStatusPage;

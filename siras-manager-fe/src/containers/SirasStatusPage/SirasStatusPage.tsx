@@ -96,6 +96,7 @@ function SirasStatusPage() {
           averages={averages}
           timeSpan={timeSpan}
           onTimeSpanChanged={setTimeSpan}
+          isHeaderDisplay
         />
         <LiveDataSection
           ops={getOpsData?.ops || []}
