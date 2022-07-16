@@ -707,7 +707,6 @@ div {
 }
 
 .is-sidebar-on .o-page-container,
-.is-sidebar-on .o-tabheader {
 .is-sidebar-on .o-tabheader,
 .is-sidebar-on .o-sitecamera__view {
   width: 75vw;
