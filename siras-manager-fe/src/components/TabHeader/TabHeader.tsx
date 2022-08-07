@@ -11,15 +11,20 @@ type TabHeaderElement = {
 
 type TabHeaderProps = {
   title: string;
+  breadcrumbText?: React.ReactNode;
   currActiveIdx: number;
   elements: TabHeaderElement[];
 };
 
-function TabHeader({ title, currActiveIdx, elements }:TabHeaderProps) {
+function TabHeader({
+  title, breadcrumbText, currActiveIdx, elements,
+}:TabHeaderProps) {
   return (
     <div className="o-tabheader">
       <div>
-        <Breadcrumb />
+        <Breadcrumb>
+          {breadcrumbText}
+        </Breadcrumb>
         <p className="c-tabheader-title">{title}</p>
         {/* <img className="c-tabheader-icon" src={SearchImg} alt="searching" /> */}
       </div>
@@ -38,5 +43,9 @@ function TabHeader({ title, currActiveIdx, elements }:TabHeaderProps) {
     </div>
   );
 }
+
+TabHeader.defaultProps = {
+  breadcrumbText: '',
+};
 
 export default TabHeader;

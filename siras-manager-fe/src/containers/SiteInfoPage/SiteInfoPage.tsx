@@ -26,6 +26,7 @@ export default function SiteInfoPage() {
     <div className="o-page-container">
       <TabHeader
         title="養殖場基本資料表"
+        breadcrumbText=""
         currActiveIdx={0}
         elements={[
           { text: '詳細資訊', link: `/site/${siteId || ''}/info` },

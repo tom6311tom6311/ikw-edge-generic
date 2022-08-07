@@ -1,9 +1,17 @@
-import * as React from 'react';
+import React from 'react';
 
-export default function Breadcrumb() {
+type BreadcrumbProps = {
+  children?: React.ReactNode;
+}
+
+export default function Breadcrumb({ children }: BreadcrumbProps) {
   return (
-    <p className="c-tabheader-breadcrumb                                                                                                                                                                                                                                                                                ">
-      breadcrumb
+    <p className="c-tabheader-breadcrumb">
+      {children}
     </p>
   );
 }
+
+Breadcrumb.defaultProps = {
+  children: '',
+};

@@ -80,6 +80,7 @@ function SiteStatusPage() {
     <div className="o-page-container">
       <TabHeader
         title={siteId || '/'}
+        breadcrumbText="案場管理"
         currActiveIdx={0}
         elements={[
           { text: '案場狀態', link: `/site/${siteId || ''}` },

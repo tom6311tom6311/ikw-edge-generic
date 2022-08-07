@@ -11,7 +11,7 @@ import SamplingSection from '../../components/SamplingSection/SamplingSection';
 import CctvSection from '../../components/CctvSection/CctvSection';
 
 function SirasStatusPage() {
-  const { sirasId } = useParams();
+  const { siteId, sirasId } = useParams();
   const [timeSpan, setTimeSpan] = useState(TIME_SPAN_OPTIONS[0]);
   const {
     loading: isGetSirasLoading,
@@ -76,6 +76,7 @@ function SirasStatusPage() {
     <div className="o-page-container">
       <TabHeader
         title={sirasId || '/'}
+        breadcrumbText={`案場 ${siteId} /`}
         currActiveIdx={0}
         elements={[
           { text: 'SiRAS狀態', link: '#' },
