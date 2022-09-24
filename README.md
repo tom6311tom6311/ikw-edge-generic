@@ -45,7 +45,7 @@ A gallery of IKW edge services
 
     ```bash
     cd siras-manager-be/
-    yarn dev
+    JWT_SECRET="XXX" yarn dev
     ```
 
 2. Open another terminal and run the frontend app
