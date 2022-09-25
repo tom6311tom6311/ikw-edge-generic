@@ -48,6 +48,15 @@ services:
       INFLUX_BUCKET: $INFLUX_BUCKET
     networks:
       - main
+  camera-worker:
+    build:
+      context: ./camera-worker
+    volumes:
+      - type: bind
+        source: ./camera-worker/snapshots
+        target: /usr/src/app/snapshots
+    networks:
+        - main
   siras-manager-fe:
     build:
       context: ./siras-manager-fe
@@ -60,6 +69,10 @@ services:
   siras-manager-be:
     build:
       context: ./siras-manager-be
+    volumes:
+      - type: bind
+        source: ./camera-worker/snapshots
+        target: /app/snapshots
     environment:
       INFLUX_ORG: $INFLUX_ORG
       INFLUX_TOKEN: $INFLUX_TOKEN

@@ -1,0 +1,6 @@
+{
+  "TIMING": {
+    "COMPUTE_INTERVAL": 30,
+    "FETCH_TIMEOUT": 6
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "cameras": [
+    {
+      "name": "ip_cam1",
+      "type": "IP_CAM",
+      "host": "0.0.0.0",
+      "port": 80,
+      "username": "user",
+      "password": "changeme",
+      "snapshotUrl": "/images/snapshot.jpg",
+      "rotate": 0
+    },
+    {
+      "name": "dvr1",
+      "type": "DVR",
+      "host": "0.0.0.0",
+      "port": 554,
+      "username": "user",
+      "password": "changeme",
+      "channel": "0",
+      "urlParams": "streamType=main&linkType=tcp",
+      "rotate": 0
+    }
+  ]
+}
