@@ -12,6 +12,7 @@ type Site {
   sirasIds: [ID!]!
   ponds: [Pond!]!
   owners: [User!]!
+  cameras: [Camera!]!
   addressEng: String!
   addressChin: String!
   telCompany: String

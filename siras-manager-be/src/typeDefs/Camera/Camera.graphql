@@ -1,0 +1,4 @@
+type Camera {
+  cameraName: String!
+  imageUrl: String!
+}

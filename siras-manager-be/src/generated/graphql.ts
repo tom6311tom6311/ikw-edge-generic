@@ -14,6 +14,12 @@ export type Scalars = {
   Float: number;
 };
 
+export type Camera = {
+  __typename?: 'Camera';
+  cameraName: Scalars['String'];
+  imageUrl: Scalars['String'];
+};
+
 export type Device = {
   __typename?: 'Device';
   deviceId: Scalars['String'];
@@ -122,6 +128,7 @@ export type Site = {
   addressEng: Scalars['String'];
   area?: Maybe<Scalars['Float']>;
   awardRecordList: Array<Scalars['String']>;
+  cameras: Array<Camera>;
   capacity: Scalars['Float'];
   centralDevice?: Maybe<Device>;
   companyNameChin?: Maybe<Scalars['String']>;
@@ -249,6 +256,7 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
+  Camera: ResolverTypeWrapper<Camera>;
   Device: ResolverTypeWrapper<Device>;
   Float: ResolverTypeWrapper<Scalars['Float']>;
   ID: ResolverTypeWrapper<Scalars['ID']>;
@@ -272,6 +280,7 @@ export type ResolversTypes = {
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
   Boolean: Scalars['Boolean'];
+  Camera: Camera;
   Device: Device;
   Float: Scalars['Float'];
   ID: Scalars['ID'];
@@ -287,6 +296,12 @@ export type ResolversParentTypes = {
   Threshold: Threshold;
   TimeSeriesDataPoint: TimeSeriesDataPoint;
   User: User;
+};
+
+export type CameraResolvers<ContextType = any, ParentType extends ResolversParentTypes['Camera'] = ResolversParentTypes['Camera']> = {
+  cameraName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  imageUrl?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type DeviceResolvers<ContextType = any, ParentType extends ResolversParentTypes['Device'] = ResolversParentTypes['Device']> = {
@@ -349,6 +364,7 @@ export type SiteResolvers<ContextType = any, ParentType extends ResolversParentT
   addressEng?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   area?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
   awardRecordList?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
+  cameras?: Resolver<Array<ResolversTypes['Camera']>, ParentType, ContextType>;
   capacity?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
   centralDevice?: Resolver<Maybe<ResolversTypes['Device']>, ParentType, ContextType>;
   companyNameChin?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
@@ -396,6 +412,7 @@ export type UserResolvers<ContextType = any, ParentType extends ResolversParentT
 };
 
 export type Resolvers<ContextType = any> = {
+  Camera?: CameraResolvers<ContextType>;
   Device?: DeviceResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   Op?: OpResolvers<ContextType>;
