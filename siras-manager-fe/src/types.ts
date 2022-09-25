@@ -12,6 +12,12 @@ export type Scalars = {
   Float: number;
 };
 
+export type Camera = {
+  __typename?: 'Camera';
+  cameraName: Scalars['String'];
+  imageUrl: Scalars['String'];
+};
+
 export type Device = {
   __typename?: 'Device';
   deviceId: Scalars['String'];
@@ -120,6 +126,7 @@ export type Site = {
   addressEng: Scalars['String'];
   area?: Maybe<Scalars['Float']>;
   awardRecordList: Array<Scalars['String']>;
+  cameras: Array<Camera>;
   capacity: Scalars['Float'];
   centralDevice?: Maybe<Device>;
   companyNameChin?: Maybe<Scalars['String']>;
