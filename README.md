@@ -70,3 +70,47 @@ A gallery of IKW edge services
     ```bash
     docker-compose up --build -d
     ```
+
+## GQL Development Guides
+
+### Schema change
+
+1. Edit GQL schema (*.graphql)
+2. Open a terminal and run the backend app
+
+    ```bash
+    cd siras-manager-be/
+    JWT_SECRET="XXX" yarn dev
+    ```
+
+3. Open another terminal and run the following command to generate typescript definitions based on gql schema
+
+    ```bash
+    cd siras-manager-be/
+    yarn gen
+    ```
+
+4. Commit the schema changes
+
+    ```bash
+    cd siras-manager-be/
+    git add src/typeDefs/ src/generated/
+    git commit -sm "feat: impl gql schema for xxx"
+    ```
+
+5. Implement the corresponding resolvers (under `siras-manager-be/src/resolvers/`) and commit changes
+
+6. Run the following command to update typescript definitions for the front end project (note that the backend server should be running in another terminal)
+
+    ```bash
+    cd siras-manager-fe/
+    yarn gen
+    ```
+
+7. Commit the frontend type definition changes
+
+    ```bash
+    cd siras-manager-fe/
+    git add src/types.ts
+    git commit -sm "chore: update fe type defs"
+    ```
