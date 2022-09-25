@@ -15,7 +15,7 @@ type MockData = {
   },
   ops: {
     [key: number]: Op;
-  }
+  },
 };
 
 const users = {
@@ -42,6 +42,31 @@ const userCredentials = {
   'nil158320@gmail.com': 'ncuegeog2328',
 };
 
+const cameras = {
+  BangladeshNo1: [
+    {
+      cameraName: '鏡頭1',
+      imageUrl: '/snapshot/BangladeshNo1_1.jpg'
+    },
+    {
+      cameraName: '鏡頭2',
+      imageUrl: '/snapshot/BangladeshNo1_2.jpg'
+    },
+    {
+      cameraName: '鏡頭3',
+      imageUrl: '/snapshot/BangladeshNo1_3.jpg'
+    },
+    {
+      cameraName: '鏡頭4',
+      imageUrl: '/snapshot/BangladeshNo1_4.jpg'
+    },
+  ],
+  YGDS: [],
+  WG22: [],
+  WG23: [],
+  WG24: [],
+  WG25: [],
+};
 
 const mockData: MockData = {
   users,
@@ -72,6 +97,7 @@ const mockData: MockData = {
         },
       ],
       owners: [users['info@afilgroup.com'], users['truth@iknowwater.com']],
+      cameras: cameras['BangladeshNo1'],
       addressEng: 'Akij Chamber ,(7th floor) 73, Dilkusha C/A Dhaka-1000. Bangladesh',
       addressChin: 'Akij Chamber ,(7th floor) 73, Dilkusha C/A Dhaka-1000. Bangladesh',
       telCompany: 'NA',
@@ -113,6 +139,7 @@ const mockData: MockData = {
         },
       ],
       owners: [users['truth@iknowwater.com']],
+      cameras: cameras['YGDS'],
       addressEng: 'No. 43, Yongji St., Yingge Dist., New Taipei City',
       addressChin: '新北市鶯歌區永吉街43號',
       telCompany: '02-8972-5569',
@@ -154,6 +181,7 @@ const mockData: MockData = {
         },
       ],
       owners: [users['nil158320@gmail.com'], users['truth@iknowwater.com']],
+      cameras: cameras['WG22'],
       addressEng: 'NA',
       addressChin: '彰化縣彰化市進德路1號',
       telCompany: 'NA',
@@ -195,6 +223,7 @@ const mockData: MockData = {
         },
       ],
       owners: [users['nil158320@gmail.com'], users['truth@iknowwater.com']],
+      cameras: cameras['WG23'],
       addressEng: 'NA',
       addressChin: '彰化縣彰化市進德路1號',
       telCompany: 'NA',
@@ -236,6 +265,7 @@ const mockData: MockData = {
         },
       ],
       owners: [users['nil158320@gmail.com'], users['truth@iknowwater.com']],
+      cameras: cameras['WG24'],
       addressEng: 'NA',
       addressChin: '彰化縣彰化市進德路1號',
       telCompany: 'NA',
@@ -277,6 +307,7 @@ const mockData: MockData = {
         },
       ],
       owners: [users['nil158320@gmail.com'], users['truth@iknowwater.com']],
+      cameras: cameras['WG25'],
       addressEng: 'NA',
       addressChin: '彰化縣彰化市進德路1號',
       telCompany: 'NA',
