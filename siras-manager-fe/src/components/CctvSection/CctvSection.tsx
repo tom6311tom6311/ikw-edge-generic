@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import AppConfig from '../../const/AppConfig';
 
 type CameraConfig = {
@@ -12,6 +12,19 @@ type CctvSectionProps = {
 };
 
 function CctvSection({ title, cameras }: CctvSectionProps) {
+  const [salt, setSalt] = useState(0);
+
+  let refreshInterval: number = -1;
+  useEffect(() => {
+    refreshInterval = window.setInterval(() => {
+      setSalt(salt + 1);
+    }, AppConfig.TIMING.IMG_REFRESH_PERIOD);
+
+    return () => {
+      clearInterval(refreshInterval);
+      refreshInterval = -1;
+    };
+  }, []);
   return (
     <div className="o-page-subcontainer">
       <div className="o-page-subcontainer__header">
@@ -28,9 +41,9 @@ function CctvSection({ title, cameras }: CctvSectionProps) {
         >
           <div className="row" style={{ width: 'calc(100% + 12px)' }}>
             {cameras.map(({ cameraName, imageUrl }) => (
-              <div className="col-6 col-xl-4" style={{ padding: '0' }}>
+              <div key={cameraName} className="col-6 col-xl-4" style={{ padding: '0' }}>
                 <img
-                  src={`${AppConfig.BACKEND.URL}${imageUrl}`}
+                  src={`${AppConfig.BACKEND.URL}${imageUrl}?salt=${salt}`}
                   alt="CCTV Camera"
                   className="c-basicitem-cctvimg"
                 />
