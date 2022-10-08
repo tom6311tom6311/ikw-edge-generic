@@ -1,11 +1,21 @@
 import React from 'react';
-import CctvSampleImg from '../../img/CCTV_1.png';
+import AppConfig from '../../const/AppConfig';
 
-function CctvSection() {
+type CameraConfig = {
+  cameraName: string;
+  imageUrl: string;
+}
+
+type CctvSectionProps = {
+  title: string;
+  cameras: CameraConfig[];
+};
+
+function CctvSection({ title, cameras }: CctvSectionProps) {
   return (
     <div className="o-page-subcontainer">
       <div className="o-page-subcontainer__header">
-        <p className="c-page-subcontainer-title">現場監控影像</p>
+        <p className="c-page-subcontainer-title">{title}</p>
       </div>
       <div>
         <div
@@ -17,30 +27,16 @@ function CctvSection() {
           }}
         >
           <div className="row" style={{ width: 'calc(100% + 12px)' }}>
-            <div className="col-6 col-xl-4" style={{ padding: '0' }}>
-              <img
-                src={CctvSampleImg}
-                alt="CCTV"
-                className="c-basicitem-cctvimg"
-              />
-              <div className="c-basicitem-cctvtxt">鏡頭名稱/位置</div>
-            </div>
-            <div className="col-6 col-xl-4" style={{ padding: '0' }}>
-              <img
-                src={CctvSampleImg}
-                alt="CCTV"
-                className="c-basicitem-cctvimg"
-              />
-              <div className="c-basicitem-cctvtxt">鏡頭名稱/位置</div>
-            </div>
-            <div className="col-6 col-xl-4" style={{ padding: '0' }}>
-              <img
-                src={CctvSampleImg}
-                alt="CCTV"
-                className="c-basicitem-cctvimg"
-              />
-              <div className="c-basicitem-cctvtxt">鏡頭名稱/位置</div>
-            </div>
+            {cameras.map(({ cameraName, imageUrl }) => (
+              <div className="col-6 col-xl-4" style={{ padding: '0' }}>
+                <img
+                  src={`${AppConfig.BACKEND.URL}${imageUrl}`}
+                  alt="CCTV Camera"
+                  className="c-basicitem-cctvimg"
+                />
+                <div className="c-basicitem-cctvtxt">{cameraName}</div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

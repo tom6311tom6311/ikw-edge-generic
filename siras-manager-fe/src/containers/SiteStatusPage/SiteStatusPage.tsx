@@ -111,7 +111,7 @@ function SiteStatusPage() {
           }
         />
         <SamplingSection />
-        <CctvSection />
+        <CctvSection title="現場監控影像" cameras={getSiteData?.site?.cameras || []} />
       </div>
     </div>
   );

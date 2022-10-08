@@ -8,21 +8,25 @@ export type GetSiteQueryVariables = Types.Exact<{
 }>;
 
 
-export type GetSiteQuery = { __typename?: 'Query', site?: { __typename?: 'Site', siteId: string, companyNameChin?: string | null, sirasIds: Array<string>, capacity: number, area?: number | null, centralDevice?: { __typename?: 'Device', deviceId: string, opIds: Array<number> } | null } | null };
+export type GetSiteQuery = { __typename?: 'Query', site?: { __typename?: 'Site', siteId: string, area?: number | null, capacity: number, sirasIds: Array<string>, companyNameChin?: string | null, centralDevice?: { __typename?: 'Device', deviceId: string, opIds: Array<number> } | null, cameras: Array<{ __typename?: 'Camera', cameraName: string, imageUrl: string }> } | null };
 
 
 export const GetSiteDocument = gql`
     query GetSite($siteId: ID!) {
   site(siteId: $siteId) {
     siteId
-    companyNameChin
+    area
+    capacity
     centralDevice {
       deviceId
       opIds
     }
     sirasIds
-    capacity
-    area
+    companyNameChin
+    cameras {
+      cameraName
+      imageUrl
+    }
   }
 }
     `;

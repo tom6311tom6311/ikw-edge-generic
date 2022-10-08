@@ -46,19 +46,19 @@ const cameras = {
   BangladeshNo1: [
     {
       cameraName: '鏡頭1',
-      imageUrl: '/snapshot/BangladeshNo1_1.jpg'
+      imageUrl: '/snapshot/BangladeshNo1_1'
     },
     {
       cameraName: '鏡頭2',
-      imageUrl: '/snapshot/BangladeshNo1_2.jpg'
+      imageUrl: '/snapshot/BangladeshNo1_2'
     },
     {
       cameraName: '鏡頭3',
-      imageUrl: '/snapshot/BangladeshNo1_3.jpg'
+      imageUrl: '/snapshot/BangladeshNo1_3'
     },
     {
       cameraName: '鏡頭4',
-      imageUrl: '/snapshot/BangladeshNo1_4.jpg'
+      imageUrl: '/snapshot/BangladeshNo1_4'
     },
   ],
   YGDS: [],

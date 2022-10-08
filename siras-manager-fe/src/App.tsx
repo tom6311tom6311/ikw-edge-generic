@@ -22,7 +22,7 @@ import SiteInfoPage from './containers/SiteInfoPage/SiteInfoPage';
 import SirasOpPage from './components/SirasOpPage/SirasOpPage';
 
 const httpLink = createHttpLink({
-  uri: AppConfig.BACKEND.URL,
+  uri: AppConfig.BACKEND.GQL_URL,
 });
 
 const authLink = setContext((_, { headers }) => {

@@ -4,14 +4,18 @@ const GetSiteQuery = gql`
   query GetSite($siteId: ID!) {
     site(siteId: $siteId) {
       siteId
-      companyNameChin
+      area
+      capacity
       centralDevice {
         deviceId
         opIds
       }
       sirasIds
-      capacity
-      area
+      companyNameChin
+      cameras {
+        cameraName
+        imageUrl
+      }
     }
   }
 `;
