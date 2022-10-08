@@ -8,7 +8,7 @@ const AppConfig = {
     GQL_URL: `${BACKEND_URL}/graphql`,
   },
   TIMING: {
-    IMG_REFRESH_PERIOD: 60000, // ms
+    IMG_REFRESH_PERIOD: 30000, // ms
   },
 };
 
