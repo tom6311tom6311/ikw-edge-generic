@@ -4,6 +4,7 @@ type Siras {
   capacity: Float!
   speciesList: [String!]!
   devices: [Device!]!
+  cameras: [Camera!]!
 }
 
 enum SirasStatus {

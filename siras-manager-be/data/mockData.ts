@@ -43,29 +43,41 @@ const userCredentials = {
 };
 
 const cameras = {
-  BangladeshNo1: [
+  BangladeshNo1: [],
+  YGDS: [
     {
       cameraName: '鏡頭1',
-      imageUrl: '/snapshot/BangladeshNo1_1'
+      imageUrl: '/snapshot/YGDS__1'
     },
     {
       cameraName: '鏡頭2',
-      imageUrl: '/snapshot/BangladeshNo1_2'
+      imageUrl: '/snapshot/YGDS__2'
     },
     {
       cameraName: '鏡頭3',
-      imageUrl: '/snapshot/BangladeshNo1_3'
+      imageUrl: '/snapshot/YGDS__3'
     },
     {
       cameraName: '鏡頭4',
-      imageUrl: '/snapshot/BangladeshNo1_4'
+      imageUrl: '/snapshot/YGDS__4'
     },
   ],
-  YGDS: [],
   WG22: [],
   WG23: [],
   WG24: [],
   WG25: [],
+  BangladeshNo1_1: [],
+  YGDS_1: [
+    {
+      cameraName: '影辨鏡頭1',
+      imageUrl: '/snapshot/YGDS_1__1'
+    },
+    {
+      cameraName: '鏡頭2',
+      imageUrl: '/snapshot/YGDS_1__2'
+    },
+  ],
+  YGDS_2: [],
 };
 
 const mockData: MockData = {
@@ -336,7 +348,8 @@ const mockData: MockData = {
           deviceId: '5859894',
           opIds: [1, 3, 4],
         }
-      ]
+      ],
+      cameras: cameras['BangladeshNo1_1'],
     },
     YGDS_1: {
       sirasId: 'YGDS_1',
@@ -348,7 +361,8 @@ const mockData: MockData = {
           deviceId: '5859564',
           opIds: [1, 3, 4],
         }
-      ]
+      ],
+      cameras: cameras['YGDS_1'],
     },
     YGDS_2: {
       sirasId: 'YGDS_2',
@@ -360,7 +374,8 @@ const mockData: MockData = {
           deviceId: '6304773',
           opIds: [1, 3, 4],
         }
-      ]
+      ],
+      cameras: cameras['YGDS_2'],
     }
   },
   ops: {

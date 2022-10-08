@@ -8,7 +8,7 @@ export type GetSirasQueryVariables = Types.Exact<{
 }>;
 
 
-export type GetSirasQuery = { __typename?: 'Query', siras?: { __typename?: 'Siras', sirasId: string, status: Types.SirasStatus, capacity: number, speciesList: Array<string>, devices: Array<{ __typename?: 'Device', deviceId: string, opIds: Array<number> }> } | null };
+export type GetSirasQuery = { __typename?: 'Query', siras?: { __typename?: 'Siras', sirasId: string, status: Types.SirasStatus, capacity: number, speciesList: Array<string>, devices: Array<{ __typename?: 'Device', deviceId: string, opIds: Array<number> }>, cameras: Array<{ __typename?: 'Camera', cameraName: string, imageUrl: string }> } | null };
 
 
 export const GetSirasDocument = gql`
@@ -21,6 +21,10 @@ export const GetSirasDocument = gql`
     devices {
       deviceId
       opIds
+    }
+    cameras {
+      cameraName
+      imageUrl
     }
   }
 }

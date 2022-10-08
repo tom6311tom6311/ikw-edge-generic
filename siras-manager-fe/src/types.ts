@@ -108,6 +108,7 @@ export type SensorData = {
 
 export type Siras = {
   __typename?: 'Siras';
+  cameras: Array<Camera>;
   capacity: Scalars['Float'];
   devices: Array<Device>;
   sirasId: Scalars['ID'];

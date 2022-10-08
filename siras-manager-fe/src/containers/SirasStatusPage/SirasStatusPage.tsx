@@ -107,7 +107,7 @@ function SirasStatusPage() {
           }
         />
         <SamplingSection />
-        <CctvSection title="水池影像辨識" cameras={[]} />
+        <CctvSection title="水池影像辨識" cameras={getSirasData?.siras?.cameras || []} />
       </div>
     </div>
   );

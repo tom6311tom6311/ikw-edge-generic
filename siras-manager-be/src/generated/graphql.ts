@@ -110,6 +110,7 @@ export type SensorData = {
 
 export type Siras = {
   __typename?: 'Siras';
+  cameras: Array<Camera>;
   capacity: Scalars['Float'];
   devices: Array<Device>;
   sirasId: Scalars['ID'];
@@ -351,6 +352,7 @@ export type SensorDataResolvers<ContextType = any, ParentType extends ResolversP
 };
 
 export type SirasResolvers<ContextType = any, ParentType extends ResolversParentTypes['Siras'] = ResolversParentTypes['Siras']> = {
+  cameras?: Resolver<Array<ResolversTypes['Camera']>, ParentType, ContextType>;
   capacity?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
   devices?: Resolver<Array<ResolversTypes['Device']>, ParentType, ContextType>;
   sirasId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;

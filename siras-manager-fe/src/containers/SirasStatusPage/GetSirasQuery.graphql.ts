@@ -11,6 +11,10 @@ const GetSirasQuery = gql`
         deviceId
         opIds
       }
+      cameras {
+        cameraName
+        imageUrl
+      }
     }
   }
 `;
