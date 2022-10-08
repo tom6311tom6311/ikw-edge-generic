@@ -14,6 +14,7 @@ A gallery of IKW edge services
 
     - Latest [Node.js](https://nodejs.org/en/), [NPM](https://www.npmjs.com), and [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable)
     - Latest [Docker](https://www.docker.com/get-started/) & [Docker compose](https://docs.docker.com/compose/install/)
+    - Latest 
 
 3. (First-time only) Create and configure .env file
 
@@ -36,6 +37,7 @@ A gallery of IKW edge services
 
     ```bash
     cd siras-manager-fe/
+    yarn
     yarn start
     ```
 
@@ -45,6 +47,7 @@ A gallery of IKW edge services
 
     ```bash
     cd siras-manager-be/
+    yarn
     JWT_SECRET="XXX" yarn dev
     ```
 
@@ -52,6 +55,7 @@ A gallery of IKW edge services
 
     ```bash
     cd siras-manager-fe/
+    yarn
     REACT_APP_BACKEND_PORT=4000 yarn start
     ```
 
@@ -80,6 +84,7 @@ A gallery of IKW edge services
 
     ```bash
     cd siras-manager-be/
+    yarn
     JWT_SECRET="XXX" yarn dev
     ```
 
