@@ -39,7 +39,7 @@ function CctvSection({ title, cameras }: CctvSectionProps) {
             borderWidth: '0',
           }}
         >
-          <div className="row" style={{ width: 'calc(100% + 12px)' }}>
+          <div className="row" style={{ margin: 'auto', width: '100%' }}>
             {cameras.map(({ cameraName, imageUrl }) => (
               <div key={cameraName} className="col-6 col-xl-4" style={{ padding: '0' }}>
                 <img
