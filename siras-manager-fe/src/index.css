@@ -491,6 +491,10 @@ div {
   cursor: pointer;
 }
 
+.o-page-subcontainer-basicitem-wrapper {
+  padding: 0;
+}
+
 .o-page-subcontainer-basicitem {
   border-style: solid;
   border-color: #d9d7d4;
@@ -650,7 +654,7 @@ div {
   border-radius: 3px;
 }
 
-.c-page-paralight--blue {
+.c-page-paralight--normal {
   width: 12px;
   height: 12px;
   margin: 9px 10px 9px 0px;
@@ -659,7 +663,7 @@ div {
   border-radius: 2px;
 }
 
-.c-page-paralight--red {
+.c-page-paralight--alert {
   width: 12px;
   height: 12px;
   margin: 19px 10px 30px 20px;

@@ -99,6 +99,7 @@ function SirasStatusPage() {
           onTimeSpanChanged={setTimeSpan}
         />
         <LiveDataSection
+          title="中央系統數據"
           ops={getOpsData?.ops || []}
           values={
             getSensorDataData

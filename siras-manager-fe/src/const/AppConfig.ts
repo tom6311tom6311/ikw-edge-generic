@@ -1,5 +1,5 @@
 const BACKEND_PORT = process.env.REACT_APP_BACKEND_PORT ?? 14001;
-const BACKEND_URL = `http://${window.location.hostname}:${BACKEND_PORT}`;
+const BACKEND_URL = 'http://fullybnb.synology.me:14001'; // `http://${window.location.hostname}:${BACKEND_PORT}`;
 
 const AppConfig = {
   BACKEND: {
