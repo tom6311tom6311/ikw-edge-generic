@@ -35,18 +35,20 @@ function CctvSection({ title, cameras }: CctvSectionProps) {
           className="container o-page-subcontainer-basicitem"
           style={{
             width: 'calc(100% - 10px)',
-            height: '384px',
+            height: 'fit-content',
             borderWidth: '0',
           }}
         >
           <div className="row" style={{ margin: 'auto', width: '100%' }}>
             {cameras.map(({ cameraName, imageUrl }) => (
               <div key={cameraName} className="col-6 col-xl-4" style={{ padding: '0' }}>
-                <img
-                  src={`${AppConfig.BACKEND.URL}${imageUrl}?salt=${salt}`}
-                  alt="CCTV Camera"
-                  className="c-basicitem-cctvimg"
-                />
+                <div className="c-basicitem-cctvbackground">
+                  <img
+                    src={`${AppConfig.BACKEND.URL}${imageUrl}`}
+                    alt="CCTV Camera"
+                    className="c-basicitem-cctvimg"
+                  />
+                </div>
                 <div className="c-basicitem-cctvtxt">{cameraName}</div>
               </div>
             ))}
