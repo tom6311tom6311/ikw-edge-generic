@@ -21,7 +21,7 @@ class InfluxClient:
       point = point.tag(tagKey, tags[tagKey])
     for fieldKey in fields:
       point = point.field(fieldKey, fields[fieldKey])
-    point = point.time(datetime.utcnow(), WritePrecision.NS)
+    point = point.time(datetime.now(), WritePrecision.NS)
     self.writer.write(INFLUX_BUCKET, INFLUX_ORG, point)
 
 influxClient = InfluxClient()
