@@ -4,12 +4,16 @@ import { useGetSirasQuery } from './GetSirasQuery.graphql.generated';
 import { useGetOpsQuery } from '../SiteStatusPage/GetOpsQuery.graphql.generated';
 import { useGetSensorDataQuery } from '../SiteStatusPage/GetSensorDataQuery.graphql.generated';
 import TabHeader from '../../components/TabHeader/TabHeader';
-import SirasInfoSection from './SirasInfoSection/SirasInfoSection';
 import MonitorSection, { DataPoint, TIME_SPAN_OPTIONS } from '../../components/MonitorSection/MonitorSection';
 import LiveDataSection from '../../components/LiveDataSection/LiveDataSection';
 import SamplingSection from '../../components/SamplingSection/SamplingSection';
 import CctvSection from '../../components/CctvSection/CctvSection';
 import TileSection from '../../components/TileSection/TileSection';
+
+const STATUS_MAP: { [key: string]: string; } = {
+  ACTIVE: '養殖中',
+  INACTIVE: '未養殖',
+};
 
 function SirasStatusPage() {
   const { siteId, sirasId } = useParams();
@@ -87,10 +91,24 @@ function SirasStatusPage() {
       />
       <div className="c-page-divider" />
       <div className="o-page-container__body">
-        <SirasInfoSection
-          speciesList={getSirasData?.siras?.speciesList || []}
-          capacity={getSirasData?.siras?.capacity || 0}
-          status={getSirasData?.siras?.status || ''}
+        <TileSection
+          title="基本資料"
+          topRightTrigger={<p className="c-page-subcontainer-option">看更多</p>}
+          tiles={[
+            {
+              title: '魚種',
+              value: (getSirasData?.siras?.speciesList || []).join(', '),
+            },
+            {
+              title: '魚隻數量',
+              value: getSirasData?.siras?.capacity || 0,
+              metaText: '尾',
+            },
+            {
+              title: '狀態',
+              value: STATUS_MAP[getSirasData?.siras?.status || ''] ?? '未知',
+            },
+          ]}
         />
         <MonitorSection
           ops={getOpsData?.ops || []}

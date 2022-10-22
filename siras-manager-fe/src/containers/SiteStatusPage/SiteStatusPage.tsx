@@ -4,11 +4,11 @@ import { useGetSiteQuery } from './GetSiteQuery.graphql.generated';
 import { useGetOpsQuery } from './GetOpsQuery.graphql.generated';
 import { useGetSensorDataQuery } from './GetSensorDataQuery.graphql.generated';
 import TabHeader from '../../components/TabHeader/TabHeader';
-import SiteInfoSection from './SiteInfoSection/SiteInfoSection';
 import MonitorSection, { DataPoint, TIME_SPAN_OPTIONS } from '../../components/MonitorSection/MonitorSection';
 import LiveDataSection from '../../components/LiveDataSection/LiveDataSection';
 import SamplingSection from '../../components/SamplingSection/SamplingSection';
 import CctvSection from '../../components/CctvSection/CctvSection';
+import TileSection from '../../components/TileSection/TileSection';
 
 function SiteStatusPage() {
   const { siteId } = useParams();
@@ -89,11 +89,30 @@ function SiteStatusPage() {
       />
       <div className="c-page-divider" />
       <div className="o-page-container__body">
-        <SiteInfoSection
-          companyNameChin={getSiteData?.site?.companyNameChin || ''}
-          sirasIds={getSiteData?.site?.sirasIds || []}
-          capacity={getSiteData?.site?.capacity || 0}
-          area={getSiteData?.site?.area || 0}
+        <TileSection
+          title="基本資料"
+          topRightTrigger={<p className="c-page-subcontainer-option">看更多</p>}
+          tiles={[
+            {
+              title: '公司',
+              value: getSiteData?.site?.companyNameChin || '',
+            },
+            {
+              title: 'SiRAS',
+              value: (getSiteData?.site?.sirasIds || []).length,
+              metaText: 'U',
+            },
+            {
+              title: '數量',
+              value: getSiteData?.site?.capacity || 0,
+              metaText: '尾',
+            },
+            {
+              title: '面積',
+              value: getSiteData?.site?.area || 0,
+              metaText: '公頃',
+            },
+          ]}
         />
         <MonitorSection
           ops={getOpsData?.ops || []}
