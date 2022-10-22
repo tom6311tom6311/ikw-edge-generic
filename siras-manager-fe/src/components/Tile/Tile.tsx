@@ -3,8 +3,8 @@ import * as React from 'react';
 type TileProps = {
   title: string;
   value: string|number;
-  metaText: string;
-  liveTileStatus: string;
+  metaText?: string;
+  liveTileStatus?: string;
 }
 
 export default function Tile({
@@ -23,7 +23,7 @@ export default function Tile({
             margin: '10px 20px',
           }}
         >
-          {liveTileStatus === 'none' ? '' : (
+          {liveTileStatus ? '' : (
             <div className={`c-page-paralight--${liveTileStatus}`} />
           )}
           <p className="c-page-basicitem-name">
@@ -34,11 +34,18 @@ export default function Tile({
           <p className="c-livedata__text">
             {value}
           </p>
-          <p className="c-livedata__info">
-            {metaText}
-          </p>
+          {metaText ? (
+            <p className="c-livedata__info">
+              {metaText}
+            </p>
+          ) : ''}
         </div>
       </div>
     </div>
   );
 }
+
+Tile.defaultProps = {
+  metaText: '',
+  liveTileStatus: '',
+};
