@@ -1,4 +1,10 @@
 import React from 'react';
+import Tile from '../../../components/Tile/Tile';
+
+const STATUS_MAP: { [key: string]: string; } = {
+  ACTIVE: '養殖中',
+  INACTIVE: '未養殖',
+};
 
 type SirasInfoSectionProps = {
   speciesList: string[],
@@ -17,45 +23,19 @@ function SirasInfoSection({
       </div>
       <div className="container" style={{ padding: '0', margin: '0' }}>
         <div className="row" style={{ width: '100%', margin: '0' }}>
-          <div className="col-sm-6 col-xl-4" style={{ padding: '0' }}>
-            <div className="o-page-subcontainer-basicitem">
-              <p className="c-page-basicitem-name">魚種</p>
-              <div className="sitemanage_body_item_container">
-                <p className="c-page-basicitem-company">
-                  {speciesList.join(', ')}
-                </p>
-                <p
-                  className="c-page-basicitem-unit"
-                  style={{ borderColor: 'white' }}
-                />
-              </div>
-            </div>
-          </div>
-          <div className="col-sm-6 col-xl-4" style={{ padding: '0' }}>
-            <div className="o-page-subcontainer-basicitem">
-              <p className="c-page-basicitem-name">數量</p>
-              <div className="sitemanage_body_item_container">
-                <p className="c-page-basicitem-info">
-                  {capacity}
-                </p>
-                <p className="c-page-basicitem-unit">尾</p>
-              </div>
-            </div>
-          </div>
-          <div className="col-sm-6 col-xl-4" style={{ padding: '0' }}>
-            <div className="o-page-subcontainer-basicitem">
-              <p className="c-page-basicitem-name">狀態</p>
-              <div className="sitemanage_body_item_container">
-                <p className="c-page-basicitem-company">
-                  {status}
-                </p>
-                <p
-                  className="c-page-basicitem-unit"
-                  style={{ borderColor: 'white' }}
-                />
-              </div>
-            </div>
-          </div>
+          <Tile
+            title="魚種"
+            value={speciesList.join(', ')}
+          />
+          <Tile
+            title="魚隻數量"
+            value={capacity}
+            metaText="尾"
+          />
+          <Tile
+            title="狀態"
+            value={STATUS_MAP[status] ?? status}
+          />
         </div>
       </div>
     </div>

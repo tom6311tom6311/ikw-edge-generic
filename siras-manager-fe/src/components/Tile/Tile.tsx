@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-type TileProps = {
+export type TileProps = {
   title: string;
   value: string|number;
   metaText?: string;

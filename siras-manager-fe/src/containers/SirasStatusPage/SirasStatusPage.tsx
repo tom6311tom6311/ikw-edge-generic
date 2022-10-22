@@ -9,6 +9,7 @@ import MonitorSection, { DataPoint, TIME_SPAN_OPTIONS } from '../../components/M
 import LiveDataSection from '../../components/LiveDataSection/LiveDataSection';
 import SamplingSection from '../../components/SamplingSection/SamplingSection';
 import CctvSection from '../../components/CctvSection/CctvSection';
+import TileSection from '../../components/TileSection/TileSection';
 
 function SirasStatusPage() {
   const { siteId, sirasId } = useParams();
@@ -99,7 +100,7 @@ function SirasStatusPage() {
           onTimeSpanChanged={setTimeSpan}
         />
         <LiveDataSection
-          title="中央系統數據"
+          title="水質監測"
           ops={getOpsData?.ops || []}
           values={
             getSensorDataData
@@ -107,8 +108,40 @@ function SirasStatusPage() {
               .map(({ timeSeries }) => (timeSeries.slice(-1)[0]?.value)) || []
           }
         />
+        <LiveDataSection
+          title="電流監測"
+          ops={[]}
+          values={[]}
+        />
+        <LiveDataSection
+          title="裝置管理"
+          ops={[]}
+          values={[]}
+        />
         <SamplingSection />
         <CctvSection title="水池影像辨識" cameras={getSirasData?.siras?.cameras || []} />
+        <TileSection
+          title="魚隻體型重量"
+          topRightTrigger={
+            <button type="button">查看採樣數據</button>
+          }
+          tiles={[
+            {
+              title: '魚種',
+              value: '赤鰭笛鯛',
+            },
+            {
+              title: '平均體重',
+              value: 688,
+              metaText: '公克',
+            },
+            {
+              title: '平均體長',
+              value: 30.2,
+              metaText: '公分',
+            },
+          ]}
+        />
       </div>
     </div>
   );
