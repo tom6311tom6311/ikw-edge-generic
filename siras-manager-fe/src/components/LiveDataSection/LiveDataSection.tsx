@@ -22,6 +22,7 @@ function LiveDataSection({ title, ops, values }: LiveDataSectionProps) {
         <div className="row" style={{ width: '100%', margin: '0' }}>
           {ops.map((op, opIdx) => (
             <Tile
+              key={op.name}
               title={op.name}
               value={`${values[opIdx] || ''} ${op.unit || ''}`}
               metaText="即時數據"
