@@ -1142,6 +1142,18 @@ div {
   .c-header__button {
     display: none;
   }
+
+  .market-map {
+    position: fixed;
+    top: 50px;
+    width: 100vw;
+    height: calc(100vh - 50px);
+  }
+
+  .leaflet-container {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -1152,10 +1164,32 @@ div {
   .c-basicitem-cctvbackground {
     height: 183px;
   }
+  
+  .market-map {
+    position: fixed;
+    top: 50px;
+    width: 100vw;
+    height: calc(100vh - 50px);
+  }
+
+  .leaflet-container {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 @media screen and (min-width: 1280px) {
-  
+  .market-map {
+    position: fixed;
+    top: 50px;
+    width: 100vw;
+    height: calc(100vh - 50px);
+  }
+
+  .leaflet-container {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 @media screen and (max-width: 575px) {
@@ -1190,6 +1224,18 @@ div {
 
   .is-sidebar-on .c-page-divider {
     width: calc(56.36% + 26.66px);
+  }
+
+  .market-map {
+    position: fixed;
+    top: 50px;
+    width: 100vw;
+    height: calc(100vh - 50px);
+  }
+
+  .leaflet-container {
+    width: 100%;
+    height: 100%;
   }
 }
 
