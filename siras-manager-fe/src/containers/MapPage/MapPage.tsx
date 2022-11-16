@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   MapContainer, TileLayer, LayersControl, Marker, Popup,
 } from 'react-leaflet';
 import L from 'leaflet';
 import FishMarketData from './data/FishMarket.json';
 import sirasSite from './data/SirasSiteTest.json';
-import sirasSiteLogo from './Static/Icon/SirasSite.png';
-// import Modal from '../../components/Modal/Modal';
+import sirasSiteLogo from '../../../public/SirasSite.png';
+import Modal from '../../components/Modal/Modal';
 
 const sirassiteIcon = new L.Icon({
   iconUrl: sirasSiteLogo,
@@ -21,11 +21,11 @@ const sirassiteIcon = new L.Icon({
 const { BaseLayer } = LayersControl;
 
 function MapPage() {
-  // const [openModal, setOpenModal] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
   return (
     <div className="market-map">
       {/* 測試Modal Button */}
-      {/* <div className="testClass">
+      <div className="testClass">
         <button
           className="openModalBtn"
           type="button"
@@ -34,7 +34,7 @@ function MapPage() {
           Submit
         </button>
       </div>
-      {openModal && <Modal closeModal={setOpenModal} />} */}
+      {openModal && <Modal closeModal={setOpenModal} />}
       <MapContainer
         center={[23.949294025268994, 121.07844297210907]}
         zoom={7}
