@@ -20,6 +20,7 @@ import SirasStatusPage from './containers/SirasStatusPage/SirasStatusPage';
 import CameraOverview from './components/CameraOverview/CameraOverview';
 import SiteInfoPage from './containers/SiteInfoPage/SiteInfoPage';
 import SirasOpPage from './components/SirasOpPage/SirasOpPage';
+import MapPage from './containers/MapPage/MapPage';
 
 const httpLink = createHttpLink({
   uri: AppConfig.BACKEND.GQL_URL,
@@ -57,6 +58,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<MainPage />}>
+            <Route path="map" element={<MapPage />} />
             <Route path="site/:siteId/siras/:sirasId">
               <Route path="*" element={<SirasStatusPage />} />
               <Route index element={<SirasStatusPage />} />

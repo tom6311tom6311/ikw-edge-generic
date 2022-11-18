@@ -5,7 +5,7 @@ import {
 import L from 'leaflet';
 import FishMarketData from './data/FishMarket.json';
 import sirasSite from './data/SirasSiteTest.json';
-import sirasSiteLogo from '../../../public/SirasSite.png';
+import sirasSiteLogo from '../../img/SirasSite.png';
 import Modal from '../../components/Modal/Modal';
 
 const sirassiteIcon = new L.Icon({
