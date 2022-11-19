@@ -21,20 +21,11 @@ const sirassiteIcon = new L.Icon({
 const { BaseLayer } = LayersControl;
 
 function MapPage() {
-  const [openModal, setOpenModal] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
   return (
     <div className="market-map">
-      {/* 測試Modal Button */}
-      <div className="testClass">
-        <button
-          className="openModalBtn"
-          type="button"
-          onClick={() => { setOpenModal(true); }}
-        >
-          Submit
-        </button>
-      </div>
-      {openModal && <Modal closeModal={setOpenModal} />}
       <MapContainer
         center={[23.949294025268994, 121.07844297210907]}
         zoom={7}
@@ -117,6 +108,20 @@ function MapPage() {
           </BaseLayer>
         </LayersControl>
       </MapContainer>
+      <div className="testClass">
+        <button
+          className="openModalBtn"
+          type="button"
+          onClick={openModal}
+        >
+          Submit
+        </button>
+      </div>
+      {
+        isModalOpen ? (
+          <Modal onClose={closeModal} />
+        ) : ''
+      }
     </div>
   );
 }

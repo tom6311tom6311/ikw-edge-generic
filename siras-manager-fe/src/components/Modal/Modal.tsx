@@ -1,15 +1,18 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 
-function Modal({ closeModal }) {
+export type ModalProps = {
+  onClose: () => void;
+}
+
+function Modal({ onClose }: ModalProps) {
   return (
     <div className="modalBackground">
       <div className="modalContainer">
         <div className="titleCloseBtn">
-          <button type="button" onClick={() => closeModal(false)}> X </button>
+          <button type="button" onClick={onClose}> X </button>
         </div>
         <div className="title">
-          <h1> title test</h1>
+          <h1>title test</h1>
         </div>
         <div className="body">
           <p>
@@ -18,7 +21,7 @@ function Modal({ closeModal }) {
           </p>
         </div>
         <div className="footer">
-          <button className="cancelBtn" type="button" onClick={() => closeModal(false)}> Cancel </button>
+          <button className="cancelBtn" type="button" onClick={onClose}>Cancel</button>
         </div>
       </div>
     </div>
