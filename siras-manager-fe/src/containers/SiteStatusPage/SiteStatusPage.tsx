@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import MoreInfoImg from '../../img/moreInfo_black.png';
 import { useGetSiteQuery } from './GetSiteQuery.graphql.generated';
 import { useGetOpsQuery } from './GetOpsQuery.graphql.generated';
 import { useGetSensorDataQuery } from './GetSensorDataQuery.graphql.generated';
 import TabHeader from '../../components/TabHeader/TabHeader';
+import Dropdown from '../../components/Dropdown/Dropdown';
 import MonitorSection, { DataPoint, TIME_SPAN_OPTIONS } from '../../components/MonitorSection/MonitorSection';
 import LiveDataSection from '../../components/LiveDataSection/LiveDataSection';
 import SamplingSection from '../../components/SamplingSection/SamplingSection';
@@ -12,7 +14,13 @@ import TileSection from '../../components/TileSection/TileSection';
 
 function SiteStatusPage() {
   const { siteId } = useParams();
+  const [isTabHeaderDropdownOpen, setIsTabHeaderDropdownOpen] = useState(false);
+  const [isSensorDataSectionDropdownOpen, setIsSensorDataSectionDropdownOpen] = useState(false);
   const [timeSpan, setTimeSpan] = useState(TIME_SPAN_OPTIONS[0]);
+  const toggleTabHeaderDropdown = () => setIsTabHeaderDropdownOpen(!isTabHeaderDropdownOpen);
+  const toggleSensorDataSectionDropdown = () => {
+    setIsSensorDataSectionDropdownOpen(!isSensorDataSectionDropdownOpen);
+  };
   const {
     loading: isGetSiteLoading,
     error: getSiteError,
@@ -86,6 +94,17 @@ function SiteStatusPage() {
           { text: '案場狀態', link: `/site/${siteId || ''}` },
           { text: 'SiRAS列表', link: `/site/${siteId || ''}/sirases` },
         ]}
+        topRightTrigger={(
+          <Dropdown
+            isOpen={isTabHeaderDropdownOpen}
+            trigger={<button className="button-clear c-moreinfo" type="button" onClick={toggleTabHeaderDropdown}><img src={MoreInfoImg} alt="more info" /></button>}
+            menu={[
+              <button type="button">產銷報表</button>,
+              <button type="button">場務報表</button>,
+              <button type="button">列印報表</button>,
+            ]}
+          />
+        )}
       />
       <div className="c-page-divider" />
       <div className="o-page-container__body">
@@ -123,6 +142,18 @@ function SiteStatusPage() {
         />
         <LiveDataSection
           title="中央系統數據"
+          topRightTrigger={(
+            <Dropdown
+              isOpen={isSensorDataSectionDropdownOpen}
+              trigger={<button className="button-clear c-moreinfo" type="button" onClick={toggleSensorDataSectionDropdown}><img src={MoreInfoImg} alt="more info" /></button>}
+              menu={[
+                <button type="button">裝置設定</button>,
+                ...(getOpsData?.ops || []).map(({ name }) => (
+                  <button type="button">{name}</button>
+                )),
+              ]}
+            />
+          )}
           ops={getOpsData?.ops || []}
           values={
             getSensorDataData

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import MoreInfoImg from '../../img/moreInfo_black.png';
 import { useGetSirasQuery } from './GetSirasQuery.graphql.generated';
 import { useGetOpsQuery } from '../SiteStatusPage/GetOpsQuery.graphql.generated';
 import { useGetSensorDataQuery } from '../SiteStatusPage/GetSensorDataQuery.graphql.generated';
 import TabHeader from '../../components/TabHeader/TabHeader';
+import Dropdown from '../../components/Dropdown/Dropdown';
 import MonitorSection, { DataPoint, TIME_SPAN_OPTIONS } from '../../components/MonitorSection/MonitorSection';
 import LiveDataSection from '../../components/LiveDataSection/LiveDataSection';
 import SamplingSection from '../../components/SamplingSection/SamplingSection';
@@ -17,7 +19,9 @@ const STATUS_MAP: { [key: string]: string; } = {
 
 function SirasStatusPage() {
   const { siteId, sirasId } = useParams();
+  const [isTabHeaderDropdownOpen, setIsTabHeaderDropdownOpen] = useState(false);
   const [timeSpan, setTimeSpan] = useState(TIME_SPAN_OPTIONS[0]);
+  const toggleTabHeaderDropdown = () => setIsTabHeaderDropdownOpen(!isTabHeaderDropdownOpen);
   const {
     loading: isGetSirasLoading,
     error: getSirasError,
@@ -88,6 +92,17 @@ function SirasStatusPage() {
           { text: '餵食紀錄', link: '#' },
           { text: '魚病檢測', link: '#' },
         ]}
+        topRightTrigger={(
+          <Dropdown
+            isOpen={isTabHeaderDropdownOpen}
+            trigger={<button className="button-clear c-moreinfo" type="button" onClick={toggleTabHeaderDropdown}><img src={MoreInfoImg} alt="more info" /></button>}
+            menu={[
+              <button type="button">飼料投餵紀錄表</button>,
+              <button type="button">魚病檢測紀錄表</button>,
+              <button type="button">列印報表</button>,
+            ]}
+          />
+        )}
       />
       <div className="c-page-divider" />
       <div className="o-page-container__body">

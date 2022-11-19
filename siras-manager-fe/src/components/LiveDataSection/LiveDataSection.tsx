@@ -4,11 +4,14 @@ import Tile from '../Tile/Tile';
 
 type LiveDataSectionProps = {
   title: string,
+  topRightTrigger?: React.ReactNode;
   ops: Op[],
   values: number[],
 };
 
-function LiveDataSection({ title, ops, values }: LiveDataSectionProps) {
+function LiveDataSection({
+  title, topRightTrigger, ops, values,
+}: LiveDataSectionProps) {
   return (
     <div
       className="o-page-subcontainer"
@@ -16,6 +19,7 @@ function LiveDataSection({ title, ops, values }: LiveDataSectionProps) {
     >
       <div className="o-page-subcontainer__header">
         <p className="c-page-subcontainer-title">{title}</p>
+        {topRightTrigger}
         {/* <p className='c-page-subcontainer-option'>設定</p> */}
       </div>
       <div className="container" style={{ padding: '0', margin: '0' }}>
@@ -34,5 +38,9 @@ function LiveDataSection({ title, ops, values }: LiveDataSectionProps) {
     </div>
   );
 }
+
+LiveDataSection.defaultProps = {
+  topRightTrigger: '',
+};
 
 export default LiveDataSection;

@@ -1,7 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import SearchImg from '../../img/search.png';
-import MoreInfoImg from '../../img/moreInfo_black.png';
 import Breadcrumb from '../Breadcrumb/Breadcrumb';
 
 type TabHeaderElement = {
@@ -14,10 +12,11 @@ type TabHeaderProps = {
   breadcrumbText?: React.ReactNode;
   currActiveIdx: number;
   elements: TabHeaderElement[];
+  topRightTrigger?: React.ReactNode;
 };
 
 function TabHeader({
-  title, breadcrumbText, currActiveIdx, elements,
+  title, breadcrumbText, currActiveIdx, elements, topRightTrigger,
 }:TabHeaderProps) {
   return (
     <div className="o-tabheader">
@@ -38,7 +37,7 @@ function TabHeader({
             {text}
           </Link>
         ))}
-        <img className="c-moreinfo-icon" src={MoreInfoImg} alt="more info" />
+        {topRightTrigger}
       </div>
     </div>
   );
@@ -46,6 +45,7 @@ function TabHeader({
 
 TabHeader.defaultProps = {
   breadcrumbText: '',
+  topRightTrigger: '',
 };
 
 export default TabHeader;
