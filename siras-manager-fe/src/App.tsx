@@ -20,6 +20,7 @@ import SirasListPage from './containers/SirasListPage/SirasListPage';
 import SirasStatusPage from './containers/SirasStatusPage/SirasStatusPage';
 import SirasOpPage from './components/SirasOpPage/SirasOpPage';
 import SirasFeedingReportListPage from './containers/SirasFeedingReportListPage/SirasFeedingReportListPage';
+import SirasFeedingReportCreatePage from './containers/SirasFeedingReportCreatePage/SirasFeedingReportCreatePage';
 import SirasHealthReportListPage from './containers/SirasHealthReportListPage/SirasHealthReportListPage';
 import CameraOverview from './components/CameraOverview/CameraOverview';
 import MapPage from './containers/MapPage/MapPage';
@@ -65,6 +66,7 @@ function App() {
               <Route path="op/:opId" element={<SirasOpPage />} />
               <Route path="reports">
                 <Route path="feeding">
+                  <Route path="create" element={<SirasFeedingReportCreatePage />} />
                   <Route path="*" element={<SirasFeedingReportListPage />} />
                   <Route index element={<SirasFeedingReportListPage />} />
                 </Route>

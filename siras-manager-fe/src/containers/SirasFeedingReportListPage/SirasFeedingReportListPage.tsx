@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import ReportImg from '../../img/report.png';
 import TabHeader from '../../components/TabHeader/TabHeader';
 
@@ -26,7 +26,7 @@ function SirasFeedingReportListPage() {
               <div className="report-list-empty-note">
                 <img src={ReportImg} alt="no report" />
                 <div className="report-list-empty-note-text">今日尚無餵食紀錄</div>
-                <button className="button-primary" type="button">開始投餵</button>
+                <Link to={`/site/${siteId || ''}/siras/${sirasId || ''}/reports/feeding/create`}><button className="button-primary" type="button">開始投餵</button></Link>
               </div>
             </div>
           </div>

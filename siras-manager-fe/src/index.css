@@ -43,6 +43,32 @@ button:focus {
   background-color: #1470cc;
 }
 
+select::-ms-expand {
+  display: none;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, gray 50%),
+    linear-gradient(135deg, gray 50%, transparent 50%);
+  background-position:
+    calc(100% - 18px) 22px,
+    calc(100% - 12px) 22px;
+  background-size:
+    6px 6px,
+    6px 6px;
+  background-repeat: no-repeat;
+}
+
+.align-right {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+}
+
 .o-header {
   position: fixed;
   background-color: #002633;
@@ -1507,4 +1533,40 @@ button:focus {
   margin-top: 10px;
   margin-bottom: 23.5px;
   color: rgba(46, 48, 51, .4);
+}
+
+.form-input-required {
+  font-size: 14px;
+  font-weight: 400;
+  color: #E53A17;
+}
+
+.report-create-form-section {
+  margin-bottom: 20px;
+}
+
+.report-create-form-section:last-child {
+  margin-bottom: 0;
+}
+
+.report-create-form-section input,select {
+  width: 100%;
+  padding: 13px 20px 13px 10px;
+  border: none;
+  border-radius: 3px;
+}
+
+.report-create-form-section-title {
+  margin: 0;
+  padding: 5px 0;
+  line-height: 20px;
+  font-size: 14px;
+}
+
+.report-create-form-section input[type=select] {
+  border: 1px solid #D9D7D4;
+}
+
+.report-create-form-section input[type=text]:disabled {
+  background-color: rgba(46, 48, 51, 0.05);
 }
