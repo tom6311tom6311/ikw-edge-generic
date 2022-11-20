@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import ReportImg from '../../img/report.png';
 import TabHeader from '../../components/TabHeader/TabHeader';
 
-function SirasFeedingReportListPage() {
+function SirasHealthReportListPage() {
   const { siteId, sirasId } = useParams();
 
   return (
@@ -11,7 +11,7 @@ function SirasFeedingReportListPage() {
       <TabHeader
         title={sirasId || '/'}
         breadcrumbText={`案場 ${siteId} /`}
-        currActiveIdx={1}
+        currActiveIdx={2}
         elements={[
           { text: 'SiRAS狀態', link: `/site/${siteId || ''}/siras/${sirasId || ''}` },
           { text: '餵食紀錄', link: `/site/${siteId || ''}/siras/${sirasId || ''}/reports/feeding` },
@@ -25,8 +25,8 @@ function SirasFeedingReportListPage() {
             <div className="o-page-subcontainer-basicitem report-list-empty">
               <div className="report-list-empty-note">
                 <img src={ReportImg} alt="no report" />
-                <div className="report-list-empty-note-text">今日尚無餵食紀錄</div>
-                <button className="button-primary" type="button">開始投餵</button>
+                <div className="report-list-empty-note-text">今日尚無檢測紀錄</div>
+                <button className="button-primary" type="button">開始檢測</button>
               </div>
             </div>
           </div>
@@ -36,4 +36,4 @@ function SirasFeedingReportListPage() {
   );
 }
 
-export default SirasFeedingReportListPage;
+export default SirasHealthReportListPage;

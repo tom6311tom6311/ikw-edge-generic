@@ -1488,22 +1488,22 @@ button:focus {
   cursor: pointer;
 }
 
-.siras-feeding-report-list-empty {
+.report-list-empty {
   height: 342px
 }
 
-.siras-feeding-report-list-empty-note {
+.report-list-empty-note {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.siras-feeding-report-list-empty-note > img {
+.report-list-empty-note > img {
   width: 80px;
   margin-top: 60px;
 }
 
-.siras-feeding-report-list-empty-note-text {
+.report-list-empty-note-text {
   margin-top: 10px;
   margin-bottom: 23.5px;
   color: rgba(46, 48, 51, .4);
