@@ -97,7 +97,7 @@ function SiteStatusPage() {
         topRightTrigger={(
           <Dropdown
             isOpen={isTabHeaderDropdownOpen}
-            trigger={<button className="button-clear c-moreinfo" type="button" onClick={toggleTabHeaderDropdown}><img src={MoreInfoImg} alt="more info" /></button>}
+            trigger={<button className="c-moreinfo" type="button" onClick={toggleTabHeaderDropdown}><img src={MoreInfoImg} alt="more info" /></button>}
             menu={[
               <button type="button">產銷報表</button>,
               <button type="button">場務報表</button>,
@@ -145,7 +145,7 @@ function SiteStatusPage() {
           topRightTrigger={(
             <Dropdown
               isOpen={isSensorDataSectionDropdownOpen}
-              trigger={<button className="button-clear c-moreinfo" type="button" onClick={toggleSensorDataSectionDropdown}><img src={MoreInfoImg} alt="more info" /></button>}
+              trigger={<button className="c-moreinfo" type="button" onClick={toggleSensorDataSectionDropdown}><img src={MoreInfoImg} alt="more info" /></button>}
               menu={[
                 <button type="button">裝置設定</button>,
                 ...(getOpsData?.ops || []).map(({ name }) => (

@@ -88,14 +88,14 @@ function SirasStatusPage() {
         breadcrumbText={`案場 ${siteId} /`}
         currActiveIdx={0}
         elements={[
-          { text: 'SiRAS狀態', link: '#' },
-          { text: '餵食紀錄', link: '#' },
-          { text: '魚病檢測', link: '#' },
+          { text: 'SiRAS狀態', link: `/site/${siteId || ''}/siras/${sirasId || ''}` },
+          { text: '餵食紀錄', link: `/site/${siteId || ''}/siras/${sirasId || ''}/reports/feeding` },
+          { text: '魚病檢測', link: `/site/${siteId || ''}/siras/${sirasId || ''}/reports/health` },
         ]}
         topRightTrigger={(
           <Dropdown
             isOpen={isTabHeaderDropdownOpen}
-            trigger={<button className="button-clear c-moreinfo" type="button" onClick={toggleTabHeaderDropdown}><img src={MoreInfoImg} alt="more info" /></button>}
+            trigger={<button className="c-moreinfo" type="button" onClick={toggleTabHeaderDropdown}><img src={MoreInfoImg} alt="more info" /></button>}
             menu={[
               <button type="button">飼料投餵紀錄表</button>,
               <button type="button">魚病檢測紀錄表</button>,
