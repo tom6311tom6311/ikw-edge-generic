@@ -308,7 +308,7 @@ const mockData: MockData = {
       speciesList: [],
       validationStatus: SiteValidationStatus.Passed,
       centralDevice: {
-        deviceId: '5670377',
+        deviceId: '11554062',
         opIds: [1, 3, 4],
       },
       sirasIds: ['NA'],
